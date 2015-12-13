@@ -1,0 +1,11 @@
+# Ignore everything
+
+# But not these files...
+!.gitignore
+!basic.js
+!all.js
+!production.js
+!developer.sh
+
+# ...even if they are in subdirectories
+!*/

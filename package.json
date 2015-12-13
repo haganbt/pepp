@@ -1,0 +1,26 @@
+{
+  "name": "pepp",
+  "version": "1.0.0",
+  "description": "PYLON Exporter ++",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haganbt/pepp.git"
+  },
+  "author": "Ben",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haganbt/pepp/issues"
+  },
+  "homepage": "https://github.com/haganbt/pepp#readme",
+  "dependencies": {
+    "config": "1.17.1",
+    "moment": "2.10.6",
+    "node-uuid": "1.4.7",
+    "underscore": "1.8.3"
+  }
+}

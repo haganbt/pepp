@@ -12,7 +12,31 @@ module.exports = {
     },
     "analysis": {
         "freqDist": [
-            /*
+
+            {
+                "target": "fb.author.gender",
+                "threshold": 2
+            }/*,
+            {
+                "merged_native_nested": [
+                    {
+                        "target": "fb.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "target": "fb.author.region",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.author.gender",
+                            "threshold": 2
+                        }
+                    }
+                ]
+            },
             {
                 "target": "fb.link",
                 "threshold": 200,
@@ -29,38 +53,7 @@ module.exports = {
                     }
                 }
             },*/
-            {
-                "target": "fb.author.gender",
-                "threshold": 800
-            },
-            {
-                "merged_native_nested": [
-                    {
-                        "target": "moe",
-                        "threshold": 300,
-                        "child": {
-                            "target": "bar",
-                            "threshold": 5,
-                            "child": {
-                                "target": "bar2",
-                                "threshold": 52
-                            }
-                        }
-                    },
-                    {
-                        "target": "foo",
-                        "threshold": 200,
-                        "child": {
-                            "target": "baz",
-                            "threshold": 10,
-                            "child": {
-                                "target": "bar2",
-                                "threshold": 52
-                            }
-                        }
-                    }
-                ]
-            }/*,
+            /*,
             {
                 "merged_custom_nested": [
                     {
@@ -96,7 +89,8 @@ module.exports = {
                         }
                     }
                 ]
-            }*/
+            }
+            */
         ],
         "timeSeries": [
 

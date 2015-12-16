@@ -1,11 +1,13 @@
 "use strict";
+process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 
 const taskProcessor = require('./lib/taskProcessor');
 const queue = require('./lib/queue');
 
 const configTasks = taskProcessor.loadConfigTasks();
 
-log(configTasks);
+//log(configTasks);
+
 
 configTasks.forEach(task => {
     queue.queueTask(task)
@@ -16,7 +18,7 @@ configTasks.forEach(task => {
         .catch(err => {
             log(err.statusCode);
             log(err.response.body);
-            //log(err);
+            log(err);
         });
 })
 

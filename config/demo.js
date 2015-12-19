@@ -5,10 +5,14 @@ module.exports = {
         "format": "json",
         "write_to_file": false
     },
-    "hash": "<INDEX_HASH>",
-    "auth": {
-        "username": "<USERNNAME>",
-        "api_key": "<API_KEY>"
+    "index": {
+        "default": {
+            "hash": "<INDEX_HASH>",
+            "auth": {
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
+            }
+        }
     },
     "analysis": {
         "freqDist": [
@@ -27,15 +31,11 @@ module.exports = {
                         }
                     },
                     {
-                        "target": "fb.author.age",
+                        "target": "fb.author.region",
                         "threshold": 6,
                         "child": {
                             "target": "fb.author.gender",
-                            "threshold": 2,
-                            "child": {
-                                "target": "fb.author.region",
-                                "threshold": 2
-                            }
+                            "threshold": 2
                         }
                     }
                 ]

@@ -6,7 +6,8 @@ const queue = require('./lib/queue');
 
 const configTasks = taskProcessor.loadConfigTasks();
 
-
+log(configTasks);
+/*
 configTasks.forEach(task => {
     queue.queueTask(task)
         .then(response => {
@@ -22,7 +23,7 @@ configTasks.forEach(task => {
             log(err);
         });
 })
-
+*/
 function log(data) {
     console.log(JSON.stringify(data, undefined, 4));
 }

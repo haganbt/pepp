@@ -21,7 +21,7 @@ Region, age, gender request from two indexes:
         {
             "merged_custom_nested": [
                 {
-                    "target": "fb.author.region", <-- no index key, use default
+                    "target": "fb.author.region",
                     "threshold": 6,
                     "child": {
                         "target": "fb.author.age",

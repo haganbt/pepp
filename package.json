@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,23 @@
   },
   "homepage": "https://github.com/haganbt/pepp#readme",
   "dependencies": {
+    "bunyan": "1.5.1",
+    "bunyan-format": "0.2.1",
     "config": "1.17.1",
     "moment": "2.10.6",
     "node-uuid": "1.4.7",
     "promise-queue": "2.2.0",
     "request-debug": "0.2.0",
     "request-promise": "1.0.2",
-    "underscore": "1.8.3"
+    "underscore": "1.8.3",
+    "when": "3.7.7"
+  },
+  "devDependencies": {
+    "chai": "3.4.1",
+    "chai-as-promised": "5.2.0",
+    "eslint": "1.10.3",
+    "eslint-config-defaults": "7.1.1",
+    "eslint-plugin-filenames": "0.2.0",
+    "mocha": "2.3.4"
   }
 }

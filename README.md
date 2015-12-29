@@ -56,10 +56,10 @@ module.exports = {
 
 ## Logging
 
-"warn" : A note on something that should probably be looked at by an operator eventually.
-"info" : Detail on regular operation.
-"debug" : Anything else, i.e. too verbose to be included in "info" level.
-"trace" : Very detailed application logging.
+* "warn" : A note on something that should probably be looked at by an operator eventually.
+* "info" : Detail on regular operation.
+* "debug" : Anything else, i.e. too verbose to be included in "info" level.
+* "trace" : Very detailed application logging.
 
 
 **TODO**

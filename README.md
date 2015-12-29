@@ -62,13 +62,6 @@ module.exports = {
 * "trace" : Very detailed application logging.
 
 
-**TODO**
-
-* Merged custom nested
-* Unlimited nesting hierarchy for custom nested
-* Support for merged multi-index queries
-
-
 
 # Advanced Usage
 

@@ -12,15 +12,25 @@ module.exports = {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
+        },
+        "baseline": {
+            "hash": "<INDEX_HASH>",
+            "auth": {
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
+            }
         }
     },
     "analysis": {
         "freqDist": [
+
             {
-                "merged_custom_nested": [
+                "merged_native_nested": [
                     {
+                        "index": "baseline",
+                        "id":"booboo",
                         "target": "fb.author.region",
-                        "threshold": 6,
+                        "threshold": 2,
                         "child": {
                             "target": "fb.author.age",
                             "threshold": 2,
@@ -31,44 +41,64 @@ module.exports = {
                         }
                     },
                     {
+                        "id": "yogi",
                         "target": "fb.author.region",
-                        "threshold": 6,
+                        "threshold": 2,
                         "child": {
-                            "target": "fb.author.gender",
+                            "target": "fb.author.age",
+                            "threshold": 2,
+                            "child": {
+                                "target": "fb.author.gender",
+                                "threshold": 2
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "index": "baseline",
+                "target": "fb.author.region",
+                "threshold": 2
+            },
+            {
+                "target": "fb.author.age",
+                "threshold": 2,
+                "then": {
+                    "target": "fb.author.gender",
+                    "threshold": 2
+                }
+            }/*,
+            {
+                "id": "yogi",
+                "target": "fb.author.age",
+                "threshold": 2,
+                "then": {
+                    "target": "fb.author.region",
+                    "threshold": 2
+                }
+            }
+            {
+                "merged_custom_nested": [
+                    {
+                        "id": "yogi",
+                        "target": "fb.author.age",
+                        "threshold": 2,
+                        "then": {
+                            "target": "fb.author.region",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": "booboo",
+                        "target": "fb.author.gender",
+                        "threshold": 2,
+                        "then": {
+                            "target": "fb.type",
                             "threshold": 2
                         }
                     }
                 ]
-            }
-            /*
-            {
-                "target": "fb.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.author.gender",
-                    "threshold": 2,
-                    "child": {
-                        "target": "fb.author.region",
-                        "threshold": 2
-                    }
-                }
-            }, ,
-            {
-                "target": "fb.link",
-                "threshold": 200,
-                "then": {
-                    "target": "moe",
-                    "threshold": 5,
-                    "then": {
-                        "target": "foo",
-                        "threshold": 6,
-                        "then": {
-                            "target": "bar",
-                            "threshold": 7
-                        }
-                    }
-                }
-            },*/
+            }*/
         ],
         "timeSeries": [
 

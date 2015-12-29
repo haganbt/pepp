@@ -17,7 +17,7 @@ npm run lint
 
 ## Index Credentials
 
-One or more PYLON idexes must be defined by setting a parent ```index`` key. Credentials defined under the ```default```
+One or more PYLON idexes must be defined by setting a parent ```index``` key. Credentials defined under the ```default```
 key will be used unless overridden by setting an ```index``` parameter:
 
 ```json

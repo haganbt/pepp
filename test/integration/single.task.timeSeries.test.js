@@ -22,7 +22,7 @@ const config = {
 
 describe("Single task tests", function(){
 
-    it.only('timeSeries', function() {
+    it('timeSeries', function() {
 
         let configTasks = taskProcessor.loadConfigTasks(config);
 

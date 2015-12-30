@@ -45,4 +45,40 @@ describe("Custom Nested", function(){
         });
     });
 
+
+    it('3 level depth', function() {
+
+        let config = {
+            "freqDist": [
+                {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2,
+                    "then": {
+                        "target": "fb.parent.author.age",
+                        "threshold": 2,
+                        "then": {
+                            "target": "fb.type",
+                            "threshold": 2
+                        }
+                    }
+                }
+            ]
+        };
+
+        let configTasks = taskProcessor.loadConfigTasks(config);
+
+        return queue.queueTask(configTasks[0]).then(function(result){
+
+            result = taskHelper.compact(result);
+
+            expect(result[0]).to.have.any.keys("male-18-24", "female-18-24",
+                "female-25-34", "male-25-34", "female-35-44", "male-35-44");
+
+            let firstKey = Object.keys(result[0])[0];
+
+            expect(result[0][firstKey][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+
+        });
+    });
+
 });

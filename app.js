@@ -13,6 +13,11 @@ configTasks.forEach(task => {
     queue.queueTask(task)
 
         .then(response => {
+
+
+            //log.error("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ before");
+            //log.error(JSON.stringify(response, undefined, 4));
+
             //cleanup unresolved promises
             return taskHelper.compact(response);
 

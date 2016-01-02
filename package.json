@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --timeout 20000",
+    "test:watch": "mocha -w --timeout 20000",
     "lint": "eslint ."
   },
   "repository": {

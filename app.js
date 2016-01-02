@@ -13,7 +13,7 @@ configTasks.forEach(task => {
     queue.queueTask(task)
 
         .then(response => {
-            cacheHelper.debugAll();
+            //cacheHelper.debugAll();
             log.info("===================== FINAL RESPONSE ===========================");
             log.info(JSON.stringify(response, undefined, 4));
 

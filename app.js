@@ -23,10 +23,10 @@ configTasks.forEach(task => {
 
         })
         .then(response => {
-
+            cacheHelper.debugAll();
             log.info("===================== FINAL RESPONSE ===========================");
             log.info(JSON.stringify(response, undefined, 4));
-            cacheHelper.debugAll();
+
 
         })
         .catch(err => {

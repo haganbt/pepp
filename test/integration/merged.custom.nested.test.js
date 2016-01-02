@@ -65,4 +65,57 @@ describe("Merged Custom Nested", function(){
 
     });
 
+
+    it('3 level nested', function() {
+
+        let config = {
+            "freqDist": [
+                {
+                    "merged_native_nested": [
+                        {
+                            "id":"booboo",
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.parent.author.age",
+                                "threshold": 2,
+                                "then": {
+                                    "target": "fb.parent.topics.name",
+                                    "threshold": 2
+                                }
+                            }
+                        },
+                        {
+                            "id": "yogi",
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.type",
+                                "threshold": 2,
+                                "then": {
+                                    "target": "fb.parent.topics.name",
+                                    "threshold": 2
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+
+        let configTasks = taskProcessor.loadConfigTasks(config);
+
+        return Promise.all(configTasks.map(function(each) {
+            return queue.queueTask(each);
+        })).then(function(result){
+
+            result = taskHelper.compact(result);
+
+            expect(result[0]).to.have.any.keys("yogi-male-like", "yogi-male-comment", "booboo-male-25-34",
+                "booboo-male-35-44", "booboo-female-25-34", "booboo-female-35-44", "yogi-female-like",
+                "yogi-female-comment");
+        });
+
+    });
+
 });

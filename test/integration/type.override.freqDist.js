@@ -12,7 +12,7 @@ const taskProcessor = require('../../lib/taskProcessor');
 
 describe("Type Override - freqDist to timeSeries", function(){
 
-    it.only('2 level depth', function() {
+    it('2 level depth', function() {
 
         let config = {
             "freqDist": [

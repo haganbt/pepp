@@ -58,7 +58,7 @@ describe("Merged Native Nested Multi-Index", function(){
     });
 
 
-    it.only('3 level nested', function() {
+    it('3 level nested', function() {
 
         let config = {
             "freqDist": [

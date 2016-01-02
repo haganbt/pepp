@@ -58,11 +58,11 @@ describe("Task helper", function(){
 
         let out = taskHelper.getIndexCreds(task, reqObj);
 
-        expect(out.auth.user).to.be.true;
-        expect(out.auth.pass).to.be.true;
-        expect(out.json.hash).to.be.true;
-        expect(out.json.parameters.parameters.index).to.be.undefined;
+        expect(out.auth.user).to.equal(process.env.SECONDARY_AUTH_USER);
+        expect(out.auth.pass).to.equal(process.env.SECONDARY_AUTH_KEY);
+        expect(out.json.hash).to.equal(process.env.SECONDARY_HASH);
 
+        expect(out.json.parameters.parameters.index).to.be.undefined;
         expect(out.json.parameters).to.exist;
         expect(out.json.parameters.parameters).to.exist;
         expect(out.json.parameters.parameters.child).to.exist;

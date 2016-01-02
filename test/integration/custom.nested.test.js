@@ -32,8 +32,6 @@ describe("Custom Nested", function(){
 
         return queue.queueTask(configTasks[0]).then(function(result){
 
-            result = taskHelper.compact(result);
-
             expect(result[0]).to.have.all.keys(["male", "female", "unknown"]);
 
             expect(result[0]["male"]).to.be.an('array');

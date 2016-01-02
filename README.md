@@ -18,7 +18,9 @@ npm run lint
 ## Index Credentials
 
 One or more PYLON idexes must be defined by setting a parent ```index``` key. Credentials defined under the ```default```
-key will be used unless overridden by setting an ```index``` parameter:
+key will be used unless overridden by setting an ```index``` parameter. The default analyze URI can also be overwritten 
+to support a proxy:
+
 
 ```json
 module.exports = {
@@ -31,6 +33,7 @@ module.exports = {
        }
      },
      "foo": {
+       "analyze_uri": "https://pylonsandbox.datasift.com/v1/pylon/analyze", //<-- override analyze URI
        "hash": "<INDEX_HASH>",
        "auth": {
          "username": "<USERNNAME>",
@@ -61,6 +64,16 @@ module.exports = {
 * "debug" : Anything else, i.e. too verbose to be included in "info" level.
 * "trace" : Very detailed application logging.
 
+
+# Development
+
+```
+source config/developer.sh
+```
+
+```
+npm run test:watch
+```
 
 
 # Advanced Usage

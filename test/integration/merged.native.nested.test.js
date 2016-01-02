@@ -12,7 +12,7 @@ const taskProcessor = require('../../lib/taskProcessor');
 const taskHelper = require('../../lib/helpers/task');
 
 
-describe.only("Merged Native Nested", function(){
+describe("Merged Native Nested", function(){
 
     it('2 level nested', function() {
 

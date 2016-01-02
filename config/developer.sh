@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
+export LOG_LEVEL=trace
+
+#primary index
 export HASH=
 export AUTH_USER=
 export AUTH_KEY=
-export LOG_LEVEL=trace
+
+#secondary index
+export SECONDARY_HASH=
+export SECONDARY_AUTH_USER=
+export SECONDARY_AUTH_KEY=
 
 echo "Hash: " $HASH
 echo "AUTH_USER: " $AUTH_USER

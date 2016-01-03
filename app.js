@@ -13,7 +13,13 @@ configTasks.forEach(task => {
     queue.queueTask(task)
 
         .then(response => {
-            //cacheHelper.debugAll();
+
+            //handle expected resolution of undefined
+            if(response === undefined){
+                return;
+            }
+
+            cacheHelper.debugAll();
             log.info("===================== FINAL RESPONSE ===========================");
             log.info(JSON.stringify(response, undefined, 4));
 

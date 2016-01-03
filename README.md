@@ -57,6 +57,22 @@ module.exports = {
  };
 ```
 
+**Custom Nested Tasks**
+
+If an ```index``` key is set as part of a parent custom nested task, the child task will inherit these values.
+
+```json
+{
+    "index": "foo",
+    "target": "fb.author.gender",
+    "threshold": 2,
+    "then": {
+        "target": "fb.type", //<-- inherits "foo" creds
+        "threshold": 2
+    }
+}
+```                
+
 ## Logging
 
 * "warn" : A note on something that should probably be looked at by an operator eventually.

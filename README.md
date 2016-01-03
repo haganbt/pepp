@@ -125,7 +125,7 @@ source config/developer.sh
 
 ## Multi-Index - Merged 3 Level Custom Nested
 
-Age, gender, topics request from two different indexes:
+Top topics by age and gender from two different indexes:
 
 ```json
 "analysis": {
@@ -193,7 +193,7 @@ Example response:
 
 ## Multi-Index - Merged 3 Level Custom Nested with type override
 
-For each week, across two indexes, top topics by gender
+Top topics by gender by week from two different indexes:
 
 ```json
 "timeSeries": [

@@ -125,7 +125,7 @@ source config/developer.sh
 
 ## Multi-Index - Merged 3 Level Custom Nested
 
-Region, age, gender request from two different indexes:
+Age, gender, topics request from two different indexes:
 
 ```json
 "analysis": {
@@ -189,4 +189,70 @@ Example response:
                   "unique_authors": 188000
               },
 ....
+```
+
+## Multi-Index - Merged 3 Level Custom Nested with type override
+
+For each week, across two indexes, top topics by gender
+
+```json
+"timeSeries": [
+    {
+        "merged_custom_nested": [
+            {
+                "id": "yogi",
+                "index": "other",
+                "interval": "week",
+                "then": {
+                    "type": "freqDist",
+                    "target": "fb.author.gender",
+                    "threshold": 2,
+                    "then": {
+                        "target": "fb.topics.name",
+                        "threshold": 2
+                    }
+                }
+            },
+            {
+                "id": "booboo",
+                "interval": "week",
+                "then": {
+                    "type": "freqDist",
+                    "target": "fb.author.gender",
+                    "threshold": 2,
+                    "then": {
+                        "target": "fb.topics.name",
+                        "threshold": 2
+                    }
+                }
+            }
+        ]
+    }
+]
+```
+
+Example response:
+
+```json
+  [
+      {
+          "booboo-1451260800-male": [
+              {
+                  "key": "25-34",
+                  "interactions": 1632200,
+                  "unique_authors": 912100
+              },
+              {
+                  "key": "18-24",
+                  "interactions": 1458700,
+                  "unique_authors": 694200
+              }
+          ],
+          "booboo-1451260800-female": [
+              {
+                  "key": "25-34",
+                  "interactions": 870200,
+                  "unique_authors": 721800
+              },
+...
 ```

@@ -3,17 +3,20 @@ PYLON Exporter ++
 
 ## STATUS: Unstable, WIP.
 
-**Tests**
+## Config Options
+Below is a summary of all supported config options.
 
-```
-npm test
-```
+| Option        | Scope           | Description  |
+|:------------- |:-------------|:-----|
+| ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
+| ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
+| ```index.default.auth.api_key```      | global | The api key used for authentication |
+| ```index.default.auth.username``` | global | The username used for authentication |
+| ```index.default.hash``` | global | The hash id of the index to analyze |
+| ```index.default.analyze_uri``` | global | Overwrite the default analyze uri |
+| ```id``` | merged tasks | A unique identifier for each merged task result set |
 
-**Lint**
 
-```
-npm run lint
-```
 
 ## Index Credentials
 
@@ -83,12 +86,30 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
 
 # Development
 
+
+**Tests**
+
 ```
-source config/developer.sh
+npm test
 ```
+
+or
+
 
 ```
 npm run test:watch
+```
+
+**Lint**
+
+```
+npm run lint
+```
+
+**Dev ENV Config**
+
+```
+source config/developer.sh
 ```
 
 

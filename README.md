@@ -92,44 +92,72 @@ npm run test:watch
 ```
 
 
-# Advanced Usage
+# Advanced Usage Examples
 
-## Multi-Index - Merged Native Nested
+## Multi-Index - Merged 3 Level Custom Nested
 
 Region, age, gender request from two different indexes:
 
 ```json
 "analysis": {
     "freqDist": [
-        {
-            "merged_custom_nested": [
-                {
-                    "target": "fb.author.region",
-                    "threshold": 6,
-                    "child": {
-                        "target": "fb.author.age",
-                        "threshold": 2,
-                        "child": {
-                            "target": "fb.author.gender",
-                            "threshold": 2
-                        }
-                    }
-                },
-                {
-                    "index": "baseline", //<-- override default creds
-                    "target": "fb.author.region",
-                    "threshold": 6,
-                    "child": {
-                        "target": "fb.author.age",
-                        "threshold": 2,
-                        "child": {
-                            "target": "fb.author.gender",
-                            "threshold": 2
-                        }
-                    }
-                }
-            ]
-        }
+       {
+           "merged_custom_nested": [
+               {
+                   "index": "foo", // will use ENV settings
+                   "id":"booboo",
+                   "target": "fb.parent.author.age",
+                   "threshold": 2,
+                   "then": {
+                       "target": "fb.parent.author.gender",
+                       "threshold": 2,
+                       "then": {
+                           "target": "fb.parent.topics.name",
+                           "threshold": 2
+                       }
+                   }
+               },
+               {
+                   "id": "yogi",
+                   "target": "fb.parent.author.age",
+                   "threshold": 2,
+                   "then": {
+                       "target": "fb.parent.author.gender",
+                       "threshold": 2,
+                       "then": {
+                           "target": "fb.parent.topics.name",
+                           "threshold": 2
+                       }
+                   }
+               }
+           ]
+       }
     ]
 }        
-```        
+```
+
+Example response:
+
+```json
+[
+      {
+          "yogi-25-34-male": [
+              {
+                  "key": "BMW",
+                  "interactions": 334100,
+                  "unique_authors": 265200
+              },
+              {
+                  "key": "Cars",
+                  "interactions": 80900,
+                  "unique_authors": 68100
+              }
+          ],
+          "yogi-25-34-female": [
+              {
+                  "key": "BMW",
+                  "interactions": 215700,
+                  "unique_authors": 188000
+              },
+....
+```

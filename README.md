@@ -8,6 +8,7 @@ Features:
  
  * Simplified JSON config "recipe" approach
  * Export as JSON or CSV
+ * Cross-index query
  * Result set merging
  * Result set to query inheritance
  * Inbuilt queue to support large numbers of requests

@@ -1,8 +1,19 @@
+# STATUS: Unstable, WIP.
+
 # PEPP
-PYLON Exporter ++
+PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. PEPP mandates a config driven approach 
+to data collection, rather than code. It is the goal of this utility to support any combination of data extraction from a PYLON index.
 
-## STATUS: Unstable, WIP.
+Features:
+ 
+ * Simplified JSON config "recipe" approach
+ * Export as JSON or CSV
+ * Result set merging
+ * Result set to query inheritance
+ * Inbuilt queue to support large numbers of requests
+ * Parallel requests limit to manage control flow
 
+ 
 ## Config Options
 Below is a summary of all supported config options.
 
@@ -15,7 +26,6 @@ Below is a summary of all supported config options.
 | ```index.default.hash``` | global | The hash id of the index to analyze |
 | ```index.default.analyze_uri``` | global | Overwrite the default analyze uri |
 | ```id``` | merged tasks | A unique identifier for each merged task result set |
-
 
 
 ## Index Credentials
@@ -125,7 +135,7 @@ Region, age, gender request from two different indexes:
        {
            "merged_custom_nested": [
                {
-                   "index": "foo", // will use ENV settings
+                   "index": "foo",
                    "id":"booboo",
                    "target": "fb.parent.author.age",
                    "threshold": 2,

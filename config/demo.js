@@ -111,7 +111,7 @@ module.exports = {
         ],
         "timeSeries": [
             {
-                "merged_custom_nested": [
+                "multi_index_merged_custom_nested": [
                     {
                         "id": "yogi",
                         "index": "other",
@@ -140,8 +140,46 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                "multi_index_merged_native_nested": [
+                    {
+                        "id": "yogi",
+                        "index": "other",
+                        "interval": "month",
+                        "then": {
+                            "type": "freqDist",
+                            "target": "fb.author.age",
+                            "threshold": 2,
+                            "child": {
+                                "target": "fb.author.gender",
+                                "threshold": 2,
+                                "child": {
+                                    "target": "fb.type",
+                                    "threshold": 2
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "id": "booboo",
+                        "interval": "month",
+                        "then": {
+                            "type": "freqDist",
+                            "target": "fb.author.age",
+                            "threshold": 2,
+                            "child": {
+                                "target": "fb.author.gender",
+                                "threshold": 2,
+                                "child": {
+                                    "target": "fb.type",
+                                    "threshold": 2
+                                }
+                            }
+                        }
+                    }
+                ]
             }
-
         ]
     }
 };

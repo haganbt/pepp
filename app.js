@@ -21,8 +21,6 @@ configTasks.forEach(task => {
             }
 
             cacheHelper.debugAll();
-            log.info("===================== FINAL RESPONSE ===========================");
-            log.info(JSON.stringify(response, undefined, 4));
 
             return response;
 
@@ -32,7 +30,13 @@ configTasks.forEach(task => {
         })
         .then(response => {
 
-            console.log(response);
+            if(_.isObject(response)){
+                log.info(JSON.stringify(response, undefined, 4));
+            }
+
+            if(_.isString(response)){
+                log.info(response);
+            }
 
         })
         .catch(err => {

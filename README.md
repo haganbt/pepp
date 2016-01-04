@@ -237,25 +237,32 @@ Top topics by gender by week from two different indexes:
 Example response:
 
 ```json
-  [
+ [
       {
-          "booboo-1451260800-male": [
+          "booboo-1451865600-male": [
               {
-                  "key": "25-34",
-                  "interactions": 1632200,
-                  "unique_authors": 912100
+                  "key": "BMW",
+                  "interactions": 64700,
+                  "unique_authors": 49200
               },
               {
-                  "key": "18-24",
-                  "interactions": 1458700,
-                  "unique_authors": 694200
+                  "key": "Ford Motor Company",
+                  "interactions": 26200,
+                  "unique_authors": 20900
               }
           ],
-          "booboo-1451260800-female": [
+          "yogi-1451865600-male": [
               {
-                  "key": "25-34",
-                  "interactions": 870200,
-                  "unique_authors": 721800
+                  "key": "Star Wars",
+                  "interactions": 176000,
+                  "unique_authors": 165800
               },
-...
+              {
+                  "key": "Star Wars Movies",
+                  "interactions": 88000,
+                  "unique_authors": 88000
+              }
+          ],
+          ...
+
 ```

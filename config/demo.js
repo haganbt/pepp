@@ -2,7 +2,7 @@
 
 module.exports = {
     "app": {
-        "format": "json",
+        "format": "csv",
         "write_to_file": false
     },
     "index": {
@@ -13,7 +13,7 @@ module.exports = {
                 "api_key": "<API_KEY>"
             }
         },
-        "baseline": {
+        "jellystone": {
             "hash": "<INDEX_HASH>",
             "auth": {
                 "username": "<USERNNAME>",
@@ -23,11 +23,52 @@ module.exports = {
     },
     "analysis": {
         "freqDist": [
-
+            {
+                "target": "fb.author.age",
+                "threshold": 2
+            },
+            {
+                "target": "fb.author.age",
+                "threshold": 2,
+                "then": {
+                    "type": "timeSeries",
+                    "interval": "week"
+                }
+            },
+            {
+                "merged_custom_nested": [
+                    {
+                        "index": "foo",
+                        "id":"booboo",
+                        "target": "fb.parent.author.age",
+                        "threshold": 2,
+                        "then": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.parent.topics.name",
+                                "threshold": 2
+                            }
+                        }
+                    },
+                    {
+                        "id": "yogi",
+                        "target": "fb.parent.author.age",
+                        "threshold": 2,
+                        "then": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.parent.topics.name",
+                                "threshold": 2
+                            }
+                        }
+                    }
+                ]
+            },
             {
                 "merged_native_nested": [
                     {
-                        "index": "baseline",
                         "id":"booboo",
                         "target": "fb.author.region",
                         "threshold": 2,
@@ -44,7 +85,7 @@ module.exports = {
                         "id": "yogi",
                         "target": "fb.author.region",
                         "threshold": 2,
-                        "child": {
+                        "then": {
                             "target": "fb.author.age",
                             "threshold": 2,
                             "child": {
@@ -56,51 +97,50 @@ module.exports = {
                 ]
             },
             {
-                "index": "baseline",
-                "target": "fb.author.region",
-                "threshold": 2
-            },
-            {
                 "target": "fb.author.age",
                 "threshold": 2,
                 "then": {
                     "target": "fb.author.gender",
-                    "threshold": 2
-                }
-            }/*,
-            {
-                "id": "yogi",
-                "target": "fb.author.age",
-                "threshold": 2,
-                "then": {
-                    "target": "fb.author.region",
-                    "threshold": 2
+                    "threshold": 2,
+                    "then": {
+                        "target": "fb.author.region",
+                        "threshold": 2
+                    }
                 }
             }
+        ],
+        "timeSeries": [
             {
                 "merged_custom_nested": [
                     {
                         "id": "yogi",
-                        "target": "fb.author.age",
-                        "threshold": 2,
+                        "index": "other",
+                        "interval": "month",
                         "then": {
-                            "target": "fb.author.region",
-                            "threshold": 2
+                            "type": "freqDist",
+                            "target": "fb.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.author.age",
+                                "threshold": 2
+                            }
                         }
                     },
                     {
                         "id": "booboo",
-                        "target": "fb.author.gender",
-                        "threshold": 2,
+                        "interval": "month",
                         "then": {
-                            "target": "fb.type",
-                            "threshold": 2
+                            "type": "freqDist",
+                            "target": "fb.author.gender",
+                            "threshold": 2,
+                            "then": {
+                                "target": "fb.author.age",
+                                "threshold": 2
+                            }
                         }
                     }
                 ]
-            }*/
-        ],
-        "timeSeries": [
+            }
 
         ]
     }

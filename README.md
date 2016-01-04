@@ -1,8 +1,11 @@
 # STATUS: Unstable, WIP.
 
 # PEPP
-PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. PEPP mandates a config driven approach 
-to data collection, rather than code. It is the goal of this utility to support any combination of data extraction from a PYLON index. Features:
+PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. It is the goal of this utility to support any combination of data extraction from a PYLON index.
+
+PEPP mandates a config (not code) approach to data collection. 
+
+Features: 
  
  * Simplified JSON config "recipe" approach
  * Export as JSON or CSV
@@ -191,7 +194,7 @@ Example response:
 ....
 ```
 
-## Multi-Index - Merged 3 Level Custom Nested with type override
+## Multi-Index - Merged 2 Level Custom Nested with type override
 
 Top topics by gender by week from two different indexes:
 

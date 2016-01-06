@@ -22,6 +22,7 @@ Below is a summary of all supported config options.
 |:------------- |:-------------|:-----|
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
+| ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.hash``` | global | The hash id of the index to analyze |

@@ -1,9 +1,8 @@
 # STATUS: Unstable, WIP.
 
 # PEPP
-PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. It is the goal of this utility to support any combination of data extraction from a PYLON index.
-
-PEPP mandates a config (not code) approach to data collection. 
+PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. It is the goal of this utility to 
+support any combination of data extraction using a config (not code) approach. 
 
 Features: 
  
@@ -20,7 +19,7 @@ Below is a summary of all supported config options.
 
 | Option        | Scope           | Description  |
 |:------------- |:-------------|:-----|
-| ```app.enrich_percentages```      | global | Enrich results with percentages. |
+| ```app.enrich_percentages```      | global | Enrich results with percentages. ```true``` or ```false``` |
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |

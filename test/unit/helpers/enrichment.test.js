@@ -1,7 +1,7 @@
 "use strict";
 process.env.NODE_ENV = 'test';
 
-const enrichment = require('../../../lib/helpers/enrichment');
+const enrichment = require('../../../lib/enrichment');
 
 const chai = require("chai");
 
@@ -161,9 +161,9 @@ describe("Enrichment Helper", function(){
 
         let result = enrichment.addPercentages(example);
 
-        expect(result.analysis.results[0]).to.have.all.keys(["child", "key", "interactions", "interactions_per", "unique_authors", "unique_authors_per"]);
-        expect(result.analysis.results[0].child.results[0]).to.have.all.keys(["child", "key", "interactions", "interactions_per", "unique_authors", "unique_authors_per"]);
-        expect(result.analysis.results[0].child.results[0].child.results[0]).to.have.all.keys(["key", "interactions", "interactions_per", "unique_authors", "unique_authors_per"]);
+        expect(result.analysis.results[0]).to.have.all.keys(["child", "key", "interactions", "interactions_percentage", "unique_authors", "unique_authors_percentage"]);
+        expect(result.analysis.results[0].child.results[0]).to.have.all.keys(["child", "key", "interactions", "interactions_percentage", "unique_authors", "unique_authors_percentage"]);
+        expect(result.analysis.results[0].child.results[0].child.results[0]).to.have.all.keys(["key", "interactions", "interactions_percentage", "unique_authors", "unique_authors_percentage"]);
 
     });
 

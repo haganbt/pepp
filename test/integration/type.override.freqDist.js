@@ -33,8 +33,8 @@ describe("Type Override - freqDist to timeSeries", function(){
 
             expect(result[0].male[0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
             expect(result[0].female[0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0].male[0].key).to.be.a('number');
-            expect(result[0].female[0].key).to.be.a('number');
+            expect(result[0].male[0].key).to.be.a('string');
+            expect(result[0].female[0].key).to.be.a('string');
 
         });
     });

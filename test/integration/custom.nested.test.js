@@ -69,8 +69,8 @@ describe("Custom Nested", function(){
 
             result = taskHelper.compact(result);
 
-            expect(result[0]).to.have.any.keys("male-18-24", "female-18-24",
-                "female-25-34", "male-25-34", "female-35-44", "male-35-44");
+            expect(result[0]).to.have.any.keys("male__18-24", "female__18-24",
+                "female__25-34", "male__25-34", "female__35-44", "male__35-44");
 
             let firstKey = Object.keys(result[0])[0];
 

@@ -29,7 +29,7 @@ describe("Single task tests - timeSeries", function(){
         return queue.queueTask(configTasks[0]).then(function(result){
 
             expect(result[0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0].key).to.be.a('number'); //timestamp
+            expect(result[0].key).to.be.a('string'); //timestamp correctly converted
 
         });
     });

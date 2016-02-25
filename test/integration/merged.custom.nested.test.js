@@ -51,15 +51,15 @@ describe("Merged Custom Nested", function(){
 
             result = taskHelper.compact(result);
 
-            expect(result[0]["yogi-male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi-male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi-female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi-female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["yogi__male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["yogi__male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["yogi__female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["yogi__female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
 
-            expect(result[0]["booboo-male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo-male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo-female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo-female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["booboo__male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["booboo__male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["booboo__female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]["booboo__female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
 
         });
 
@@ -111,9 +111,9 @@ describe("Merged Custom Nested", function(){
 
             result = taskHelper.compact(result);
 
-            expect(result[0]).to.have.any.keys("yogi-male-like", "yogi-male-comment", "booboo-male-25-34",
-                "booboo-male-35-44", "booboo-female-25-34", "booboo-female-35-44", "yogi-female-like",
-                "yogi-female-comment");
+            expect(result[0]).to.have.any.keys("yogi__male-like", "yogi__male-comment", "booboo__male__25-34",
+                "booboo__male__35-44", "booboo__female__25-34", "booboo__female__35-44", "yogi__female-like",
+                "yogi__female-comment");
         });
 
     });

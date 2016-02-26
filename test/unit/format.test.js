@@ -13,6 +13,29 @@ const format = require('../../lib/format');
 
 describe("Format - JSON to CSV", function(){
 
+    it.only('single FD response', function() {
+
+        let config =  [
+            {
+                "key": "male",
+                "interactions": 10100300,
+                "unique_authors": 6022000
+            },
+            {
+                "key": "female",
+                "interactions": 3271000,
+                "unique_authors": 2674400
+            }
+        ];
+
+        return format.jsonToCsv(config).then(function(result){
+
+            expect(result).to.be.an('string');
+            expect(result).to.eql('key,interactions,unique_authors\nmale,10100300,6022000\nfemale,3271000,2674400\n');
+        });
+    });
+
+
     it('custom nested - child array format', function() {
 
         let config = [
@@ -53,8 +76,7 @@ describe("Format - JSON to CSV", function(){
                             "unique_authors": 1157100
                         }
                     ]
-                }
-            ];
+                }];
 
         return format.jsonToCsv(config).then(function(result){
 

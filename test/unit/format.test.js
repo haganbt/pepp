@@ -13,7 +13,189 @@ const format = require('../../lib/format');
 
 describe("Format - JSON to CSV", function(){
 
-    it.only('single FD response', function() {
+    it('Merged native nested', function() {
+
+        let config =   [
+            {
+                "uber__25-34": [
+                    {
+                        "key": "female",
+                        "interactions": 1707500,
+                        "unique_authors": 1348100
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 1388700,
+                        "unique_authors": 1086300
+                    }
+                ],
+                "uber__18-24": [
+                    {
+                        "key": "female",
+                        "interactions": 1073000,
+                        "unique_authors": 880400
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 963000,
+                        "unique_authors": 769500
+                    }
+                ],
+                "uber__35-44": [
+                    {
+                        "key": "female",
+                        "interactions": 1159700,
+                        "unique_authors": 908300
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 817000,
+                        "unique_authors": 574100
+                    }
+                ],
+                "uber__45-54": [
+                    {
+                        "key": "female",
+                        "interactions": 783000,
+                        "unique_authors": 596800
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 493800,
+                        "unique_authors": 356300
+                    }
+                ],
+                "uber__55-64": [
+                    {
+                        "key": "female",
+                        "interactions": 438500,
+                        "unique_authors": 334100
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 238600,
+                        "unique_authors": 174300
+                    }
+                ],
+                "uber__65+": [
+                    {
+                        "key": "female",
+                        "interactions": 270500,
+                        "unique_authors": 209200
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 158600,
+                        "unique_authors": 115000
+                    }
+                ],
+                "baseline__18-24": [
+                    {
+                        "key": "female",
+                        "interactions": 3074000,
+                        "unique_authors": 2934000
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 2995100,
+                        "unique_authors": 2834100
+                    }
+                ],
+                "baseline__25-34": [
+                    {
+                        "key": "female",
+                        "interactions": 2297900,
+                        "unique_authors": 2081800
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 2152600,
+                        "unique_authors": 2052300
+                    }
+                ],
+                "baseline__35-44": [
+                    {
+                        "key": "female",
+                        "interactions": 1448700,
+                        "unique_authors": 1282400
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 1032800,
+                        "unique_authors": 941100
+                    }
+                ],
+                "baseline__45-54": [
+                    {
+                        "key": "female",
+                        "interactions": 921800,
+                        "unique_authors": 819800
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 546300,
+                        "unique_authors": 507000
+                    }
+                ],
+                "baseline__55-64": [
+                    {
+                        "key": "female",
+                        "interactions": 519100,
+                        "unique_authors": 470800
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 255200,
+                        "unique_authors": 234900
+                    }
+                ],
+                "baseline__65+": [
+                    {
+                        "key": "female",
+                        "interactions": 289700,
+                        "unique_authors": 257300
+                    },
+                    {
+                        "key": "male",
+                        "interactions": 176500,
+                        "unique_authors": 159100
+                    }
+                ]
+            }
+        ];
+
+        return format.jsonToCsv(config).then(function(result){
+
+            expect(result).to.be.an('string');
+            expect(result).to.eql('category,key,interactions,unique_authors\n' +
+                '"uber__25-34",female,1707500,1348100\n' +
+                '"uber__25-34",male,1388700,1086300\n' +
+                '"uber__18-24",female,1073000,880400\n' +
+                '"uber__18-24",male,963000,769500\n' +
+                '"uber__35-44",female,1159700,908300\n' +
+                '"uber__35-44",male,817000,574100\n' +
+                '"uber__45-54",female,783000,596800\n' +
+                '"uber__45-54",male,493800,356300\n' +
+                '"uber__55-64",female,438500,334100\n' +
+                '"uber__55-64",male,238600,174300\n' +
+                '"uber__65+",female,270500,209200\n' +
+                '"uber__65+",male,158600,115000\n' +
+                '"baseline__18-24",female,3074000,2934000\n' +
+                '"baseline__18-24",male,2995100,2834100\n' +
+                '"baseline__25-34",female,2297900,2081800\n' +
+                '"baseline__25-34",male,2152600,2052300\n' +
+                '"baseline__35-44",female,1448700,1282400\n' +
+                '"baseline__35-44",male,1032800,941100\n' +
+                '"baseline__45-54",female,921800,819800\n' +
+                '"baseline__45-54",male,546300,507000\n' +
+                '"baseline__55-64",female,519100,470800\n' +
+                '"baseline__55-64",male,255200,234900\n' +
+                '"baseline__65+",female,289700,257300\n' +
+                '"baseline__65+",male,176500,159100\n');
+        });
+    });
+
+    it('single FD response', function() {
 
         let config =  [
             {

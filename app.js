@@ -1,6 +1,7 @@
 "use strict";
 process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 
+const shortid = require('shortid');
 const _ = require('underscore');
 
 const taskProcessor = require('./lib/taskProcessor');
@@ -8,13 +9,13 @@ const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
+const file = require('./lib/file');
 
 const configTasks = taskProcessor.loadConfigTasks();
 
 configTasks.forEach(task => {
     queue.queueTask(task)
         .then(response => {
-
             //handle expected unresolved promises caused by recursion
             if(response === undefined || _.isEmpty(response)){
                 return reject();
@@ -23,10 +24,12 @@ configTasks.forEach(task => {
             cacheHelper.debugAll();
 
             return response;
-
         })
         .then(response => {
             return format.jsonToCsv(response);
+        })
+        .then(response => {
+            return file.write(shortid.generate(), response);
         })
         .then(response => {
 

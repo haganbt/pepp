@@ -14,6 +14,9 @@ const file = require('./lib/file');
 const configTasks = taskProcessor.loadConfigTasks();
 
 configTasks.forEach(task => {
+
+    log.info("Requesting task: " + task.name);
+
     queue.queueTask(task)
         .then(response => {
             //handle expected unresolved promises caused by recursion

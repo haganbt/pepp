@@ -25,7 +25,7 @@ Below is a summary of all supported config options.
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
-| ```index.default.hash``` | global | The hash id of the index to analyze |
+| ```index.default.id``` | global | The recording id of the index to analyze |
 | ```index.default.analyze_uri``` | global | Overwrite the default analyze uri |
 | ```id``` | merged tasks | A unique identifier for each merged task result set |
 
@@ -41,7 +41,7 @@ to support a proxy:
 module.exports = {
    "index": {
      "default": {
-       "hash": "<INDEX_HASH>",
+       "id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"
@@ -49,7 +49,7 @@ module.exports = {
      },
      "foo": {
        "analyze_uri": "https://pylonsandbox.datasift.com/v1/pylon/analyze", //<-- override analyze URI
-       "hash": "<INDEX_HASH>",
+       "id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"

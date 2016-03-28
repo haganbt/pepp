@@ -33,7 +33,7 @@ describe("Task helper", function(){
             },
             "uri": "https://api.datasift.com/v1/pylon/analyze",
             "json": {
-                "hash": false,
+                "id": false,
                 "start": 1448557724,
                 "end": 1451322524,
                 "parameters": {
@@ -60,7 +60,7 @@ describe("Task helper", function(){
 
         expect(out.auth.user).to.equal(process.env.SECONDARY_AUTH_USER);
         expect(out.auth.pass).to.equal(process.env.SECONDARY_AUTH_KEY);
-        expect(out.json.hash).to.equal(process.env.SECONDARY_HASH);
+        expect(out.json.id).to.equal(process.env.SECONDARY_ID);
 
         expect(out.json.parameters.parameters.index).to.be.undefined;
         expect(out.json.parameters).to.exist;

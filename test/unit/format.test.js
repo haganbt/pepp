@@ -11,7 +11,7 @@ chai.use(chaiAsPromised);
 const format = require('../../lib/format');
 
 
-describe.skip("Format - JSON to CSV", function(){
+describe.only("Format - JSON to CSV", function(){
 
     it('Merged native nested', function() {
 
@@ -167,31 +167,7 @@ describe.skip("Format - JSON to CSV", function(){
         return format.jsonToCsv(config).then(function(result){
 
             expect(result).to.be.an('string');
-            expect(result).to.eql('category,key,interactions,unique_authors\n' +
-                '"uber__25-34",female,1707500,1348100\n' +
-                '"uber__25-34",male,1388700,1086300\n' +
-                '"uber__18-24",female,1073000,880400\n' +
-                '"uber__18-24",male,963000,769500\n' +
-                '"uber__35-44",female,1159700,908300\n' +
-                '"uber__35-44",male,817000,574100\n' +
-                '"uber__45-54",female,783000,596800\n' +
-                '"uber__45-54",male,493800,356300\n' +
-                '"uber__55-64",female,438500,334100\n' +
-                '"uber__55-64",male,238600,174300\n' +
-                '"uber__65+",female,270500,209200\n' +
-                '"uber__65+",male,158600,115000\n' +
-                '"baseline__18-24",female,3074000,2934000\n' +
-                '"baseline__18-24",male,2995100,2834100\n' +
-                '"baseline__25-34",female,2297900,2081800\n' +
-                '"baseline__25-34",male,2152600,2052300\n' +
-                '"baseline__35-44",female,1448700,1282400\n' +
-                '"baseline__35-44",male,1032800,941100\n' +
-                '"baseline__45-54",female,921800,819800\n' +
-                '"baseline__45-54",male,546300,507000\n' +
-                '"baseline__55-64",female,519100,470800\n' +
-                '"baseline__55-64",male,255200,234900\n' +
-                '"baseline__65+",female,289700,257300\n' +
-                '"baseline__65+",male,176500,159100\n');
+            expect(result).to.eql('category,key,interactions,unique_authors\n"uber__25-34",female,1707500,1348100\n"uber__25-34",male,1388700,1086300\n"uber__18-24",female,1073000,880400\n"uber__18-24",male,963000,769500\n"uber__35-44",female,1159700,908300\n"uber__35-44",male,817000,574100\n"uber__45-54",female,783000,596800\n"uber__45-54",male,493800,356300\n"uber__55-64",female,438500,334100\n"uber__55-64",male,238600,174300\n"uber__65+",female,270500,209200\n"uber__65+",male,158600,115000\n"baseline__18-24",female,3074000,2934000\n"baseline__18-24",male,2995100,2834100\n"baseline__25-34",female,2297900,2081800\n"baseline__25-34",male,2152600,2052300\n"baseline__35-44",female,1448700,1282400\n"baseline__35-44",male,1032800,941100\n"baseline__45-54",female,921800,819800\n"baseline__45-54",male,546300,507000\n"baseline__55-64",female,519100,470800\n"baseline__55-64",male,255200,234900\n"baseline__65+",female,289700,257300\n"baseline__65+",male,176500,159100\n');
         });
     });
 

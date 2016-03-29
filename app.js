@@ -3,6 +3,7 @@ process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 
 const shortid = require('shortid');
 const _ = require('underscore');
+const figlet = require('figlet');
 
 const taskProcessor = require('./lib/taskProcessor');
 const queue = require('./lib/queue');
@@ -12,6 +13,14 @@ const format = require('./lib/format');
 const file = require('./lib/file');
 
 const configTasks = taskProcessor.loadConfigTasks();
+
+figlet(process.env.NODE_ENV, function(err, data) {
+    if (err) {
+        log.error(err);
+        return;
+    }
+    log.info(data);
+});
 
 configTasks.forEach(task => {
 

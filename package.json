@@ -23,6 +23,7 @@
     "bunyan": "1.5.1",
     "bunyan-format": "0.2.1",
     "config": "1.17.1",
+    "figlet": "1.1.1",
     "fs": "0.0.2",
     "fs-extra": "0.26.5",
     "moment": "2.10.6",

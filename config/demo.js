@@ -7,14 +7,14 @@ module.exports = {
     },
     "index": {
         "default": {
-            "hash": "<INDEX_HASH>",
+            "id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
         },
         "jellystone": {
-            "hash": "<INDEX_HASH>",
+            "id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"

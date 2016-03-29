@@ -1,7 +1,6 @@
 "use strict";
 process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 
-const shortid = require('shortid');
 const _ = require('underscore');
 const figlet = require('figlet');
 
@@ -41,7 +40,7 @@ configTasks.forEach(task => {
             return format.jsonToCsv(response);
         })
         .then(response => {
-            return file.write(shortid.generate(), response);
+            return file.write(task.name, response);
         })
         .then(response => {
 

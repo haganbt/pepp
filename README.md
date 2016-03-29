@@ -30,6 +30,37 @@ Below is a summary of all supported config options.
 | ```id``` | merged tasks | A unique identifier for each merged task result set |
 
 
+### Filter Property
+
+A ```filter``` property can be set as expected:
+
+```json
+{
+    "filter": "interaction.tag_tree.property ==\"Yogi\"",
+    "threshold": 2,
+    "target": "fb.author.gender",
+    "then": {
+        "threshold": 3,
+        "target": "fb.topics.name",
+    }
+}
+
+```
+
+**Custom Nested Filters**
+
+In cases where a filter is used within a custom nested query (as per the above example), all child queries automatically inherit the parent filter property. For example, each child request would use the following filter format:
+
+```json
+"filter":"(fb.author.gender == \"female\") AND interaction.tag_tree.property ==\"Yogi\""
+```
+
+Currently it is not possible to overwrite the filter property for child queries.
+
+
+
+
+
 ## Index Credentials
 
 One or more PYLON idexes must be defined by setting a parent ```index``` key. Credentials defined under the ```default```
@@ -123,7 +154,6 @@ npm run lint
 ```
 source config/developer.sh
 ```
-
 
 # Advanced Usage Examples
 

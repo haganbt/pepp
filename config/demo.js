@@ -24,6 +24,13 @@ module.exports = {
     "analysis": {
         "freqDist": [
             {
+                "id": "yogi",
+                "target": "fb.author.gender",
+                "threshold": 2
+            },
+
+
+            {
                 "merged_native_nested": [
                     {
                         "target": "fb.author.age",

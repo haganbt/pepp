@@ -11,7 +11,7 @@ chai.use(chaiAsPromised);
 const format = require('../../lib/format');
 
 
-describe.only("Format - JSON to CSV", function(){
+describe.skip("Format - JSON to CSV", function(){
 
     it('Merged native nested', function() {
 

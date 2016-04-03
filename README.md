@@ -13,7 +13,10 @@ Features:
  * Result set to query inheritance
  * Inbuilt queue to support large numbers of requests
 
- 
+ # Quick Start
+
+* Edit
+
 ## Config Options
 Below is a summary of all supported config options.
 
@@ -23,11 +26,16 @@ Below is a summary of all supported config options.
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
+| ```filter```      | task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.id``` | global | The recording id of the index to analyze |
-| ```index.default.analyze_uri``` | global | Overwrite the default analyze uri |
-| ```id``` | merged tasks | A unique identifier for each merged task result set |
+| ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
+| ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
+| ```target``` | freqDist task | PYLON analyze target parameter |
+| ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
+| ```then``` | freqDist task | Specify custom nested task properties |
+| ```then.type``` | task | Override custom nested task types |
 
 
 ### Filter Property
@@ -117,14 +125,7 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
         "threshold": 2
     }
 }
-```                
-
-## Logging
-
-* "warn" : A note on something that should probably be looked at by an operator eventually.
-* "info" : Detail on regular operation.
-* "debug" : Anything else, i.e. too verbose to be included in "info" level.
-* "trace" : Very detailed application logging.
+```
 
 
 # Development
@@ -154,6 +155,16 @@ npm run lint
 ```
 source config/developer.sh
 ```
+
+## Logging
+
+* "warn" : A note on something that should probably be looked at by an operator eventually.
+* "info" : Detail on regular operation.
+* "debug" : Anything else, i.e. too verbose to be included in "info" level.
+* "trace" : Very detailed application logging.
+
+
+
 
 # Advanced Usage Examples
 

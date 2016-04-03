@@ -246,7 +246,45 @@ describe("Task Processor", function(){
 
             expect(configTasks[0].json.parameters.analysis_type).to.equal("timeSeries");
         });
-        
+
+    });
+
+
+
+
+    describe("Threshold Parameter", function(){
+
+        it('freqDist - should set a default threshold if not specified', function() {
+
+            let config = {
+                "freqDist": [
+                    {
+                        "target": "fb.author.gender",
+                    }
+                ]
+            };
+
+            let configTasks = taskProcessor.loadConfigTasks(config);
+            
+            expect(configTasks[0].json.parameters.parameters.threshold).to.equal(200);
+        });
+
+        it('freqDist - should set a threshold if set in config', function() {
+
+            let config = {
+                "freqDist": [
+                    {
+                        "target": "fb.author.gender",
+                        "threshold": 27
+                    }
+                ]
+            };
+
+            let configTasks = taskProcessor.loadConfigTasks(config);
+
+            expect(configTasks[0].json.parameters.parameters.threshold).to.equal(27);
+        });
+
     });
 
 

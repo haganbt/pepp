@@ -15,7 +15,8 @@ Features:
 
  # Quick Start
 
-* Edit
+* Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
+* Run PEPP with the command ```node app.js```
 
 ## Config Options
 Below is a summary of all supported config options.

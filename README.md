@@ -22,7 +22,6 @@ Below is a summary of all supported config options.
 
 | Option        | Scope           | Description  |
 |:------------- |:-------------|:-----|
-| ```app.enrich_percentages```      | global | Enrich results with percentages. ```true``` or ```false``` |
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |

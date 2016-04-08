@@ -456,7 +456,7 @@ const stats = {
     }
 };
 
-describe("Baseline calculation", function(){
+describe.skip("Baseline calculation", function(){
 
     
     it('should return a valid csv output', function() {
@@ -484,7 +484,7 @@ describe("Baseline calculation", function(){
 
 
 
-    describe.skip("Probability calculation", function(){
+    describe("Probability calculation", function(){
 
 
         it('should calculate a probablility for each author count', function() {
@@ -501,7 +501,7 @@ describe("Baseline calculation", function(){
 
 
 
-    describe.only("Building stats from result set", function(){
+    describe("Building stats from result set", function(){
 
 
         it('should generate a total author count for each task result', function() {

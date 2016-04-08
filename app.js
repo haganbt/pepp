@@ -14,13 +14,7 @@ const file = require('./lib/file');
 
 const configTasks = taskProcessor.loadConfigTasks();
 
-figlet(process.env.NODE_ENV, function(err, data) {
-    if (err) {
-        log.error(err);
-        return;
-    }
-    log.info(data);
-});
+log.info(figlet.textSync(process.env.NODE_ENV));
 
 configTasks.forEach(task => {
 

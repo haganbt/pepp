@@ -9,6 +9,7 @@ const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
+const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 
 const configTasks = taskProcessor.loadConfigTasks();
@@ -37,7 +38,13 @@ configTasks.forEach(task => {
             return response;
         })
         .then(response => {
-            return format.jsonToCsv(response);
+
+            if(task.name.includes('baseline')) {
+                return baseline.gen(response, task);
+            } else {
+                return format.jsonToCsv(response);    
+            }
+
         })
         .then(response => {
             return file.write(task.name, response);

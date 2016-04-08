@@ -23,13 +23,28 @@ module.exports = {
     },
     "analysis": {
         "freqDist": [
+
             {
-                "id": "yogi",
-                "target": "fb.author.gender",
-                "threshold": 2
+                "target": "fb.author.gender"
             },
 
 
+            {
+                "target": "fb.author.gender",
+                "threshold": 2,
+                "then": {
+                    "target": "fb.parent.author.region",
+                    "threshold": 5,
+                    "then": {
+                        "target": "fb.parent.topics.name",
+                        "threshold": 2
+                    }
+                }
+            },
+
+
+
+            /*
             {
                 "merged_native_nested": [
                     {
@@ -43,7 +58,7 @@ module.exports = {
                     }
                 ]
             },
-/*
+
             {
                 "id": "yogi",
                 "target": "fb.author.gender",

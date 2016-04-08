@@ -11,7 +11,7 @@ chai.use(chaiAsPromised);
 const format = require('../../lib/format');
 
 
-describe("Format - JSON to CSV", function(){
+describe.only("Format - JSON to CSV", function(){
 
     describe("freqDist", function(){
 
@@ -1057,7 +1057,186 @@ describe("Format - JSON to CSV", function(){
                     '"United States__youtube.com__Cars",comment,500,400\n');
             });
         });
-        
+
+
+
+        it('custom nested - 3 level - empty result sets', function() {
+
+            // note empty results - "key": "55-64",
+            let config =  [
+                {
+                    "key": "youtube.com",
+                    "interactions": 35300,
+                    "unique_authors": 31100,
+                    "child": {
+                        "analysis_type": "freqDist",
+                        "parameters": {
+                            "target": "fb.parent.author.age",
+                            "threshold": 6
+                        },
+                        "results": [
+                            {
+                                "key": "25-34",
+                                "interactions": 7200,
+                                "unique_authors": 6100,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [
+                                        {
+                                            "key": "male",
+                                            "interactions": 5800,
+                                            "unique_authors": 4900
+                                        },
+                                        {
+                                            "key": "female",
+                                            "interactions": 1300,
+                                            "unique_authors": 1000
+                                        }
+                                    ],
+                                    "redacted": false
+                                }
+                            },
+                            {
+                                "key": "18-24",
+                                "interactions": 5600,
+                                "unique_authors": 4500,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [
+                                        {
+                                            "key": "male",
+                                            "interactions": 4600,
+                                            "unique_authors": 3700
+                                        },
+                                        {
+                                            "key": "female",
+                                            "interactions": 1000,
+                                            "unique_authors": 700
+                                        }
+                                    ],
+                                    "redacted": false
+                                }
+                            },
+                            {
+                                "key": "35-44",
+                                "interactions": 2500,
+                                "unique_authors": 2100,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [
+                                        {
+                                            "key": "male",
+                                            "interactions": 1800,
+                                            "unique_authors": 1500
+                                        },
+                                        {
+                                            "key": "female",
+                                            "interactions": 600,
+                                            "unique_authors": 500
+                                        }
+                                    ],
+                                    "redacted": false
+                                }
+                            },
+                            {
+                                "key": "45-54",
+                                "interactions": 800,
+                                "unique_authors": 600,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [
+                                        {
+                                            "key": "male",
+                                            "interactions": 400,
+                                            "unique_authors": 300
+                                        },
+                                        {
+                                            "key": "female",
+                                            "interactions": 300,
+                                            "unique_authors": 300
+                                        }
+                                    ],
+                                    "redacted": false
+                                }
+                            },
+                            {
+                                "key": "65+",
+                                "interactions": 300,
+                                "unique_authors": 200,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [
+                                        {
+                                            "key": "female",
+                                            "interactions": 100,
+                                            "unique_authors": 100
+                                        },
+                                        {
+                                            "key": "male",
+                                            "interactions": 100,
+                                            "unique_authors": 100
+                                        }
+                                    ],
+                                    "redacted": false
+                                }
+                            },
+                            {
+                                "key": "55-64",
+                                "interactions": 100,
+                                "unique_authors": 100,
+                                "child": {
+                                    "analysis_type": "freqDist",
+                                    "parameters": {
+                                        "target": "fb.parent.author.gender",
+                                        "threshold": 2
+                                    },
+                                    "results": [],
+                                    "redacted": false
+                                }
+                            }
+                        ],
+                        "redacted": false
+                    }
+                }
+            ];
+
+            return format.jsonToCsv(config).then(function(result){
+                expect(result).to.be.an('string');
+                expect(result).to.eql('id,category,key,interactions,unique_authors\n' +
+                    '"youtube.com","25-34",male,5800,4900\n' +
+                    '"youtube.com","25-34",female,1300,1000\n' +
+                    '"youtube.com","18-24",male,4600,3700\n' +
+                    '"youtube.com","18-24",female,1000,700\n' +
+                    '"youtube.com","35-44",male,1800,1500\n' +
+                    '"youtube.com","35-44",female,600,500\n' +
+                    '"youtube.com","45-54",male,400,300\n' +
+                    '"youtube.com","45-54",female,300,300\n' +
+                    '"youtube.com","65+",female,100,100\n' +
+                    '"youtube.com","65+",male,100,100\n');
+            });
+        });
+
+
 
     });
 

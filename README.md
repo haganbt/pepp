@@ -18,6 +18,48 @@ Features:
 * Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
 * Run PEPP with the command ```node app.js```
 
+# User Guide
+
+PEPP uses a JSON configuration file to define request tasks. Each task is a request to the PYLON ```/analyze``` resource. With this is mind, usage requires 3 steps:
+
+* Define request tasks within a config file
+* Tell PEPP which config file to use
+* Run tasks
+
+## Config File Structure
+
+todo
+
+### Single Task
+
+todo
+
+### Nested Tasks
+
+todo
+
+#### Native Nested
+
+todo
+
+#### Custom Nested
+
+todo
+
+### Merged Tasks
+
+todo
+
+## Config File Selection
+
+To specify which config file to use, set the ```NODE_ENV``` environment variable:
+
+```export NODE_ENV=myConfigFile```
+
+If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
+config file.
+
+
 ## Config Options
 Below is a summary of all supported config options.
 
@@ -166,7 +208,7 @@ source config/developer.sh
 
 
 
-# Advanced Usage Examples
+# Example Config Recipes
 
 ## Multi-Index - Merged 3 Level Custom Nested
 
@@ -307,4 +349,45 @@ Example response:
           ],
           ...
 
+```
+
+## Demographic Baseline
+
+Age/gender analysis from 2 different indexes. Automatically generate probabilities and index values:
+
+```json
+"freqDist": [
+
+            {
+                "merged_custom_nested_baseline": [
+                    {
+                        "id": "baseline",
+                        "index": "baseline",
+                        "target": "fb.author.region",
+                        "threshold": 2,
+                        "child": {
+                            "target": "fb.author.gender",
+                            "threshold": 2,
+                            "child": {
+                                "target": "fb.author.age",
+                                "threshold": 2
+                            }
+                        }
+                    },
+                    {
+                        "index": "baseline",
+                        "target": "fb.author.region",
+                        "threshold": 2,
+                        "child": {
+                            "target": "fb.author.gender",
+                            "threshold": 2,
+                            "child": {
+                                "target": "fb.author.age",
+                                "threshold": 2
+                            }
+                        }
+                    }
+                ]
+            },
+]
 ```

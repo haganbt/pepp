@@ -321,14 +321,14 @@ const obj = [
 const task = {
     "method": "POST",
     "auth": {
-        "user": "pylonsandbox",
-        "pass": "3abea8c0f5209b087a1482b5e5ccc337"
+        "user": "cs_2",
+        "pass": "e11bbe9c0e1d52977ff72731ba217ffa"
     },
     "uri": "https://api.datasift.com/v1.3/pylon/analyze",
     "json": {
-        "id": "8993d817e07627385e99ca71d9634441",
-        "start": 1456962940,
-        "end": 1459727740,
+        "id": "f35199ab7b6eedb0161d6f8c8d8af7a8",
+        "start": 1457646891,
+        "end": 1460411691,
         "parameters": {
             "analysis_type": "freqDist",
             "parameters": {
@@ -342,121 +342,122 @@ const task = {
                     "threshold": 2
                 }
             }
-        }
+        },
+        "filter": "fb.author.country in \"United States\" and fb.type != \"story\""
     },
     "name": "merged_custom_nested_baseline",
     "cache": {
-        "cacheId": "91fb1de0-f9f7-11e5-a8ee-bf02f24a9b17",
-        "mergeKey": "E1p53q9Ax"
+        "cacheId": "0438f290-0030-11e6-af1f-f75500fe48e3",
+        "mergeKey": "batmanvsuperman"
     }
 };
 
 const stats = {
     "baseline": {
-        "total_unique_authors": 9773900,
+        "total_unique_authors": 2143700,
         "25-34": {
             "female": {
-                "unique_authors": 1659500
+                "unique_authors": 358200
             },
             "male": {
-                "unique_authors": 1064400
+                "unique_authors": 187100
             }
         },
         "35-44": {
             "female": {
-                "unique_authors": 1322300
+                "unique_authors": 298600
             },
             "male": {
-                "unique_authors": 750600
+                "unique_authors": 138600
             }
         },
         "18-24": {
             "female": {
-                "unique_authors": 1021900
+                "unique_authors": 254900
             },
             "male": {
-                "unique_authors": 730300
+                "unique_authors": 139200
             }
         },
         "45-54": {
             "female": {
-                "unique_authors": 1066900
+                "unique_authors": 249400
             },
             "male": {
-                "unique_authors": 538800
+                "unique_authors": 115900
             }
         },
         "55-64": {
             "female": {
-                "unique_authors": 678900
+                "unique_authors": 174700
             },
             "male": {
-                "unique_authors": 294500
+                "unique_authors": 70600
             }
         },
         "65+": {
             "female": {
-                "unique_authors": 454100
+                "unique_authors": 110600
             },
             "male": {
-                "unique_authors": 191700
+                "unique_authors": 45900
             }
         }
     },
-    "NJsnoc9Cl": {
-        "total_unique_authors": 9773900,
+    "batmanvsuperman": {
+        "total_unique_authors": 4625400,
         "25-34": {
-            "female": {
-                "unique_authors": 1659500
-            },
             "male": {
-                "unique_authors": 1064400
-            }
-        },
-        "35-44": {
-            "female": {
-                "unique_authors": 1322300
+                "unique_authors": 828700
             },
-            "male": {
-                "unique_authors": 750600
+            "female": {
+                "unique_authors": 786900
             }
         },
         "18-24": {
-            "female": {
-                "unique_authors": 1021900
-            },
             "male": {
-                "unique_authors": 730300
+                "unique_authors": 542300
+            },
+            "female": {
+                "unique_authors": 464300
+            }
+        },
+        "35-44": {
+            "male": {
+                "unique_authors": 488700
+            },
+            "female": {
+                "unique_authors": 558400
             }
         },
         "45-54": {
             "female": {
-                "unique_authors": 1066900
+                "unique_authors": 334300
             },
             "male": {
-                "unique_authors": 538800
+                "unique_authors": 217100
             }
         },
         "55-64": {
             "female": {
-                "unique_authors": 678900
+                "unique_authors": 172900
             },
             "male": {
-                "unique_authors": 294500
+                "unique_authors": 81400
             }
         },
         "65+": {
             "female": {
-                "unique_authors": 454100
+                "unique_authors": 97500
             },
             "male": {
-                "unique_authors": 191700
+                "unique_authors": 52900
             }
         }
     }
 };
 
-describe.skip("Baseline calculation", function(){
+describe.only("Baseline calculation", function(){
 
     
     it('should return a valid csv output', function() {
@@ -486,34 +487,17 @@ describe.skip("Baseline calculation", function(){
 
     describe("Probability calculation", function(){
 
-
-        it.only('should calculate a probablility for each author count', function() {
+        it('should calculate a probablility for each author count', function() {
 
             let p = baseline._calcAuthProbability(stats);
 
-            console.log(JSON.stringify(p, undefined, 4));
+            expect(p).to.deep.equal(stats);
+
+            expect(p.baseline['25-34'].female.probability).to.deep.equal(p.baseline['25-34'].female.unique_authors / stats.baseline.total_unique_authors);
 
         });
 
     });
-
-
-
-
-
-    describe("Building stats from result set", function(){
-
-
-        it('should generate a total author count for each task result', function() {
-
-            let p = baseline._buildResultStats(obj);
-
-            //console.log(JSON.stringify(p, undefined, 4));
-
-        });
-
-    });
-
 
 
 });

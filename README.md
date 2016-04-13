@@ -59,6 +59,10 @@ To specify which config file to use, set the ```NODE_ENV``` environment variable
 If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
 config file.
 
+### Config File Directory
+
+The directory from which config files are loaded by setting the ```NODE_CONFIG_DIR```. This can be a full path from your root directory, or a relative path from the process if the value begins with ./ or ../.
+
 
 ## Config Options
 Below is a summary of all supported config options.

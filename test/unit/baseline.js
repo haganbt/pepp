@@ -457,7 +457,7 @@ const stats = {
     }
 };
 
-describe.only("Baseline calculation", function(){
+describe("Baseline calculation", function(){
 
     
     it('should return a valid csv output', function() {

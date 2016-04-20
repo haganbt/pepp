@@ -949,6 +949,7 @@ describe("Baseline calculation", function(){
         return baseline.gen(mergedThree, task)
             .then(function(result){
                 expect(result).to.be.an('string');
+                console.log(result);
             });
 
     });

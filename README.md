@@ -308,13 +308,27 @@ The below example uses a micro targeting approach to compare two products (defin
 
 ### Baseline 
 
+When a baseline task is run, by default a CSV result set is generated with the following format:
 
-baseline[k1][k2].index = (stats[id][k1][k2].probability / baseline[k1][k2].probability);
+| id       | category | key    | total_unique_authors | unique_author | probability | index       | expected_baseline |
+|----------|----------|--------|----------------------|---------------|-------------|-------------|-------------------|
+| baseline | 25-34    | female | 916900               | 178200        | 0.194350529 | 1           | 178200            |
+| baseline | 25-34    | male   | 916900               | 81400         | 0.088777402 | 1           | 81400             |
+| yogi     | 25-34    | male   | 1197600              | 237600        | 0.198396794 | 2.234766831 | 106319.8168       |
+| yogi     | 25-34    | female | 1197600              | 159900        | 0.133517034 | 0.686990845 | 232754.1935       |
+| booboo   | 25-34    | male   | 1971700              | 453300        | 0.229903129 | 2.589658222 | 175042.4038       |
+| booboo   | 25-34    | female | 1971700              | 460900        | 0.233757671 | 1.202763236 | 383200.9379       |
 
-baseline[k1][k2].expected_baseline = stats[id].total_unique_authors * baseline[k1][k2].probability;
 
+* total_unique_authors - the total number of unique authors for the id
+* unique_author - the unique author count for the specific ide, category and key combination
+* probability - unique_author / total_unique_authors
+* index - comparator probability / baseline probability
+* expected baseline - total_unique_authors * baseline probability
 
+With these results, it become simple to plot meaningful visualizations.
 
+![Baseline Bar Chart](https://github.com/haganbt/pepp/tree/master/docs/baseline-bar.png)
 
 
 # Development

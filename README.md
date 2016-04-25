@@ -1,4 +1,4 @@
-# STATUS: Unstable, WIP.
+## STATUS: Unstable, WIP.
 
 # PEPP
 PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. It is the goal of this utility to 
@@ -11,9 +11,9 @@ Features:
  * Cross-index query
  * Result set merging
  * Result set to query inheritance
- * Inbuilt queue to support large numbers of requests
+ * Request queue with concurrency limit
 
- # Quick Start
+# Quick Start
 
 * Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
 * Run PEPP with the command ```node app.js```
@@ -174,6 +174,104 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
 ```
 
 
+## Demographic Baselines
+
+PEPP supports baseline and microtargeting use cases by automatically calculating 1 or more probability comparators against a baseline data set.
+
+NOTE: Currently, PEPP only supports age and gender targets for baseline comparisons. A baseline tasks can be created as follows:
+
+**Name the merged tasks**
+ 
+The merged task name must include the string "baseline" to trigger the baseline calculation workflow:
+
+```json
+ "freqDist": [
+    {
+        "merged_baseline_example": [ // <-- name must include "baseline"
+            {
+                task 1...
+            },
+            {
+                task 2...
+            }
+        ]
+    }
+]    
+```
+
+**Create age/gender tasks**
+
+Tasks can be age gender or gender age, no difference:
+
+```json
+ "freqDist": [
+    {
+        "merged_baseline_example": [
+            {
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+            {
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+        ]
+    }
+]
+```
+
+**Add an ```id`` for each task**
+
+Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline". Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
+
+
+```json
+ "freqDist": [
+    {
+        "merged_baseline_example": [
+            {
+                "id": "yogi", //                    <-- unique id
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+            {
+                "id": "baseline", //                <-- unique id
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+        ]
+    }
+]
+```
+
+
+###
+
+
+baseline[k1][k2].index = (stats[id][k1][k2].probability / baseline[k1][k2].probability);
+
+baseline[k1][k2].expected_baseline = stats[id].total_unique_authors * baseline[k1][k2].probability;
+
+
+
+
+
 # Development
 
 
@@ -184,7 +282,6 @@ npm test
 ```
 
 or
-
 
 ```
 npm run test:watch
@@ -201,6 +298,11 @@ npm run lint
 ```
 source config/developer.sh
 ```
+
+**Contributing**
+
+Pull requests welcome - with associated tests ;)
+
 
 ## Logging
 
@@ -256,31 +358,6 @@ Top topics by age and gender from two different indexes:
 }        
 ```
 
-Example response:
-
-```json
-[
-      {
-          "yogi-25-34-male": [
-              {
-                  "key": "BMW",
-                  "interactions": 334100,
-                  "unique_authors": 265200
-              },
-              {
-                  "key": "Cars",
-                  "interactions": 80900,
-                  "unique_authors": 68100
-              }
-          ],
-          "yogi-25-34-female": [
-              {
-                  "key": "BMW",
-                  "interactions": 215700,
-                  "unique_authors": 188000
-              },
-....
-```
 
 ## Multi-Index - Merged 2 Level Custom Nested with type override
 

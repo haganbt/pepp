@@ -28,7 +28,7 @@ configTasks.forEach(task => {
             }
 
             cacheHelper.debugAll();
-//console.log(JSON.stringify(response, undefined, 4));
+
             return response;
         })
         .then(response => {

@@ -20,7 +20,7 @@ Features:
 
 # User Guide
 
-PEPP uses a JSON configuration file to define request tasks. Each task is a request to the PYLON ```/analyze``` resource. With this is mind, usage requires 3 steps:
+PEPP uses a JSON configuration file to define request tasks. Each task defines a request to the PYLON ```/analyze``` resource. With this is mind, usage requires 3 steps:
 
 * Define request tasks within a config file
 * Tell PEPP which config file to use
@@ -28,11 +28,38 @@ PEPP uses a JSON configuration file to define request tasks. Each task is a requ
 
 ## Config File Structure
 
-todo
+The config file contains an ```analysis``` object consisting of two arrays: ```freqDist``` and ```timeSeries```. Tasks (i.e. an analysis request to PYLON) are simply defined by specifying 
+an object ```{ ... }``` within the desired request type array. The below example defines a single task for both a ```freqDist``` and ```timeSeries```. Note depending upn which request type is being run, PYLON
+mandates specific key:values be present:
+
+```json
+  "analysis": {
+    "freqDist": [
+      {
+        "target": "fb.author.gender"
+      }
+    ],
+    "timeSeries": [
+      {
+        "interval": "day"
+      }
+    ]
+  }
+]
+```
 
 ### Single Task
 
-todo
+As noted above, to make a single request, define a single task object inside the required type array (```freqDist``` or ```timeSeries```):
+
+```json
+    "freqDist": [
+      {
+        "target": "fb.author.gender"
+      }
+]
+```
+
 
 ### Nested Tasks
 
@@ -272,7 +299,7 @@ The below example uses a micro targeting approach to compare two products (defin
         "merged_baseline_example": [
             {
                 "id": "yogi",
-                "filter": "interaction.tag_tree.brand == \"yogi\"",
+                "filter": "interaction.tag_tree.brand == \"yogi\"", // <-- Yogi filter
                 "target": "fb.parent.author.age",
                 "threshold": 6,
                 "child": {
@@ -282,7 +309,7 @@ The below example uses a micro targeting approach to compare two products (defin
             },
             {
                 "id": "booboo",
-                "filter": "interaction.tag_tree.brand == \"booboo\"",
+                "filter": "interaction.tag_tree.brand == \"booboo\"", // <-- Booboo filter
                 "target": "fb.parent.author.age",
                 "threshold": 6,
                 "child": {
@@ -320,11 +347,11 @@ When a baseline task is run, by default a CSV result set is generated with the f
 | booboo   | 25-34    | female | 1971700              | 460900        | 0.233757671 | 1.202763236 | 383200.9379       |
 
 
-* total_unique_authors - the total number of unique authors for the id
-* unique_author - the unique author count for the specific ide, category and key combination
-* probability - unique_author / total_unique_authors
-* index - comparator probability / baseline probability
-* expected baseline - total_unique_authors * baseline probability
+* **total_unique_authors** - the total number of unique authors for the id
+* **unique_author** - the unique author count for the specific ide, category and key combination
+* **probability** - unique_author / total_unique_authors
+* **index** - comparator probability / baseline probability
+* **expected** baseline - total_unique_authors * baseline probability
 
 With these results, it become simple to plot meaningful visualizations.
 

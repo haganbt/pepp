@@ -306,7 +306,7 @@ The below example uses a micro targeting approach to compare two products (defin
 ```
 
 
-### Baseline 
+### Baseline Calculations
 
 When a baseline task is run, by default a CSV result set is generated with the following format:
 

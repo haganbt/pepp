@@ -180,7 +180,7 @@ PEPP supports baseline and microtargeting use cases by automatically calculating
 
 NOTE: Currently, PEPP only supports age and gender targets for baseline comparisons. A baseline tasks can be created as follows:
 
-**Name the merged tasks**
+**1) Name the merged tasks**
  
 The merged task name must include the string "baseline" to trigger the baseline calculation workflow:
 
@@ -199,7 +199,7 @@ The merged task name must include the string "baseline" to trigger the baseline 
 ]    
 ```
 
-**Create age/gender tasks**
+**2) Create age/gender tasks**
 
 Tasks can be age gender or gender age, no difference:
 
@@ -228,7 +228,7 @@ Tasks can be age gender or gender age, no difference:
 ]
 ```
 
-**Add an ```id`` for each task**
+**3) Add an ```id``` for each task**
 
 Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline". Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
 
@@ -260,8 +260,53 @@ Each task must have a unique ```id``` key and value. The baseline tasks must hav
 ]
 ```
 
+**4) Define what you wish to baseline**
 
-###
+Using either a ```filter``` or a different ```index```, define the tasks accordingly to compare data sets. 
+
+The below example uses a micro targeting approach to compare two products (defined using tags) within the default index, to the baseline index (note the different ```index``` parameter used to specify a different set of index credentials).
+
+```json
+ "freqDist": [
+    {
+        "merged_baseline_example": [
+            {
+                "id": "yogi",
+                "filter": "interaction.tag_tree.brand == \"yogi\"",
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+            {
+                "id": "booboo",
+                "filter": "interaction.tag_tree.brand == \"booboo\"",
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+            {
+                "id": "baseline",
+                "index": "global" // <-- specify another index to query
+                "target": "fb.parent.author.age",
+                "threshold": 6,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2
+                }
+            },
+        ]
+    }
+]
+```
+
+
+### Baseline 
 
 
 baseline[k1][k2].index = (stats[id][k1][k2].probability / baseline[k1][k2].probability);

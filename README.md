@@ -328,7 +328,7 @@ When a baseline task is run, by default a CSV result set is generated with the f
 
 With these results, it become simple to plot meaningful visualizations.
 
-![Baseline Bar Chart](https://github.com/haganbt/pepp/tree/master/docs/baseline-bar.png)
+![Baseline Bar Chart](https://raw.githubusercontent.com/haganbt/pepp/master/docs/baseline-bar.png)
 
 
 # Development

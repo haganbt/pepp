@@ -71,7 +71,24 @@ todo
 
 #### Custom Nested
 
-todo
+Custom nested tasks offer increased flexibility over native nested tasks by adding support for all targets (native nested tasks are currently restricted to low cardinality targets only).
+
+The workflow for custom nested tasks is simple in that each result key from a primary task is used to generates subsequent secondary tasks by using the key as a ```filter``` parameter.
+
+Custom nested tasks are configured within the config file using the ```then``` object:
+
+```json
+"freqDist": [
+    {
+        "target": "fb.topics.name",
+        "threshold": 2,
+        "then": {  // <-- then object defines custom nested
+            "target": "fb.author.gender",
+            "threshold": 2
+        }
+    }
+]
+```
 
 ### Merged Tasks
 

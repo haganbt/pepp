@@ -222,7 +222,7 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
 
 PEPP supports baseline and microtargeting use cases by automatically calculating 1 or more probability comparators against a baseline data set.
 
-NOTE: Currently, PEPP only supports age and gender targets for baseline comparisons. A baseline tasks can be created as follows:
+NOTE: Currently, PEPP only supports age and gender targets for baseline comparisons. A baseline task can be created as follows:
 
 **1) Name the merged tasks**
  
@@ -245,7 +245,7 @@ The merged task name must include the string "baseline" to trigger the baseline 
 
 **2) Create age/gender tasks**
 
-Tasks can be age gender or gender age, no difference:
+Tasks can be age gender (or gender age, no difference) however all tasks must be identical i.e. if one task uses age and gender others should not use gender and age:
 
 ```json
  "freqDist": [
@@ -274,7 +274,8 @@ Tasks can be age gender or gender age, no difference:
 
 **3) Add an ```id``` for each task**
 
-Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline". Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
+Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline" to decale which result set to compare to.
+Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
 
 
 ```json
@@ -308,7 +309,7 @@ Each task must have a unique ```id``` key and value. The baseline tasks must hav
 
 Using either a ```filter``` or a different ```index```, define the tasks accordingly to compare data sets. 
 
-The below example uses a micro targeting approach to compare two products (defined using tags) within the default index, to the baseline index (note the different ```index``` parameter used to specify a different set of index credentials).
+The below example uses a micro targeting approach to compare two products (defined using VEDO tags) within the default index, to the baseline index (note the different ```index``` parameter used to specify a different set of index credentials).
 
 ```json
  "freqDist": [

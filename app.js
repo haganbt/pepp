@@ -22,6 +22,7 @@ configTasks.forEach(task => {
 
     queue.queueTask(task)
         .then(response => {
+
             //handle expected unresolved promises caused by recursion
             if(response === undefined || _.isEmpty(response)){
                 return reject();

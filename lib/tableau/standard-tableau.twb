@@ -3492,7 +3492,7 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>Author Type - Stories</run>
+            <run>Author Type - Stories and Engagements</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -3585,7 +3585,7 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>Author Type - Engagements</run>
+            <run>Parent Author Type - Engagements</run>
           </formatted-text>
         </title>
       </layout-options>

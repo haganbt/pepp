@@ -36,12 +36,12 @@ mandates specific key:values be present:
   "analysis": {
     "freqDist": [
       {
-        "target": "fb.author.gender"
+        target: "fb.author.gender"
       }
     ],
     "timeSeries": [
       {
-        "interval": "day"
+        interval: "day"
       }
     ]
   }

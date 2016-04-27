@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "PYLON Exporter ++",
   "main": "app.js",
+  "engines": {
+    "node": ">= 4.2.2",
+  },
   "scripts": {
     "start": "node app.js",
     "test": "mocha --timeout 20000",
@@ -13,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/haganbt/pepp.git"
   },
-  "author": "Ben",
+  "author": "Ben Hagan - ben.hagan@datasift.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/haganbt/pepp/issues"

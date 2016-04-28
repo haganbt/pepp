@@ -274,7 +274,7 @@ Tasks can be age gender (or gender age, no difference) however all tasks must be
 
 **3) Add an ```id``` for each task**
 
-Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline" to decale which result set to compare to.
+Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline" to declare which result set to compare to.
 Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
 
 
@@ -307,7 +307,7 @@ Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be 
 
 **4) Define what you wish to baseline**
 
-Using either a ```filter``` or a different ```index```, define the tasks accordingly to compare data sets. 
+Using either a ```filter``` and/or a different ```index```, define the tasks accordingly to compare data sets. 
 
 The below example uses a micro targeting approach to compare two products (defined using VEDO tags) within the default index, to the baseline index (note the different ```index``` parameter used to specify a different set of index credentials).
 
@@ -365,11 +365,11 @@ When a baseline task is run, by default a CSV result set is generated with the f
 | booboo   | 25-34    | female | 1971700              | 460900        | 0.233757671 | 1.202763236 | 383200.9379       |
 
 
-* **total_unique_authors** - the total number of unique authors for the id
-* **unique_author** - the unique author count for the specific ide, category and key combination
-* **probability** - unique_author / total_unique_authors
-* **index** - comparator probability / baseline probability
-* **expected** baseline - total_unique_authors * baseline probability
+* **total_unique_authors**: the total number of unique authors for the id
+* **unique_author**: the unique author count for the specific ide, category and key combination
+* **probability**: unique_author / total_unique_authors
+* **index**: comparator probability / baseline probability
+* **expected baseline**: total_unique_authors * baseline probability
 
 With these results, it become simple to plot meaningful visualizations.
 

@@ -116,12 +116,14 @@ Below is a summary of all supported config options.
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
+| ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.id``` | global | The recording id of the index to analyze |
 | ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
+| ```start``` | global | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
@@ -156,7 +158,21 @@ In cases where a filter is used within a custom nested query (as per the above e
 Currently it is not possible to overwrite the filter property for child queries.
 
 
+### Start/End Properties
 
+Optional ```start``` and ```end``` unix timestamp properties can be set at the global level to specify the time range for analysis queries.
+
+In addition, if you are using a JavaScript config file (rather than JSON or YAML), you can use any JavaScript date libary for simper configuration. For example, using moment.js:
+
+```javascript
+"use strict";
+
+const moment = require('moment');
+
+module.exports = {
+    start: moment.utc().subtract(7, 'days').unix(),
+    ...
+```
 
 
 ## Index Credentials

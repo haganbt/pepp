@@ -61,5 +61,6 @@ configTasks.forEach(task => {
             } else {
                 log.error(JSON.stringify(err, undefined, 4));
             }
+            process.exit(1);
         });
 });

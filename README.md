@@ -162,7 +162,7 @@ Currently it is not possible to overwrite the filter property for child queries.
 
 Optional ```start``` and ```end``` unix timestamp properties can be set at the global level to specify the time range for analysis queries.
 
-In addition, if you are using a JavaScript config file (rather than JSON or YAML), you can use any JavaScript date libary for simper configuration. For example, using moment.js:
+In addition, if you are using a JavaScript config file (rather than JSON or YAML), you can use any JavaScript date library for simper configuration. For example, using moment.js:
 
 ```javascript
 "use strict";

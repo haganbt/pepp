@@ -1,0 +1,58 @@
+---
+app:
+  format: csv
+  write_to_file: false
+  log_level: info
+index:
+  default:
+    id: "<RECORDING_ID>"
+    auth:
+      username: "<USERNNAME>"
+      api_key: "<API_KEY>"
+  jellystone:
+    id: "<RECORDING_ID>"
+    auth:
+      username: "<USERNNAME>"
+      api_key: "<API_KEY>"
+analysis:
+  freqDist:
+  - target: fb.parent.author.gender
+  - target: fb.parent.author.country
+    threshold: 2
+    then:
+      target: links.domain
+      threshold: 2
+      then:
+        target: fb.parent.topics.category
+        threshold: 2
+        then:
+          target: fb.type
+          threshold: 2
+  - merged_native_nested:
+    - target: fb.author.age
+      threshold: 3
+    - id: yogi
+      target: fb.author.gender
+      threshold: 2
+  timeSeries:
+  - interval: month
+  - multi_index_merged_custom_nested:
+    - id: yogi
+      index: other
+      interval: month
+      then:
+        type: freqDist
+        target: fb.author.gender
+        threshold: 2
+        then:
+          target: fb.author.age
+          threshold: 2
+    - id: booboo
+      interval: month
+      then:
+        type: freqDist
+        target: fb.author.gender
+        threshold: 2
+        then:
+          target: fb.author.age
+          threshold: 2

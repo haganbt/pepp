@@ -20,7 +20,7 @@ Features:
 
 # User Guide
 
-PEPP uses a JSON configuration file to define request tasks. Each task defines a request to the PYLON ```/analyze``` resource. With this is mind, usage requires 3 steps:
+PEPP uses a configuration file to define request tasks. Files can be configured as JSON, YAML, hjson, JSON5, CoffeeScript etc (see ```/config``` for examples of JSON and YAML). Each task defines a request to the PYLON ```/analyze``` resource. With this is mind, usage requires 3 steps:
 
 * Define request tasks within a config file
 * Tell PEPP which config file to use

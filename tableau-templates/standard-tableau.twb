@@ -7,9 +7,9 @@
     <preference name='ui.shelf.height' value='26' />
   </preferences>
   <datasources>
-    <datasource caption='standard-tableau-timeSeries_by_entity' inline='true' name='textscan.42249.761339027800' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-timeSeries_by_entity.csv' password='' server=''>
-        <relation name='standard-tableau-timeSeries_by_entity#csv' table='[standard-tableau-timeSeries_by_entity#csv]' type='table'>
+    <datasource caption='timeSeries_by_entity' inline='true' name='textscan.42249.761339027800' version='9.0'>
+      <connection class='textscan' directory='' filename='timeSeries_by_entity.csv' password='' server=''>
+        <relation name='timeSeries_by_entity#csv' table='[timeSeries_by_entity#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='category' ordinal='0' />
             <column datatype='datetime' name='key' ordinal='1' />
@@ -22,7 +22,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_entity#csv]</parent-name>
+            <parent-name>[timeSeries_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -43,7 +43,7 @@
             <remote-name>key</remote-name>
             <remote-type>135</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_entity#csv]</parent-name>
+            <parent-name>[timeSeries_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>datetime</local-type>
@@ -58,7 +58,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_entity#csv]</parent-name>
+            <parent-name>[timeSeries_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -73,7 +73,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_entity#csv]</parent-name>
+            <parent-name>[timeSeries_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -87,7 +87,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-timeSeries_by_entity#csv]</parent-name>
+            <parent-name>[timeSeries_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -127,18 +127,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-media_types_by_entity+' inline='true' name='textscan.42251.668697835600' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-media_types_by_entity.csv' password='' server=''>
+    <datasource caption='media_types_by_entity+' inline='true' name='textscan.42251.668697835600' version='9.0'>
+      <connection class='textscan' directory='' filename='media_types_by_entity.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-media_types_by_entity#csv].[category]'>
+              <expression op='[media_types_by_entity#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-entity_volumes#csv].[key]'>
+              <expression op='[entity_volumes#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-media_types_by_entity#csv' table='[standard-tableau-media_types_by_entity#csv]' type='table'>
+          <relation name='media_types_by_entity#csv' table='[media_types_by_entity#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -146,7 +146,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-entity_volumes#csv' table='[standard-tableau-entity_volumes#csv]' type='table'>
+          <relation name='entity_volumes#csv' table='[entity_volumes#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='key' ordinal='0' />
               <column datatype='integer' name='interactions' ordinal='1' />
@@ -155,20 +155,20 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[standard-tableau-media_types_by_entity#csv].[category]' />
-          <map key='[interactions (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-media_types_by_entity#csv].[interactions]' />
-          <map key='[key (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-media_types_by_entity#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-media_types_by_entity#csv].[unique_authors]' />
+          <map key='[category]' value='[media_types_by_entity#csv].[category]' />
+          <map key='[interactions (entity_volumes.csv)]' value='[entity_volumes#csv].[interactions]' />
+          <map key='[interactions]' value='[media_types_by_entity#csv].[interactions]' />
+          <map key='[key (entity_volumes.csv)]' value='[entity_volumes#csv].[key]' />
+          <map key='[key]' value='[media_types_by_entity#csv].[key]' />
+          <map key='[unique_authors (entity_volumes.csv)]' value='[entity_volumes#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[media_types_by_entity#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-media_types_by_entity#csv]</parent-name>
+            <parent-name>[media_types_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -189,7 +189,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-media_types_by_entity#csv]</parent-name>
+            <parent-name>[media_types_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -210,7 +210,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-media_types_by_entity#csv]</parent-name>
+            <parent-name>[media_types_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -225,7 +225,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-media_types_by_entity#csv]</parent-name>
+            <parent-name>[media_types_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -239,7 +239,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-media_types_by_entity#csv]</parent-name>
+            <parent-name>[media_types_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -255,8 +255,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[key (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[key (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>4</ordinal>
             <local-type>string</local-type>
@@ -276,8 +276,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[interactions (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>5</ordinal>
             <local-type>integer</local-type>
@@ -291,8 +291,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[unique_authors (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -306,7 +306,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -327,15 +327,15 @@
       </column>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
       </column>
-      <column caption='Interactions (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[interactions (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Interactions (Entity Volumes.Csv)' datatype='integer' name='[interactions (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='Key (Standard-Tableau-Entity Volumes.Csv)' datatype='string' name='[key (standard-tableau-entity_volumes.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Entity Volumes.Csv)' datatype='string' name='[key (entity_volumes.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='Unique Authors (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[unique_authors (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Unique Authors (Entity Volumes.Csv)' datatype='integer' name='[unique_authors (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -360,9 +360,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-age_gender' inline='true' name='textscan.42251.717791458300' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-age_gender.csv' password='' server=''>
-        <relation name='standard-tableau-age_gender#csv' table='[standard-tableau-age_gender#csv]' type='table'>
+    <datasource caption='age_gender' inline='true' name='textscan.42251.717791458300' version='9.0'>
+      <connection class='textscan' directory='' filename='age_gender.csv' password='' server=''>
+        <relation name='age_gender#csv' table='[age_gender#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='name' ordinal='0' />
             <column datatype='string' name='category' ordinal='1' />
@@ -376,7 +376,7 @@
             <remote-name>name</remote-name>
             <remote-type>129</remote-type>
             <local-name>[name]</local-name>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias>name</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -397,7 +397,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -418,7 +418,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>2</ordinal>
             <local-type>string</local-type>
@@ -439,7 +439,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -454,7 +454,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>4</ordinal>
             <local-type>integer</local-type>
@@ -468,7 +468,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-age_gender#csv]</parent-name>
+            <parent-name>[age_gender#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -505,18 +505,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-domains_by_entity+' inline='true' name='textscan.42251.739436713000' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-domains_by_entity.csv' password='' server=''>
+    <datasource caption='domains_by_entity+' inline='true' name='textscan.42251.739436713000' version='9.0'>
+      <connection class='textscan' directory='' filename='domains_by_entity.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-domains_by_entity#csv].[category]'>
+              <expression op='[domains_by_entity#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-entity_volumes#csv].[key]'>
+              <expression op='[entity_volumes#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-domains_by_entity#csv' table='[standard-tableau-domains_by_entity#csv]' type='table'>
+          <relation name='domains_by_entity#csv' table='[domains_by_entity#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -524,7 +524,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-entity_volumes#csv' table='[standard-tableau-entity_volumes#csv]' type='table'>
+          <relation name='entity_volumes#csv' table='[entity_volumes#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='key' ordinal='0' />
               <column datatype='integer' name='interactions' ordinal='1' />
@@ -533,20 +533,20 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[standard-tableau-domains_by_entity#csv].[category]' />
-          <map key='[interactions (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-domains_by_entity#csv].[interactions]' />
-          <map key='[key (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-domains_by_entity#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-domains_by_entity#csv].[unique_authors]' />
+          <map key='[category]' value='[domains_by_entity#csv].[category]' />
+          <map key='[interactions (entity_volumes.csv)]' value='[entity_volumes#csv].[interactions]' />
+          <map key='[interactions]' value='[domains_by_entity#csv].[interactions]' />
+          <map key='[key (entity_volumes.csv)]' value='[entity_volumes#csv].[key]' />
+          <map key='[key]' value='[domains_by_entity#csv].[key]' />
+          <map key='[unique_authors (entity_volumes.csv)]' value='[entity_volumes#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[domains_by_entity#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-domains_by_entity#csv]</parent-name>
+            <parent-name>[domains_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -567,7 +567,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-domains_by_entity#csv]</parent-name>
+            <parent-name>[domains_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -588,7 +588,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-domains_by_entity#csv]</parent-name>
+            <parent-name>[domains_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -603,7 +603,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-domains_by_entity#csv]</parent-name>
+            <parent-name>[domains_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -617,7 +617,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-domains_by_entity#csv]</parent-name>
+            <parent-name>[domains_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -633,8 +633,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[key (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[key (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>4</ordinal>
             <local-type>string</local-type>
@@ -654,8 +654,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[interactions (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>5</ordinal>
             <local-type>integer</local-type>
@@ -669,8 +669,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[unique_authors (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -684,7 +684,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -705,15 +705,15 @@
       </column>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
       </column>
-      <column caption='Interactions (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[interactions (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Interactions (Entity Volumes.Csv)' datatype='integer' name='[interactions (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='Key (Standard-Tableau-Entity Volumes.Csv)' datatype='string' name='[key (standard-tableau-entity_volumes.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Entity Volumes.Csv)' datatype='string' name='[key (entity_volumes.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='Unique Authors (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[unique_authors (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Unique Authors (Entity Volumes.Csv)' datatype='integer' name='[unique_authors (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -733,18 +733,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-links_by_entity+' inline='true' name='textscan.42251.816880891200' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-links_by_entity.csv' password='' server=''>
+    <datasource caption='links_by_entity+' inline='true' name='textscan.42251.816880891200' version='9.0'>
+      <connection class='textscan' directory='' filename='links_by_entity.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-links_by_entity#csv].[category]'>
+              <expression op='[links_by_entity#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-entity_volumes#csv].[key]'>
+              <expression op='[entity_volumes#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-links_by_entity#csv' table='[standard-tableau-links_by_entity#csv]' type='table'>
+          <relation name='links_by_entity#csv' table='[links_by_entity#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -752,7 +752,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-entity_volumes#csv' table='[standard-tableau-entity_volumes#csv]' type='table'>
+          <relation name='entity_volumes#csv' table='[entity_volumes#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='key' ordinal='0' />
               <column datatype='integer' name='interactions' ordinal='1' />
@@ -761,20 +761,20 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[standard-tableau-links_by_entity#csv].[category]' />
-          <map key='[interactions (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-links_by_entity#csv].[interactions]' />
-          <map key='[key (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-links_by_entity#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-links_by_entity#csv].[unique_authors]' />
+          <map key='[category]' value='[links_by_entity#csv].[category]' />
+          <map key='[interactions (entity_volumes.csv)]' value='[entity_volumes#csv].[interactions]' />
+          <map key='[interactions]' value='[links_by_entity#csv].[interactions]' />
+          <map key='[key (entity_volumes.csv)]' value='[entity_volumes#csv].[key]' />
+          <map key='[key]' value='[links_by_entity#csv].[key]' />
+          <map key='[unique_authors (entity_volumes.csv)]' value='[entity_volumes#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[links_by_entity#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-links_by_entity#csv]</parent-name>
+            <parent-name>[links_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -795,7 +795,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-links_by_entity#csv]</parent-name>
+            <parent-name>[links_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -816,7 +816,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-links_by_entity#csv]</parent-name>
+            <parent-name>[links_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -831,7 +831,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-links_by_entity#csv]</parent-name>
+            <parent-name>[links_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -845,7 +845,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-links_by_entity#csv]</parent-name>
+            <parent-name>[links_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -861,8 +861,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[key (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[key (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>4</ordinal>
             <local-type>string</local-type>
@@ -882,8 +882,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[interactions (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>5</ordinal>
             <local-type>integer</local-type>
@@ -897,8 +897,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[unique_authors (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -912,7 +912,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -933,15 +933,15 @@
       </column>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
       </column>
-      <column caption='Interactions (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[interactions (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Interactions (Entity Volumes.Csv)' datatype='integer' name='[interactions (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='Key (Standard-Tableau-Entity Volumes.Csv)' datatype='string' name='[key (standard-tableau-entity_volumes.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Entity Volumes.Csv)' datatype='string' name='[key (entity_volumes.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='Unique Authors (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[unique_authors (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Unique Authors (Entity Volumes.Csv)' datatype='integer' name='[unique_authors (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -960,18 +960,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-topics_by_entity+' inline='true' name='textscan.42251.824961423600' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-topics_by_entity.csv' password='' server=''>
+    <datasource caption='topics_by_entity+' inline='true' name='textscan.42251.824961423600' version='9.0'>
+      <connection class='textscan' directory='' filename='topics_by_entity.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-topics_by_entity#csv].[category]'>
+              <expression op='[topics_by_entity#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-entity_volumes#csv].[key]'>
+              <expression op='[entity_volumes#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-topics_by_entity#csv' table='[standard-tableau-topics_by_entity#csv]' type='table'>
+          <relation name='topics_by_entity#csv' table='[topics_by_entity#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -979,7 +979,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-entity_volumes#csv' table='[standard-tableau-entity_volumes#csv]' type='table'>
+          <relation name='entity_volumes#csv' table='[entity_volumes#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='key' ordinal='0' />
               <column datatype='integer' name='interactions' ordinal='1' />
@@ -988,20 +988,20 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[standard-tableau-topics_by_entity#csv].[category]' />
-          <map key='[interactions (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-topics_by_entity#csv].[interactions]' />
-          <map key='[key (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-topics_by_entity#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-entity_volumes.csv)]' value='[standard-tableau-entity_volumes#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-topics_by_entity#csv].[unique_authors]' />
+          <map key='[category]' value='[topics_by_entity#csv].[category]' />
+          <map key='[interactions (entity_volumes.csv)]' value='[entity_volumes#csv].[interactions]' />
+          <map key='[interactions]' value='[topics_by_entity#csv].[interactions]' />
+          <map key='[key (entity_volumes.csv)]' value='[entity_volumes#csv].[key]' />
+          <map key='[key]' value='[topics_by_entity#csv].[key]' />
+          <map key='[unique_authors (entity_volumes.csv)]' value='[entity_volumes#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[topics_by_entity#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -1022,7 +1022,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -1043,7 +1043,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1058,7 +1058,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -1072,7 +1072,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1088,8 +1088,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[key (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[key (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>4</ordinal>
             <local-type>string</local-type>
@@ -1109,8 +1109,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[interactions (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>5</ordinal>
             <local-type>integer</local-type>
@@ -1124,8 +1124,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-entity_volumes.csv)]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <local-name>[unique_authors (entity_volumes.csv)]</local-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -1139,7 +1139,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1160,15 +1160,15 @@
       </column>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
       </column>
-      <column caption='Interactions (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[interactions (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Interactions (Entity Volumes.Csv)' datatype='integer' name='[interactions (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='Key (Standard-Tableau-Entity Volumes.Csv)' datatype='string' name='[key (standard-tableau-entity_volumes.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Entity Volumes.Csv)' datatype='string' name='[key (entity_volumes.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='Unique Authors (Standard-Tableau-Entity Volumes.Csv)' datatype='integer' name='[unique_authors (standard-tableau-entity_volumes.csv)]' role='measure' type='quantitative'>
+      <column caption='Unique Authors (Entity Volumes.Csv)' datatype='integer' name='[unique_authors (entity_volumes.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -1182,18 +1182,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-topic_hashtags+' inline='true' name='textscan.42252.623906226900' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-topic_hashtags.csv' password='' server=''>
+    <datasource caption='topic_hashtags+' inline='true' name='textscan.42252.623906226900' version='9.0'>
+      <connection class='textscan' directory='' filename='topic_hashtags.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-topic_hashtags#csv].[category]'>
+              <expression op='[topic_hashtags#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-topics_by_entity#csv].[key]'>
+              <expression op='[topics_by_entity#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-topic_hashtags#csv' table='[standard-tableau-topic_hashtags#csv]' type='table'>
+          <relation name='topic_hashtags#csv' table='[topic_hashtags#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -1201,7 +1201,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-topics_by_entity#csv' table='[standard-tableau-topics_by_entity#csv]' type='table'>
+          <relation name='topics_by_entity#csv' table='[topics_by_entity#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='string' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -1211,21 +1211,21 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category (standard-tableau-topics_by_entity.csv)]' value='[standard-tableau-topics_by_entity#csv].[category]' />
-          <map key='[category]' value='[standard-tableau-topic_hashtags#csv].[category]' />
-          <map key='[interactions (standard-tableau-topics_by_entity.csv)]' value='[standard-tableau-topics_by_entity#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-topic_hashtags#csv].[interactions]' />
-          <map key='[key (standard-tableau-topics_by_entity.csv)]' value='[standard-tableau-topics_by_entity#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-topic_hashtags#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-topics_by_entity.csv)]' value='[standard-tableau-topics_by_entity#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-topic_hashtags#csv].[unique_authors]' />
+          <map key='[category (topics_by_entity.csv)]' value='[topics_by_entity#csv].[category]' />
+          <map key='[category]' value='[topic_hashtags#csv].[category]' />
+          <map key='[interactions (topics_by_entity.csv)]' value='[topics_by_entity#csv].[interactions]' />
+          <map key='[interactions]' value='[topic_hashtags#csv].[interactions]' />
+          <map key='[key (topics_by_entity.csv)]' value='[topics_by_entity#csv].[key]' />
+          <map key='[key]' value='[topic_hashtags#csv].[key]' />
+          <map key='[unique_authors (topics_by_entity.csv)]' value='[topics_by_entity#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[topic_hashtags#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-topic_hashtags#csv]</parent-name>
+            <parent-name>[topic_hashtags#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -1246,7 +1246,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-topic_hashtags#csv]</parent-name>
+            <parent-name>[topic_hashtags#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -1267,7 +1267,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-topic_hashtags#csv]</parent-name>
+            <parent-name>[topic_hashtags#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1282,7 +1282,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-topic_hashtags#csv]</parent-name>
+            <parent-name>[topic_hashtags#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -1296,7 +1296,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-topic_hashtags#csv]</parent-name>
+            <parent-name>[topic_hashtags#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1312,8 +1312,8 @@
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[category (standard-tableau-topics_by_entity.csv)]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <local-name>[category (topics_by_entity.csv)]</local-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>4</ordinal>
             <local-type>string</local-type>
@@ -1333,8 +1333,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
-            <local-name>[key (standard-tableau-topics_by_entity.csv)]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <local-name>[key (topics_by_entity.csv)]</local-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>5</ordinal>
             <local-type>string</local-type>
@@ -1354,8 +1354,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-topics_by_entity.csv)]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <local-name>[interactions (topics_by_entity.csv)]</local-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -1369,8 +1369,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-topics_by_entity.csv)]</local-name>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <local-name>[unique_authors (topics_by_entity.csv)]</local-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>7</ordinal>
             <local-type>integer</local-type>
@@ -1384,7 +1384,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-topics_by_entity#csv]</parent-name>
+            <parent-name>[topics_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1403,19 +1403,19 @@
       <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
         <calculation class='tableau' formula='1' />
       </column>
-      <column caption='Category (Standard-Tableau-Topics By Entity.Csv)' datatype='string' name='[category (standard-tableau-topics_by_entity.csv)]' role='dimension' type='nominal'>
+      <column caption='Category (Topics By Entity.Csv)' datatype='string' name='[category (topics_by_entity.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
       </column>
-      <column caption='Interactions (Standard-Tableau-Topics By Entity.Csv)' datatype='integer' name='[interactions (standard-tableau-topics_by_entity.csv)]' role='measure' type='quantitative'>
+      <column caption='Interactions (Topics By Entity.Csv)' datatype='integer' name='[interactions (topics_by_entity.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='Key (Standard-Tableau-Topics By Entity.Csv)' datatype='string' name='[key (standard-tableau-topics_by_entity.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Topics By Entity.Csv)' datatype='string' name='[key (topics_by_entity.csv)]' role='dimension' type='nominal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='Unique Authors (Standard-Tableau-Topics By Entity.Csv)' datatype='integer' name='[unique_authors (standard-tableau-topics_by_entity.csv)]' role='measure' type='quantitative'>
+      <column caption='Unique Authors (Topics By Entity.Csv)' datatype='integer' name='[unique_authors (topics_by_entity.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -1425,9 +1425,9 @@
           <groupfilter function='level-members' level='[key]' />
         </groupfilter>
       </group>
-      <group caption='Action (Key (Standard-Tableau-Topics By Entity.Csv))' hidden='true' name='[Action (Key (Standard-Tableau-Topics By Entity.Csv))]' name-style='unqualified' user:auto-column='sheet_link'>
+      <group caption='Action (Key (Topics By Entity.Csv))' hidden='true' name='[Action (Key (Topics By Entity.Csv))]' name-style='unqualified' user:auto-column='sheet_link'>
         <groupfilter function='crossjoin'>
-          <groupfilter function='level-members' level='[key (standard-tableau-topics_by_entity.csv)]' />
+          <groupfilter function='level-members' level='[key (topics_by_entity.csv)]' />
         </groupfilter>
       </group>
       <group caption='Action (Key)' hidden='true' name='[Action (Key)]' name-style='unqualified' user:auto-column='sheet_link'>
@@ -1440,9 +1440,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-region_by_entity' inline='true' name='textscan.42252.644524131900' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-region_by_entity.csv' password='' server=''>
-        <relation name='standard-tableau-region_by_entity#csv' table='[standard-tableau-region_by_entity#csv]' type='table'>
+    <datasource caption='region_by_entity' inline='true' name='textscan.42252.644524131900' version='9.0'>
+      <connection class='textscan' directory='' filename='region_by_entity.csv' password='' server=''>
+        <relation name='region_by_entity#csv' table='[region_by_entity#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='category' ordinal='0' />
             <column datatype='string' name='key' ordinal='1' />
@@ -1455,7 +1455,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-region_by_entity#csv]</parent-name>
+            <parent-name>[region_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -1476,7 +1476,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-region_by_entity#csv]</parent-name>
+            <parent-name>[region_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -1497,7 +1497,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-region_by_entity#csv]</parent-name>
+            <parent-name>[region_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1512,7 +1512,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-region_by_entity#csv]</parent-name>
+            <parent-name>[region_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -1526,7 +1526,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-region_by_entity#csv]</parent-name>
+            <parent-name>[region_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1558,9 +1558,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-timeSeries_by_day' inline='true' name='textscan.42253.581680590300' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-timeSeries_by_day.csv' password='' server=''>
-        <relation name='standard-tableau-timeSeries_by_day#csv' table='[standard-tableau-timeSeries_by_day#csv]' type='table'>
+    <datasource caption='timeSeries_by_day' inline='true' name='textscan.42253.581680590300' version='9.0'>
+      <connection class='textscan' directory='' filename='timeSeries_by_day.csv' password='' server=''>
+        <relation name='timeSeries_by_day#csv' table='[timeSeries_by_day#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='datetime' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -1572,7 +1572,7 @@
             <remote-name>key</remote-name>
             <remote-type>135</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>datetime</local-type>
@@ -1587,7 +1587,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -1602,7 +1602,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1616,7 +1616,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1646,18 +1646,18 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-topics_by_day+' inline='true' name='textscan.42253.582548402800' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-topics_by_day.csv' password='' server=''>
+    <datasource caption='topics_by_day+' inline='true' name='textscan.42253.582548402800' version='9.0'>
+      <connection class='textscan' directory='' filename='topics_by_day.csv' password='' server=''>
         <relation join='inner' type='join'>
           <clause type='join'>
             <expression op='='>
-              <expression op='[standard-tableau-topics_by_day#csv].[category]'>
+              <expression op='[topics_by_day#csv].[category]'>
               </expression>
-              <expression op='[standard-tableau-timeSeries_by_day#csv].[key]'>
+              <expression op='[timeSeries_by_day#csv].[key]'>
               </expression>
             </expression>
           </clause>
-          <relation name='standard-tableau-topics_by_day#csv' table='[standard-tableau-topics_by_day#csv]' type='table'>
+          <relation name='topics_by_day#csv' table='[topics_by_day#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='datetime' name='category' ordinal='0' />
               <column datatype='string' name='key' ordinal='1' />
@@ -1665,7 +1665,7 @@
               <column datatype='integer' name='unique_authors' ordinal='3' />
             </columns>
           </relation>
-          <relation name='standard-tableau-timeSeries_by_day#csv' table='[standard-tableau-timeSeries_by_day#csv]' type='table'>
+          <relation name='timeSeries_by_day#csv' table='[timeSeries_by_day#csv]' type='table'>
             <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
               <column datatype='datetime' name='key' ordinal='0' />
               <column datatype='integer' name='interactions' ordinal='1' />
@@ -1674,20 +1674,20 @@
           </relation>
         </relation>
         <cols>
-          <map key='[category]' value='[standard-tableau-topics_by_day#csv].[category]' />
-          <map key='[interactions (standard-tableau-timeSeries_by_day.csv)]' value='[standard-tableau-timeSeries_by_day#csv].[interactions]' />
-          <map key='[interactions]' value='[standard-tableau-topics_by_day#csv].[interactions]' />
-          <map key='[key (standard-tableau-timeSeries_by_day.csv)]' value='[standard-tableau-timeSeries_by_day#csv].[key]' />
-          <map key='[key]' value='[standard-tableau-topics_by_day#csv].[key]' />
-          <map key='[unique_authors (standard-tableau-timeSeries_by_day.csv)]' value='[standard-tableau-timeSeries_by_day#csv].[unique_authors]' />
-          <map key='[unique_authors]' value='[standard-tableau-topics_by_day#csv].[unique_authors]' />
+          <map key='[category]' value='[topics_by_day#csv].[category]' />
+          <map key='[interactions (timeSeries_by_day.csv)]' value='[timeSeries_by_day#csv].[interactions]' />
+          <map key='[interactions]' value='[topics_by_day#csv].[interactions]' />
+          <map key='[key (timeSeries_by_day.csv)]' value='[timeSeries_by_day#csv].[key]' />
+          <map key='[key]' value='[topics_by_day#csv].[key]' />
+          <map key='[unique_authors (timeSeries_by_day.csv)]' value='[timeSeries_by_day#csv].[unique_authors]' />
+          <map key='[unique_authors]' value='[topics_by_day#csv].[unique_authors]' />
         </cols>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>category</remote-name>
             <remote-type>135</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-topics_by_day#csv]</parent-name>
+            <parent-name>[topics_by_day#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>datetime</local-type>
@@ -1702,7 +1702,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-topics_by_day#csv]</parent-name>
+            <parent-name>[topics_by_day#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -1723,7 +1723,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-topics_by_day#csv]</parent-name>
+            <parent-name>[topics_by_day#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1738,7 +1738,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-topics_by_day#csv]</parent-name>
+            <parent-name>[topics_by_day#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -1752,7 +1752,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-topics_by_day#csv]</parent-name>
+            <parent-name>[topics_by_day#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1768,8 +1768,8 @@
           <metadata-record class='column'>
             <remote-name>key</remote-name>
             <remote-type>135</remote-type>
-            <local-name>[key (standard-tableau-timeSeries_by_day.csv)]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <local-name>[key (timeSeries_by_day.csv)]</local-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>4</ordinal>
             <local-type>datetime</local-type>
@@ -1783,8 +1783,8 @@
           <metadata-record class='column'>
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[interactions (standard-tableau-timeSeries_by_day.csv)]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <local-name>[interactions (timeSeries_by_day.csv)]</local-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>5</ordinal>
             <local-type>integer</local-type>
@@ -1798,8 +1798,8 @@
           <metadata-record class='column'>
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
-            <local-name>[unique_authors (standard-tableau-timeSeries_by_day.csv)]</local-name>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <local-name>[unique_authors (timeSeries_by_day.csv)]</local-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>6</ordinal>
             <local-type>integer</local-type>
@@ -1813,7 +1813,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-timeSeries_by_day#csv]</parent-name>
+            <parent-name>[timeSeries_by_day#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1834,15 +1834,15 @@
       </column>
       <column caption='Category' datatype='datetime' name='[category]' role='dimension' type='ordinal'>
       </column>
-      <column caption='interactions (standard-tableau-timeSeries by day.csv)' datatype='integer' name='[interactions (standard-tableau-timeSeries_by_day.csv)]' role='measure' type='quantitative'>
+      <column caption='interactions (timeSeries by day.csv)' datatype='integer' name='[interactions (timeSeries_by_day.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
       </column>
-      <column caption='key (standard-tableau-timeSeries by day.csv)' datatype='datetime' name='[key (standard-tableau-timeSeries_by_day.csv)]' role='dimension' type='ordinal'>
+      <column caption='key (timeSeries by day.csv)' datatype='datetime' name='[key (timeSeries_by_day.csv)]' role='dimension' type='ordinal'>
       </column>
       <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
       </column>
-      <column caption='unique authors (standard-tableau-timeSeries by day.csv)' datatype='integer' name='[unique_authors (standard-tableau-timeSeries_by_day.csv)]' role='measure' type='quantitative'>
+      <column caption='unique authors (timeSeries by day.csv)' datatype='integer' name='[unique_authors (timeSeries_by_day.csv)]' role='measure' type='quantitative'>
       </column>
       <column caption='Unique Authors' datatype='integer' name='[unique_authors]' role='measure' type='quantitative'>
       </column>
@@ -1862,9 +1862,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-hashtags_by_day' inline='true' name='textscan.42253.607543831000' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-hashtags_by_day.csv' password='' server=''>
-        <relation name='standard-tableau-hashtags_by_day#csv' table='[standard-tableau-hashtags_by_day#csv]' type='table'>
+    <datasource caption='hashtags_by_day' inline='true' name='textscan.42253.607543831000' version='9.0'>
+      <connection class='textscan' directory='' filename='hashtags_by_day.csv' password='' server=''>
+        <relation name='hashtags_by_day#csv' table='[hashtags_by_day#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='datetime' name='category' ordinal='0' />
             <column datatype='string' name='key' ordinal='1' />
@@ -1877,7 +1877,7 @@
             <remote-name>category</remote-name>
             <remote-type>135</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-hashtags_by_day#csv]</parent-name>
+            <parent-name>[hashtags_by_day#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>datetime</local-type>
@@ -1892,7 +1892,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-hashtags_by_day#csv]</parent-name>
+            <parent-name>[hashtags_by_day#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -1913,7 +1913,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-hashtags_by_day#csv]</parent-name>
+            <parent-name>[hashtags_by_day#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -1928,7 +1928,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-hashtags_by_day#csv]</parent-name>
+            <parent-name>[hashtags_by_day#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -1942,7 +1942,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-hashtags_by_day#csv]</parent-name>
+            <parent-name>[hashtags_by_day#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -1979,9 +1979,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-links_by_day' inline='true' name='textscan.42253.610002488400' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-links_by_day.csv' password='' server=''>
-        <relation name='standard-tableau-links_by_day#csv' table='[standard-tableau-links_by_day#csv]' type='table'>
+    <datasource caption='links_by_day' inline='true' name='textscan.42253.610002488400' version='9.0'>
+      <connection class='textscan' directory='' filename='links_by_day.csv' password='' server=''>
+        <relation name='links_by_day#csv' table='[links_by_day#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='datetime' name='category' ordinal='0' />
             <column datatype='string' name='key' ordinal='1' />
@@ -1994,7 +1994,7 @@
             <remote-name>category</remote-name>
             <remote-type>135</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-links_by_day#csv]</parent-name>
+            <parent-name>[links_by_day#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>0</ordinal>
             <local-type>datetime</local-type>
@@ -2009,7 +2009,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-links_by_day#csv]</parent-name>
+            <parent-name>[links_by_day#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -2030,7 +2030,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-links_by_day#csv]</parent-name>
+            <parent-name>[links_by_day#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2045,7 +2045,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-links_by_day#csv]</parent-name>
+            <parent-name>[links_by_day#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -2059,7 +2059,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-links_by_day#csv]</parent-name>
+            <parent-name>[links_by_day#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2096,9 +2096,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-entity_volumes' inline='true' name='textscan.42256.444012812500' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-entity_volumes.csv' password='' server=''>
-        <relation name='standard-tableau-entity_volumes#csv' table='[standard-tableau-entity_volumes#csv]' type='table'>
+    <datasource caption='entity_volumes' inline='true' name='textscan.42256.444012812500' version='9.0'>
+      <connection class='textscan' directory='' filename='entity_volumes.csv' password='' server=''>
+        <relation name='entity_volumes#csv' table='[entity_volumes#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2110,7 +2110,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2131,7 +2131,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2146,7 +2146,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2160,7 +2160,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-entity_volumes#csv]</parent-name>
+            <parent-name>[entity_volumes#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2190,9 +2190,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-types_global' inline='true' name='textscan.42256.490713344900' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-types_global.csv' password='' server=''>
-        <relation name='standard-tableau-types_global#csv' table='[standard-tableau-types_global#csv]' type='table'>
+    <datasource caption='types_global' inline='true' name='textscan.42256.490713344900' version='9.0'>
+      <connection class='textscan' directory='' filename='types_global.csv' password='' server=''>
+        <relation name='types_global#csv' table='[types_global#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2204,7 +2204,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-types_global#csv]</parent-name>
+            <parent-name>[types_global#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2225,7 +2225,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-types_global#csv]</parent-name>
+            <parent-name>[types_global#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2240,7 +2240,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-types_global#csv]</parent-name>
+            <parent-name>[types_global#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2254,7 +2254,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-types_global#csv]</parent-name>
+            <parent-name>[types_global#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2284,9 +2284,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-media_types_global' inline='true' name='textscan.42256.495059490700' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-media_types_global.csv' password='' server=''>
-        <relation name='standard-tableau-media_types_global#csv' table='[standard-tableau-media_types_global#csv]' type='table'>
+    <datasource caption='media_types_global' inline='true' name='textscan.42256.495059490700' version='9.0'>
+      <connection class='textscan' directory='' filename='media_types_global.csv' password='' server=''>
+        <relation name='media_types_global#csv' table='[media_types_global#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2298,7 +2298,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-media_types_global#csv]</parent-name>
+            <parent-name>[media_types_global#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2319,7 +2319,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-media_types_global#csv]</parent-name>
+            <parent-name>[media_types_global#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2334,7 +2334,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-media_types_global#csv]</parent-name>
+            <parent-name>[media_types_global#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2348,7 +2348,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-media_types_global#csv]</parent-name>
+            <parent-name>[media_types_global#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2378,9 +2378,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-parent_media_types_global' inline='true' name='textscan.42256.496653599500' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-parent_media_types_global.csv' password='' server=''>
-        <relation name='standard-tableau-parent_media_types_global#csv' table='[standard-tableau-parent_media_types_global#csv]' type='table'>
+    <datasource caption='parent_media_types_global' inline='true' name='textscan.42256.496653599500' version='9.0'>
+      <connection class='textscan' directory='' filename='parent_media_types_global.csv' password='' server=''>
+        <relation name='parent_media_types_global#csv' table='[parent_media_types_global#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2392,7 +2392,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-parent_media_types_global#csv]</parent-name>
+            <parent-name>[parent_media_types_global#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2413,7 +2413,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-parent_media_types_global#csv]</parent-name>
+            <parent-name>[parent_media_types_global#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2428,7 +2428,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-parent_media_types_global#csv]</parent-name>
+            <parent-name>[parent_media_types_global#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2442,7 +2442,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-parent_media_types_global#csv]</parent-name>
+            <parent-name>[parent_media_types_global#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2472,9 +2472,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-author_type_global' inline='true' name='textscan.42256.508626643500' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-author_type_global.csv' password='' server=''>
-        <relation name='standard-tableau-author_type_global#csv' table='[standard-tableau-author_type_global#csv]' type='table'>
+    <datasource caption='author_type_global' inline='true' name='textscan.42256.508626643500' version='9.0'>
+      <connection class='textscan' directory='' filename='author_type_global.csv' password='' server=''>
+        <relation name='author_type_global#csv' table='[author_type_global#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2486,7 +2486,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-author_type_global#csv]</parent-name>
+            <parent-name>[author_type_global#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2507,7 +2507,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-author_type_global#csv]</parent-name>
+            <parent-name>[author_type_global#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2522,7 +2522,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-author_type_global#csv]</parent-name>
+            <parent-name>[author_type_global#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2536,7 +2536,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-author_type_global#csv]</parent-name>
+            <parent-name>[author_type_global#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2566,9 +2566,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-parent_author_type_global' inline='true' name='textscan.42256.510267106500' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-parent_author_type_global.csv' password='' server=''>
-        <relation name='standard-tableau-parent_author_type_global#csv' table='[standard-tableau-parent_author_type_global#csv]' type='table'>
+    <datasource caption='parent_author_type_global' inline='true' name='textscan.42256.510267106500' version='9.0'>
+      <connection class='textscan' directory='' filename='parent_author_type_global.csv' password='' server=''>
+        <relation name='parent_author_type_global#csv' table='[parent_author_type_global#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='key' ordinal='0' />
             <column datatype='integer' name='interactions' ordinal='1' />
@@ -2580,7 +2580,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-parent_author_type_global#csv]</parent-name>
+            <parent-name>[parent_author_type_global#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2601,7 +2601,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-parent_author_type_global#csv]</parent-name>
+            <parent-name>[parent_author_type_global#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>1</ordinal>
             <local-type>integer</local-type>
@@ -2616,7 +2616,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-parent_author_type_global#csv]</parent-name>
+            <parent-name>[parent_author_type_global#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>2</ordinal>
             <local-type>integer</local-type>
@@ -2630,7 +2630,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-parent_author_type_global#csv]</parent-name>
+            <parent-name>[parent_author_type_global#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2660,9 +2660,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-sentiment_gender_by_entity' inline='true' name='textscan.42314.372691284700' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-sentiment_gender_by_entity.csv' password='' server=''>
-        <relation name='standard-tableau-sentiment_gender_by_entity#csv' table='[standard-tableau-sentiment_gender_by_entity#csv]' type='table'>
+    <datasource caption='sentiment_gender_by_entity' inline='true' name='textscan.42314.372691284700' version='9.0'>
+      <connection class='textscan' directory='' filename='sentiment_gender_by_entity.csv' password='' server=''>
+        <relation name='sentiment_gender_by_entity#csv' table='[sentiment_gender_by_entity#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='name' ordinal='0' />
             <column datatype='string' name='category' ordinal='1' />
@@ -2676,7 +2676,7 @@
             <remote-name>name</remote-name>
             <remote-type>129</remote-type>
             <local-name>[name]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias>name</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2697,7 +2697,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -2718,7 +2718,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>2</ordinal>
             <local-type>string</local-type>
@@ -2739,7 +2739,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -2754,7 +2754,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>4</ordinal>
             <local-type>integer</local-type>
@@ -2768,7 +2768,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2802,9 +2802,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-sentiment_age_by_entity' inline='true' name='textscan.42314.380624386600' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-sentiment_age_by_entity.csv' password='' server=''>
-        <relation name='standard-tableau-sentiment_age_by_entity#csv' table='[standard-tableau-sentiment_age_by_entity#csv]' type='table'>
+    <datasource caption='sentiment_age_by_entity' inline='true' name='textscan.42314.380624386600' version='9.0'>
+      <connection class='textscan' directory='' filename='sentiment_age_by_entity.csv' password='' server=''>
+        <relation name='sentiment_age_by_entity#csv' table='[sentiment_age_by_entity#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='name' ordinal='0' />
             <column datatype='string' name='category' ordinal='1' />
@@ -2818,7 +2818,7 @@
             <remote-name>name</remote-name>
             <remote-type>129</remote-type>
             <local-name>[name]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias>name</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2839,7 +2839,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -2860,7 +2860,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>2</ordinal>
             <local-type>string</local-type>
@@ -2881,7 +2881,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -2896,7 +2896,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>4</ordinal>
             <local-type>integer</local-type>
@@ -2910,7 +2910,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-sentiment_age_by_entity#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -2944,9 +2944,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-sentiment_age_by_entity_engagements' inline='true' name='textscan.42314.389217349500' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-sentiment_age_by_entity_engagements.csv' password='' server=''>
-        <relation name='standard-tableau-sentiment_age_by_entity_engagements#csv' table='[standard-tableau-sentiment_age_by_entity_engagements#csv]' type='table'>
+    <datasource caption='sentiment_age_by_entity_engagements' inline='true' name='textscan.42314.389217349500' version='9.0'>
+      <connection class='textscan' directory='' filename='sentiment_age_by_entity_engagements.csv' password='' server=''>
+        <relation name='sentiment_age_by_entity_engagements#csv' table='[sentiment_age_by_entity_engagements#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='name' ordinal='0' />
             <column datatype='string' name='category' ordinal='1' />
@@ -2960,7 +2960,7 @@
             <remote-name>name</remote-name>
             <remote-type>129</remote-type>
             <local-name>[name]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias>name</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -2981,7 +2981,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -3002,7 +3002,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>2</ordinal>
             <local-type>string</local-type>
@@ -3023,7 +3023,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -3038,7 +3038,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>4</ordinal>
             <local-type>integer</local-type>
@@ -3052,7 +3052,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-sentiment_age_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_age_by_entity_engagements#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -3086,9 +3086,9 @@
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
-    <datasource caption='standard-tableau-sentiment_gender_by_entity_engagements' inline='true' name='textscan.42314.391269409700' version='9.0'>
-      <connection class='textscan' directory='' filename='standard-tableau-sentiment_gender_by_entity_engagements.csv' password='' server=''>
-        <relation name='standard-tableau-sentiment_gender_by_entity_engagements#csv' table='[standard-tableau-sentiment_gender_by_entity_engagements#csv]' type='table'>
+    <datasource caption='sentiment_gender_by_entity_engagements' inline='true' name='textscan.42314.391269409700' version='9.0'>
+      <connection class='textscan' directory='' filename='sentiment_gender_by_entity_engagements.csv' password='' server=''>
+        <relation name='sentiment_gender_by_entity_engagements#csv' table='[sentiment_gender_by_entity_engagements#csv]' type='table'>
           <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
             <column datatype='string' name='name' ordinal='0' />
             <column datatype='string' name='category' ordinal='1' />
@@ -3102,7 +3102,7 @@
             <remote-name>name</remote-name>
             <remote-type>129</remote-type>
             <local-name>[name]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias>name</remote-alias>
             <ordinal>0</ordinal>
             <local-type>string</local-type>
@@ -3123,7 +3123,7 @@
             <remote-name>category</remote-name>
             <remote-type>129</remote-type>
             <local-name>[category]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias>category</remote-alias>
             <ordinal>1</ordinal>
             <local-type>string</local-type>
@@ -3144,7 +3144,7 @@
             <remote-name>key</remote-name>
             <remote-type>129</remote-type>
             <local-name>[key]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias>key</remote-alias>
             <ordinal>2</ordinal>
             <local-type>string</local-type>
@@ -3165,7 +3165,7 @@
             <remote-name>interactions</remote-name>
             <remote-type>20</remote-type>
             <local-name>[interactions]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias>interactions</remote-alias>
             <ordinal>3</ordinal>
             <local-type>integer</local-type>
@@ -3180,7 +3180,7 @@
             <remote-name>unique_authors</remote-name>
             <remote-type>20</remote-type>
             <local-name>[unique_authors]</local-name>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias>unique_authors</remote-alias>
             <ordinal>4</ordinal>
             <local-type>integer</local-type>
@@ -3194,7 +3194,7 @@
           <metadata-record class='capability'>
             <remote-name></remote-name>
             <remote-type>0</remote-type>
-            <parent-name>[standard-tableau-sentiment_gender_by_entity_engagements#csv]</parent-name>
+            <parent-name>[sentiment_gender_by_entity_engagements#csv]</parent-name>
             <remote-alias></remote-alias>
             <aggregation>Count</aggregation>
             <contains-null>true</contains-null>
@@ -3235,7 +3235,7 @@
   <shared-views>
     <shared-view name='textscan.42252.644524131900'>
       <datasources>
-        <datasource caption='standard-tableau-region_by_entity' name='textscan.42252.644524131900' />
+        <datasource caption='region_by_entity' name='textscan.42252.644524131900' />
       </datasources>
       <datasource-dependencies datasource='textscan.42252.644524131900'>
         <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -3313,7 +3313,7 @@
     <action caption='Topics to Hashtags' name='[Action7]'>
       <activation auto-clear='true' type='on-select' />
       <source dashboard='Topics &amp; Hashtags' type='sheet' worksheet='Topics' />
-      <link caption='Topics to Hashtags' delimiter=',' escape='\' expression='tsl:Topics%20%26%20Hashtags?%5Btextscan.42252.623906226900%5D.%5Bkey%20%28standard-tableau-topics_by_entity.csv%29%5D~s0=&lt;[key]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <link caption='Topics to Hashtags' delimiter=',' escape='\' expression='tsl:Topics%20%26%20Hashtags?%5Btextscan.42252.623906226900%5D.%5Bkey%20%28topics_by_entity.csv%29%5D~s0=&lt;[key]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
       <command command='tsc:tsl-filter'>
         <param name='exclude' value='Topics' />
         <param name='target' value='Topics &amp; Hashtags' />
@@ -3338,17 +3338,17 @@
       </command>
     </action>
     <datasources>
-      <datasource caption='standard-tableau-timeSeries_by_entity' name='textscan.42249.761339027800' />
-      <datasource caption='standard-tableau-media_types_by_entity+' name='textscan.42251.668697835600' />
-      <datasource caption='standard-tableau-domains_by_entity+' name='textscan.42251.739436713000' />
-      <datasource caption='standard-tableau-links_by_entity+' name='textscan.42251.816880891200' />
-      <datasource caption='standard-tableau-topics_by_entity+' name='textscan.42251.824961423600' />
-      <datasource caption='standard-tableau-topic_hashtags+' name='textscan.42252.623906226900' />
-      <datasource caption='standard-tableau-timeSeries_by_day' name='textscan.42253.581680590300' />
-      <datasource caption='standard-tableau-topics_by_day+' name='textscan.42253.582548402800' />
-      <datasource caption='standard-tableau-hashtags_by_day' name='textscan.42253.607543831000' />
-      <datasource caption='standard-tableau-links_by_day' name='textscan.42253.610002488400' />
-      <datasource caption='standard-tableau-entity_volumes' name='textscan.42256.444012812500' />
+      <datasource caption='timeSeries_by_entity' name='textscan.42249.761339027800' />
+      <datasource caption='media_types_by_entity+' name='textscan.42251.668697835600' />
+      <datasource caption='domains_by_entity+' name='textscan.42251.739436713000' />
+      <datasource caption='links_by_entity+' name='textscan.42251.816880891200' />
+      <datasource caption='topics_by_entity+' name='textscan.42251.824961423600' />
+      <datasource caption='topic_hashtags+' name='textscan.42252.623906226900' />
+      <datasource caption='timeSeries_by_day' name='textscan.42253.581680590300' />
+      <datasource caption='topics_by_day+' name='textscan.42253.582548402800' />
+      <datasource caption='hashtags_by_day' name='textscan.42253.607543831000' />
+      <datasource caption='links_by_day' name='textscan.42253.610002488400' />
+      <datasource caption='entity_volumes' name='textscan.42256.444012812500' />
     </datasources>
     <datasource-dependencies datasource='textscan.42249.761339027800'>
       <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -3373,7 +3373,7 @@
       </column>
     </datasource-dependencies>
     <datasource-dependencies datasource='textscan.42252.623906226900'>
-      <column caption='Key (Standard-Tableau-Topics By Entity.Csv)' datatype='string' name='[key (standard-tableau-topics_by_entity.csv)]' role='dimension' type='nominal'>
+      <column caption='Key (Topics By Entity.Csv)' datatype='string' name='[key (topics_by_entity.csv)]' role='dimension' type='nominal'>
       </column>
     </datasource-dependencies>
     <datasource-dependencies datasource='textscan.42253.581680590300'>
@@ -3403,7 +3403,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-age_gender' name='textscan.42251.717791458300' />
+            <datasource caption='age_gender' name='textscan.42251.717791458300' />
           </datasources>
           <datasource-dependencies datasource='textscan.42251.717791458300'>
             <column caption='Gender Reversed' datatype='integer' name='[Calculation_7070904171451534]' role='measure' type='quantitative'>
@@ -3448,7 +3448,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-domains_by_entity+' name='textscan.42251.739436713000' />
+            <datasource caption='domains_by_entity+' name='textscan.42251.739436713000' />
           </datasources>
           <datasource-dependencies datasource='textscan.42251.739436713000'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -3499,7 +3499,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-author_type_global' name='textscan.42256.508626643500' />
+            <datasource caption='author_type_global' name='textscan.42256.508626643500' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.508626643500'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3549,7 +3549,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-media_types_global' name='textscan.42256.495059490700' />
+            <datasource caption='media_types_global' name='textscan.42256.495059490700' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.495059490700'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3592,7 +3592,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-parent_author_type_global' name='textscan.42256.510267106500' />
+            <datasource caption='parent_author_type_global' name='textscan.42256.510267106500' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.510267106500'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3642,7 +3642,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-parent_media_types_global' name='textscan.42256.496653599500' />
+            <datasource caption='parent_media_types_global' name='textscan.42256.496653599500' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.496653599500'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3685,7 +3685,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-types_global' name='textscan.42256.490713344900' />
+            <datasource caption='types_global' name='textscan.42256.490713344900' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.490713344900'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3728,7 +3728,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-hashtags_by_day' name='textscan.42253.607543831000' />
+            <datasource caption='hashtags_by_day' name='textscan.42253.607543831000' />
           </datasources>
           <datasource-dependencies datasource='textscan.42253.607543831000'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3776,7 +3776,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-links_by_day' name='textscan.42253.610002488400' />
+            <datasource caption='links_by_day' name='textscan.42253.610002488400' />
           </datasources>
           <datasource-dependencies datasource='textscan.42253.610002488400'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -3817,16 +3817,16 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-media_types_by_entity+' name='textscan.42251.668697835600' />
+            <datasource caption='media_types_by_entity+' name='textscan.42251.668697835600' />
           </datasources>
           <datasource-dependencies datasource='textscan.42251.668697835600'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
             </column>
-            <column caption='Key (Standard-Tableau-Entity Volumes.Csv)' datatype='string' name='[key (standard-tableau-entity_volumes.csv)]' role='dimension' type='nominal'>
+            <column caption='Key (Entity Volumes.Csv)' datatype='string' name='[key (entity_volumes.csv)]' role='dimension' type='nominal'>
             </column>
             <column caption='Key' datatype='string' name='[key]' role='dimension' type='nominal'>
             </column>
-            <column-instance column='[key (standard-tableau-entity_volumes.csv)]' derivation='None' name='[none:key (standard-tableau-entity_volumes.csv):nk]' pivot='key' type='nominal' />
+            <column-instance column='[key (entity_volumes.csv)]' derivation='None' name='[none:key (entity_volumes.csv):nk]' pivot='key' type='nominal' />
             <column-instance column='[key]' derivation='None' name='[none:key:nk]' pivot='key' type='nominal' />
             <column-instance column='[interactions]' derivation='Sum' name='[sum:interactions:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
@@ -3859,14 +3859,14 @@
           </pane>
         </panes>
         <rows>[textscan.42251.668697835600].[sum:interactions:qk]</rows>
-        <cols>([textscan.42251.668697835600].[none:key (standard-tableau-entity_volumes.csv):nk] / [textscan.42251.668697835600].[none:key:nk])</cols>
+        <cols>([textscan.42251.668697835600].[none:key (entity_volumes.csv):nk] / [textscan.42251.668697835600].[none:key:nk])</cols>
       </table>
     </worksheet>
     <worksheet name='Region'>
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-region_by_entity' name='textscan.42252.644524131900' />
+            <datasource caption='region_by_entity' name='textscan.42252.644524131900' />
           </datasources>
           <mapsources>
             <mapsource name='Tableau' />
@@ -3950,7 +3950,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-sentiment_age_by_entity_engagements' name='textscan.42314.389217349500' />
+            <datasource caption='sentiment_age_by_entity_engagements' name='textscan.42314.389217349500' />
           </datasources>
           <datasource-dependencies datasource='textscan.42314.389217349500'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -3998,7 +3998,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-sentiment_age_by_entity' name='textscan.42314.380624386600' />
+            <datasource caption='sentiment_age_by_entity' name='textscan.42314.380624386600' />
           </datasources>
           <datasource-dependencies datasource='textscan.42314.380624386600'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4046,7 +4046,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-sentiment_gender_by_entity_engagements' name='textscan.42314.391269409700' />
+            <datasource caption='sentiment_gender_by_entity_engagements' name='textscan.42314.391269409700' />
           </datasources>
           <datasource-dependencies datasource='textscan.42314.391269409700'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4094,7 +4094,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-sentiment_gender_by_entity' name='textscan.42314.372691284700' />
+            <datasource caption='sentiment_gender_by_entity' name='textscan.42314.372691284700' />
           </datasources>
           <datasource-dependencies datasource='textscan.42314.372691284700'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4152,7 +4152,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-timeSeries_by_day' name='textscan.42253.581680590300' />
+            <datasource caption='timeSeries_by_day' name='textscan.42253.581680590300' />
           </datasources>
           <datasource-dependencies datasource='textscan.42253.581680590300'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -4182,7 +4182,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-topic_hashtags+' name='textscan.42252.623906226900' />
+            <datasource caption='topic_hashtags+' name='textscan.42252.623906226900' />
           </datasources>
           <datasource-dependencies datasource='textscan.42252.623906226900'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -4192,8 +4192,8 @@
             <column-instance column='[key]' derivation='None' name='[none:key:nk]' pivot='key' type='nominal' />
             <column-instance column='[interactions]' derivation='Sum' name='[sum:interactions:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
-          <filter class='categorical' column='[textscan.42252.623906226900].[Action (Key (Standard-Tableau-Topics By Entity.Csv))]'>
-            <groupfilter function='level-members' level='[key (standard-tableau-topics_by_entity.csv)]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          <filter class='categorical' column='[textscan.42252.623906226900].[Action (Key (Topics By Entity.Csv))]'>
+            <groupfilter function='level-members' level='[key (topics_by_entity.csv)]' user:ui-enumeration='all' user:ui-marker='enumerate' />
           </filter>
           <filter class='categorical' column='[textscan.42252.623906226900].[Action (Key)]'>
             <groupfilter function='level-members' level='[key]' user:ui-enumeration='all' user:ui-marker='enumerate' />
@@ -4205,7 +4205,7 @@
           <slices>
             <column>[textscan.42252.623906226900].[Action (Key)]</column>
             <column>[textscan.42252.623906226900].[sum:interactions:qk]</column>
-            <column>[textscan.42252.623906226900].[Action (Key (Standard-Tableau-Topics By Entity.Csv))]</column>
+            <column>[textscan.42252.623906226900].[Action (Key (Topics By Entity.Csv))]</column>
           </slices>
           <aggregation value='true' />
         </view>
@@ -4227,7 +4227,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-topics_by_entity+' name='textscan.42251.824961423600' />
+            <datasource caption='topics_by_entity+' name='textscan.42251.824961423600' />
           </datasources>
           <datasource-dependencies datasource='textscan.42251.824961423600'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4278,7 +4278,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-topics_by_day+' name='textscan.42253.582548402800' />
+            <datasource caption='topics_by_day+' name='textscan.42253.582548402800' />
           </datasources>
           <datasource-dependencies datasource='textscan.42253.582548402800'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -4328,7 +4328,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-links_by_entity+' name='textscan.42251.816880891200' />
+            <datasource caption='links_by_entity+' name='textscan.42251.816880891200' />
           </datasources>
           <datasource-dependencies datasource='textscan.42251.816880891200'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4376,7 +4376,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-entity_volumes' name='textscan.42256.444012812500' />
+            <datasource caption='entity_volumes' name='textscan.42256.444012812500' />
           </datasources>
           <datasource-dependencies datasource='textscan.42256.444012812500'>
             <column caption='Interactions' datatype='integer' name='[interactions]' role='measure' type='quantitative'>
@@ -4432,7 +4432,7 @@
       <table>
         <view>
           <datasources>
-            <datasource caption='standard-tableau-timeSeries_by_entity' name='textscan.42249.761339027800' />
+            <datasource caption='timeSeries_by_entity' name='textscan.42249.761339027800' />
           </datasources>
           <datasource-dependencies datasource='textscan.42249.761339027800'>
             <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4476,7 +4476,7 @@
       <style>
       </style>
       <datasources>
-        <datasource caption='standard-tableau-region_by_entity' name='textscan.42252.644524131900' />
+        <datasource caption='region_by_entity' name='textscan.42252.644524131900' />
       </datasources>
       <datasource-dependencies datasource='textscan.42252.644524131900'>
         <column caption='Category' datatype='string' name='[category]' role='dimension' type='nominal'>
@@ -4853,7 +4853,7 @@
           <field>[textscan.42249.761339027800].[none:category:nk]</field>
           <field>[textscan.42249.761339027800].[yr:key:ok]</field>
           <field>[textscan.42251.739436713000].[none:category:nk]</field>
-          <field>[textscan.42251.739436713000].[none:key (standard-tableau-entity_volumes.csv):nk]</field>
+          <field>[textscan.42251.739436713000].[none:key (entity_volumes.csv):nk]</field>
           <field>[textscan.42251.739436713000].[none:key:nk]</field>
         </color-one-way>
       </highlight>
@@ -5079,7 +5079,7 @@
       <highlight>
         <color-one-way>
           <field>[textscan.42251.668697835600].[none:category:nk]</field>
-          <field>[textscan.42251.668697835600].[none:key (standard-tableau-entity_volumes.csv):nk]</field>
+          <field>[textscan.42251.668697835600].[none:key (entity_volumes.csv):nk]</field>
           <field>[textscan.42251.668697835600].[none:key:nk]</field>
         </color-one-way>
       </highlight>
@@ -5295,9 +5295,9 @@
       </viewpoint>
       <highlight>
         <color-one-way>
-          <field>[textscan.42252.623906226900].[none:category (standard-tableau-topics_by_entity.csv):nk]</field>
+          <field>[textscan.42252.623906226900].[none:category (topics_by_entity.csv):nk]</field>
           <field>[textscan.42252.623906226900].[none:category:nk]</field>
-          <field>[textscan.42252.623906226900].[none:key (standard-tableau-topics_by_entity.csv):nk]</field>
+          <field>[textscan.42252.623906226900].[none:key (topics_by_entity.csv):nk]</field>
           <field>[textscan.42252.623906226900].[none:key:nk]</field>
         </color-one-way>
       </highlight>
@@ -5326,7 +5326,7 @@
       </viewpoint>
       <highlight>
         <color-one-way>
-          <field>[textscan.42251.816880891200].[none:key (standard-tableau-entity_volumes.csv):nk]</field>
+          <field>[textscan.42251.816880891200].[none:key (entity_volumes.csv):nk]</field>
           <field>[textscan.42251.816880891200].[none:key:nk]</field>
           <field>[textscan.42251.824961423600].[none:category:nk]</field>
           <field>[textscan.42251.824961423600].[none:key:nk]</field>
@@ -5358,11 +5358,11 @@
       <highlight>
         <color-one-way>
           <field>[textscan.42253.582548402800].[dy:category:ok]</field>
-          <field>[textscan.42253.582548402800].[none:key (standard-tableau-timeSeries_by_day.csv):ok]</field>
+          <field>[textscan.42253.582548402800].[none:key (timeSeries_by_day.csv):ok]</field>
           <field>[textscan.42253.582548402800].[none:key:nk]</field>
           <field>[textscan.42253.582548402800].[tdy:category:ok]</field>
           <field>[textscan.42253.582548402800].[yr:category:ok]</field>
-          <field>[textscan.42253.582548402800].[yr:key (standard-tableau-timeSeries_by_day.csv):ok]</field>
+          <field>[textscan.42253.582548402800].[yr:key (timeSeries_by_day.csv):ok]</field>
         </color-one-way>
       </highlight>
       <selection-collection>
@@ -5392,7 +5392,7 @@
         <color-one-way>
           <field>[textscan.42251.739436713000].[none:key:nk]</field>
           <field>[textscan.42251.816880891200].[none:category:nk]</field>
-          <field>[textscan.42251.816880891200].[none:key (standard-tableau-entity_volumes.csv):nk]</field>
+          <field>[textscan.42251.816880891200].[none:key (entity_volumes.csv):nk]</field>
           <field>[textscan.42251.816880891200].[none:key:nk]</field>
         </color-one-way>
       </highlight>

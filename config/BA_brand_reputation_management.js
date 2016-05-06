@@ -2,7 +2,10 @@
  * BRAND ANALYTICS
  * - Brand Reputation Management
  *
- * API CALLS: ~230 (depending upon number of tags)
+ * 1. Rename tag name to match CSDL. See "interaction.tag_tree.<MY_TAGS>"
+ *
+ * API CALLS: ~260 (depending upon number of tags)
+ * CSV FILES: 22
  */
 
 "use strict";
@@ -14,12 +17,12 @@ module.exports = {
     },
     "index": {
         "default": {
-            "id": "160c7203aeebec0c2d179dc53e95cee9",
+            "id": "<RECORDING_ID>",
             "auth": {
-                "username": "pylonsandbox",
-                "api_key": "3abea8c0f5209b087a1482b5e5ccc337"
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
             }
-        }
+        },
     },
     "analysis": {
         "freqDist": [
@@ -56,7 +59,7 @@ module.exports = {
          */
             {
                 "name": "media_types_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "child": {
                     "target": "fb.media_type",
@@ -68,7 +71,7 @@ module.exports = {
          */
             {
                 "name": "type",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "child": {
                     "target": "fb.type",
@@ -80,7 +83,7 @@ module.exports = {
          */
             {
                 "name": "entity_volumes",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10
             },
         /**
@@ -88,7 +91,7 @@ module.exports = {
          */
             {
                 "name": "age_gender",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "child": {
                     "target": "fb.author.age",
@@ -104,7 +107,7 @@ module.exports = {
          */
             {
                 "name": "region_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "then": {
                     "target": "fb.author.region",
@@ -116,7 +119,7 @@ module.exports = {
          */
             {
                 "name": "domains_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "then": {
                     "filter": "not links.domain in \"bit.ly, bitly.com, facebook.com\"",
@@ -126,7 +129,7 @@ module.exports = {
             },
             {
                 "name": "links_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "then": {
                     "filter": "not links.domain in \"bit.ly, bitly.com, facebook.com\"",
@@ -139,7 +142,7 @@ module.exports = {
          */
             {
                 "name": "topics_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "then": {
                     "target": "fb.topics.name",
@@ -163,7 +166,7 @@ module.exports = {
          */
             {
                 "name": "timeSeries_by_entity",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "then": {
                     "type": "timeSeries",
@@ -175,7 +178,7 @@ module.exports = {
          */
             {
                 "name": "sentiment_gender_by_entity_engagements",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "child": {
                     "target": "fb.parent.author.gender",
@@ -191,7 +194,7 @@ module.exports = {
          */
             {
                 "name": "sentiment_age_by_entity_engagements",
-                "target": "interaction.tag_tree.automotive.brand",
+                "target": "interaction.tag_tree.<MY_TAGS>",
                 "threshold": 10,
                 "child": {
                     "target": "fb.parent.author.age",
@@ -201,7 +204,7 @@ module.exports = {
                         "threshold": 3
                     }
                 }
-            },
+            }
         ],
         "timeSeries": [
         /**

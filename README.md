@@ -1,5 +1,3 @@
-## STATUS: Unstable, WIP.
-
 # PEPP
 PYLON Exporter ++. Utility for exporting data from DataSift PYLON as JSON or CSV. It is the goal of this utility to 
 support any combination of data extraction using a config (not code) approach. 

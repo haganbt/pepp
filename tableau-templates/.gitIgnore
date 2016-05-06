@@ -3,6 +3,7 @@
 # But not these files...
 !.gitignore
 !standard-tableau.twb
+!CMA_topic_analysis.twb
 
 # ...even if they are in subdirectories
 !*/

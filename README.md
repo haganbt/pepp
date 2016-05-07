@@ -22,6 +22,7 @@ DISCLAIMER: This library is not supported by DataSift and hence any questions or
 
 - [Quick Start](#quick-start)
 - [User Guide](#user-guide)
+- [Installation](#installation)
   - [Config File Structure](#config-file-structure)
     - [Single Task](#single-task)
     - [Nested Tasks](#nested-tasks)
@@ -46,7 +47,6 @@ DISCLAIMER: This library is not supported by DataSift and hence any questions or
 - [Example Config Recipes](#example-config-recipes)
   - [Multi-Index - Merged 3 Level Custom Nested](#multi-index---merged-3-level-custom-nested)
   - [Multi-Index - Merged 2 Level Custom Nested with type override](#multi-index---merged-2-level-custom-nested-with-type-override)
-  - [Demographic Baseline](#demographic-baseline)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -63,6 +63,11 @@ PEPP uses a configuration file to define request tasks. Files can be configured 
 * Define request tasks within a config file
 * Tell PEPP which config file to use
 * Run tasks
+
+# Installation
+
+todo.
+
 
 ## Config File Structure
 

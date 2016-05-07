@@ -402,11 +402,28 @@ Plotting the ```index``` with a reference line of 1:
 
 ## Tableau Workbook Generation
 
+PEPP supports the automated generation of Tableau workbooks. It does this by simply exporting CSV data that a pre-built workbook utilizes for visualizations.
+
+Each workbook is designed based on a specific use case as follows:
+
 
 | Use Case        | Config File Name           | Description  |
 |:------------- |:-------------|:-----|
 | Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management) |
 | Content & Media Analytics - - Topic Analysis | ```CMA_topic_analysis.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Topic%20Analysis) |
+
+
+### Custom Tableau Workbooks
+
+PEPP will automatically check the ```/tableau-templates``` directory for a Tableau workbook (.twb) file with an identical name to that of the config file being executed. If a corresponding workbook is found, it will be copied to the output directory along with the other output files rewriting the directory paths within the workbook accordingly.
+
+With this in mind, it then becomes easy to create new custom Tableau workbooks simply by developing a config recipe an associated workbook, and copying the ```.tbx``` file back in to the ```/tableau-templates``` directory. This is especially useful for refreshing data sets.
+
+### Submitting Tableau Workbooks
+
+todo
+
+* Supply screens hots of each workbook (1024px width) for the [wiki](https://github.com/haganbt/pepp/wiki)
 
 
 # Development

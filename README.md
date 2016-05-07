@@ -1,5 +1,5 @@
 # PEPP
-PYLON Exporter ++ is a utility for exporting data from DataSift PYLON in either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
+PYLON Exporter ++ is a utility for exporting data from DataSift PYLON as either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
 
 It is the goal of this utility to support any type of analysis requests using a config (not code) approach.
 

@@ -404,7 +404,7 @@ Plotting the ```index``` with a reference line of 1:
 
 PEPP supports the automated generation of Tableau workbooks. It does this by simply exporting CSV data that a pre-built workbook utilizes for visualizations.
 
-Each workbook is designed based on a specific use case as follows:
+Each workbook is designed based on a specific use case as detailed below. Simply open the required config file and follow any instructions within the header.
 
 
 | Use Case        | Config File Name           | Description  |

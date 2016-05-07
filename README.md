@@ -405,7 +405,8 @@ Plotting the ```index``` with a reference line of 1:
 
 | Use Case        | Config File Name           | Description  |
 |:------------- |:-------------|:-----|
-| Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | [Full Details)[https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management] |
+| Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management) |
+| Content & Media Analytics - - Topic Analysis | ```CMA_topic_analysis.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Topic%20Analysis) |
 
 
 # Development

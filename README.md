@@ -1,5 +1,5 @@
 # PEPP
-PYLON Exporter ++ is a utility for exporting data from DataSift PYLON as either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
+PYLON Exporter++ is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
 
 It is the goal of this utility to support any type of analysis requests using a config (not code) approach.
 
@@ -12,6 +12,8 @@ Features:
  * Result set to query inheritance
  * Request queue with concurrency limit
  * Automated Tableau workbook generation
+
+DISCLAIMER: This library is not supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -622,63 +624,4 @@ Example response:
           ],
           ...
 
-```
-
-## Demographic Baseline
-
-Age/gender analysis from 2 different indexes. Automatically generate probabilities and index values:
-
-```json
-"freqDist": [
-
-            {
-                "merged_custom_nested_baseline": [
-                    {
-                        "id": "baseline",
-                        "index": "baseline",
-                        "target": "fb.author.region",
-                        "threshold": 2,
-                        "child": {
-                            "target": "fb.author.gender",
-                            "threshold": 2,
-                            "child": {
-                                "target": "fb.author.age",
-                                "threshold": 2
-                            }
-                        }
-                    },
-                    {
-                        "index": "baseline",
-                        "target": "fb.author.region",
-                        "threshold": 2,
-                        "child": {
-                            "target": "fb.author.gender",
-                            "threshold": 2,
-                            "child": {
-                                "target": "fb.author.age",
-                                "threshold": 2
-                            }
-                        }
-                    }
-                ]
-            },
-]
-```
-
-Example output:
-
-```
-category,key,baseline_total_authors,baseline_unique_authors,baseline_probability,comparator_total_authors,comparator_unique_authors_FOREGROUND,comparator_probability,index,expected_baseline_BACKGROUND
-25-34,male,2144900,187300,0.0873234183411814,4625400,828700,0.17916288321010074,2.0517163278021626,403905.73919530044
-25-34,female,2144900,356800,0.16634808149564081,4625400,786900,0.17012582695550654,1.0227098829508576,769426.4161499371
-18-24,male,2144900,139600,0.06508461932957248,4625400,542300,0.11724391403986682,1.8014073869921945,301042.39824700454
-18-24,female,2144900,256500,0.11958599468506691,4625400,464300,0.10038050763177239,0.8394001981262713,553133.0598163084
-35-44,male,2144900,138800,0.06471164156837149,4625400,488700,0.10565572707225321,1.6327159149659647,299317.2269103455
-35-44,female,2144900,298000,0.13893421604736816,4625400,558400,0.12072469408051195,0.8689342158835238,642626.3229054967
-45-54,female,2144900,249800,0.11646230593500863,4625400,334300,0.07227483028494833,0.6205856023946584,538684.7498717889
-45-54,male,2144900,115900,0.054035153153993196,4625400,217100,0.04693648116919618,0.8686286320949861,249934.19739848012
-55-64,female,2144900,173700,0.0809827964007646,4625400,172900,0.037380550871275994,0.4615863187322964,374577.82647209655
-55-64,male,2144900,70200,0.03272879854538673,4625400,81400,0.01759847796947291,0.5377062022325134,151383.7847918318
-65+,female,2144900,112400,0.05240337544873887,4625400,97500,0.021079258010118045,0.4022500045009092,242386.57280059677
-65+,male,2144900,45900,0.02139959904890671,4625400,52900,0.011436848704976866,0.5344421958018493,98981.7054408131
 ```

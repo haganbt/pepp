@@ -400,6 +400,13 @@ Plotting the ```index``` with a reference line of 1:
 ![Baseline Bar Chart](https://raw.githubusercontent.com/haganbt/pepp/master/docs/baseline-bubble.png)
 
 
+## Tableau Workbook Generation
+
+
+| Use Case        | Config File Name           | Description  |
+|:------------- |:-------------|:-----|
+| Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | [Full Details)[https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management] |
+
 
 # Development
 

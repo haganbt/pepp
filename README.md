@@ -1,3 +1,38 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [PEPP](#pepp)
+- [Quick Start](#quick-start)
+- [User Guide](#user-guide)
+  - [Config File Structure](#config-file-structure)
+    - [Single Task](#single-task)
+    - [Nested Tasks](#nested-tasks)
+      - [Native Nested](#native-nested)
+      - [Custom Nested](#custom-nested)
+    - [Merged Tasks](#merged-tasks)
+  - [Config File Selection](#config-file-selection)
+    - [Config File Directory](#config-file-directory)
+  - [Config Options](#config-options)
+    - [Filter Property](#filter-property)
+    - [Start/End Properties](#startend-properties)
+  - [Index Credentials](#index-credentials)
+  - [Demographic Baselines](#demographic-baselines)
+    - [Baseline Calculations](#baseline-calculations)
+      - [Bar Chart](#bar-chart)
+      - [Bubble Chart](#bubble-chart)
+  - [Tableau Workbook Generation](#tableau-workbook-generation)
+    - [Custom Tableau Workbooks](#custom-tableau-workbooks)
+    - [Submitting Tableau Workbooks](#submitting-tableau-workbooks)
+- [Development](#development)
+  - [Logging](#logging)
+- [Example Config Recipes](#example-config-recipes)
+  - [Multi-Index - Merged 3 Level Custom Nested](#multi-index---merged-3-level-custom-nested)
+  - [Multi-Index - Merged 2 Level Custom Nested with type override](#multi-index---merged-2-level-custom-nested-with-type-override)
+  - [Demographic Baseline](#demographic-baseline)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # PEPP
 PYLON Exporter ++ is a utility for exporting data from DataSift PYLON as either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
 

@@ -46,12 +46,12 @@ module.exports = {
             }
         }
     },
-    "start": moment.utc().subtract(13, 'days').unix(),    
+    "start": moment.utc().subtract(13, 'days').unix(),
     "analysis": {
         "freqDist": [
         /**
          * Top topics over time
-         */            
+         */
             {
                 "name": "timeSeries_by_topics",
                 "target": "fb.parent.topics.name",
@@ -63,7 +63,7 @@ module.exports = {
             },
         /**
          * Links by topics
-         */            
+         */
             {
                 "name": "links_by_topics",
                 "target": "fb.parent.topics.name",
@@ -143,7 +143,7 @@ module.exports = {
                     },
                     {
                         "id": topic_1,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_1 + "\" or fb.parent.content any \"" + topic_1 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_1 + "\" or fb.parent.topics.name any \"" + topic_1 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -153,7 +153,7 @@ module.exports = {
                     },
                     {
                         "id": topic_2,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_2 + "\" or fb.parent.content any \"" + topic_2 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_2 + "\" or fb.parent.topics.name any \"" + topic_2 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -163,7 +163,7 @@ module.exports = {
                     },
                     {
                         "id": topic_3,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_3 + "\" or fb.parent.content any \"" + topic_3 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_3 + "\" or fb.parent.topics.name any \"" + topic_3 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -173,7 +173,7 @@ module.exports = {
                     },
                     {
                         "id": topic_4,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_4 + "\" or fb.parent.content any \"" + topic_4 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_4 + "\" or fb.parent.topics.name any \"" + topic_4 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -183,7 +183,7 @@ module.exports = {
                     },
                     {
                         "id": topic_5,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_5 + "\" or fb.parent.content any \"" + topic_5 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_5 + "\" or fb.parent.topics.name any \"" + topic_5 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -193,7 +193,7 @@ module.exports = {
                     },
                     {
                         "id": topic_6,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_6 + "\" or fb.parent.content any \"" + topic_6 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_6 + "\" or fb.parent.topics.name any \"" + topic_6 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -203,7 +203,7 @@ module.exports = {
                     },
                     {
                         "id": topic_7,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_7 + "\" or fb.parent.content any \"" + topic_7 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_7 + "\" or fb.parent.topics.name any \"" + topic_7 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -213,7 +213,7 @@ module.exports = {
                     },
                     {
                         "id": topic_8,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_8 + "\" or fb.parent.content any \"" + topic_8 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_8 + "\" or fb.parent.topics.name any \"" + topic_8 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -223,7 +223,7 @@ module.exports = {
                     },
                     {
                         "id": topic_9,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_9 + "\" or fb.parent.content any \"" + topic_9 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_9 + "\" or fb.parent.topics.name any \"" + topic_9 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {
@@ -233,7 +233,7 @@ module.exports = {
                     },
                     {
                         "id": topic_10,
-                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_10 + "\" or fb.parent.content any \"" + topic_10 + "\")",
+                        "filter": "fb.type != \"story\" and (fb.parent.content any \"" + topic_10 + "\" or fb.parent.topics.name any \"" + topic_10 + "\")",
                         "target": "fb.parent.author.age",
                         "threshold": 6,
                         "child": {

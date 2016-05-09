@@ -15,6 +15,7 @@ const file = require('./lib/file');
 const configTasks = taskProcessor.loadConfigTasks();
 
 log.info(figlet.textSync(process.env.NODE_ENV));
+console.log("\n\n");
 
 configTasks.forEach(task => {
 
@@ -53,6 +54,7 @@ configTasks.forEach(task => {
             if(_.isString(response)){
                 log.info(response);
             }
+            console.log("\n");
 
         })
         .catch(err => {

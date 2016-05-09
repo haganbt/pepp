@@ -18,7 +18,7 @@ log.info(figlet.textSync(process.env.NODE_ENV));
 
 configTasks.forEach(task => {
 
-    log.info("Requesting task: " + task.name);
+    //log.info("Requesting task: " + task.name);
 
     queue.queueTask(task)
         .then(response => {

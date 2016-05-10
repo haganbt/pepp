@@ -936,7 +936,7 @@ describe("Format - JSON to CSV", function(){
 
 
 
-        it('custom nested - 2 level', function() {
+        it.only('custom nested - 2 level', function() {
 
             let config =  [
                     {
@@ -987,6 +987,9 @@ describe("Format - JSON to CSV", function(){
                 ];
 
             return format.jsonToCsv(config).then(function(result){
+
+                console.log(result);
+
 
                 expect(result).to.be.an('string');
                 expect(result).to.eql('category,key,interactions,unique_authors\n' +

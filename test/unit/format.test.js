@@ -41,7 +41,6 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-
         it('native nested - 1 level', function() {
 
             let config = [
@@ -107,7 +106,6 @@ describe("Format - JSON to CSV", function(){
                     'England,18-24,88800,68800\n');
             });
         });
-        
 
 
         it('native nested - 2 level', function() {
@@ -259,7 +257,6 @@ describe("Format - JSON to CSV", function(){
                     'Texas,18-24,female,63200,48900\n');
             });
         });
-        
 
 
         it('native nested merged - 1 level', function() {
@@ -599,7 +596,6 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-
         it('native nested merged - 2 level', function() {
 
             let config = [
@@ -895,205 +891,7 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-
-        it('custom nested - 1 level', function() {
-
-            let config =  [
-                    {
-                        "viralfeeds.biz": [
-                            {
-                                "key": "http://viralfeeds.biz/url2/v10",
-                                "interactions": 429900,
-                                "unique_authors": 147500
-                            }
-                        ],
-                        "bit.ly": [
-                            {
-                                "key": "http://bit.ly/1pQ4wmf",
-                                "interactions": 25500,
-                                "unique_authors": 25500
-                            },
-                            {
-                                "key": "http://bit.ly/22DMFjE",
-                                "interactions": 13200,
-                                "unique_authors": 13200
-                            }
-                        ]
-                    }
-                ]
-                ;
-
-            return format.jsonToCsv(config).then(function(result){
-
-                expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
-                    'http://viralfeeds.biz/url2/v10,429900,147500\n' +
-                    'http://bit.ly/1pQ4wmf,25500,25500\n' +
-                    'http://bit.ly/22DMFjE,13200,13200\n');
-            });
-        });
-
-
-
-        it('custom nested - 2 level', function() {
-
-            let config =  [
-                {
-                    "India__35-44": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 48200,
-                            "unique_authors": 44800
-                        },
-                        {
-                            "key": "Civil War",
-                            "interactions": 5400,
-                            "unique_authors": 5100
-                        }
-                    ],
-                    "India__45-54": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 5200,
-                            "unique_authors": 4900
-                        },
-                        {
-                            "key": "India",
-                            "interactions": 2600,
-                            "unique_authors": 1400
-                        }
-                    ],
-                    "India__65+": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 8000,
-                            "unique_authors": 7200
-                        },
-                        {
-                            "key": "Civil War",
-                            "interactions": 400,
-                            "unique_authors": 300
-                        }
-                    ],
-                    "India__55-64": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 900,
-                            "unique_authors": 900
-                        },
-                        {
-                            "key": "Civil war",
-                            "interactions": 100,
-                            "unique_authors": 100
-                        }
-                    ],
-                    "United States__25-34": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 2626700,
-                            "unique_authors": 1970500
-                        },
-                        {
-                            "key": "Captain America: Civil ͏Wa͏r",
-                            "interactions": 593400,
-                            "unique_authors": 499800
-                        }
-                    ],
-                    "United States__35-44": [
-                        {
-                            "key": "Captain America",
-                            "interactions": 2077200,
-                            "unique_authors": 1781300
-                        },
-                        {
-                            "key": "Captain America: Civil ͏Wa͏r",
-                            "interactions": 383400,
-                            "unique_authors": 340100
-                        }
-                    ]
-                }
-            ];
-
-            return format.jsonToCsv(config).then(function(result){
-
-                expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
-                    'India,35-44,Captain America,48200,44800\n' +
-                    'India,35-44,Civil War,5400,5100\n' +
-                    'India,45-54,Captain America,5200,4900\n' +
-                    'India,45-54,India,2600,1400\n' +
-                    'India,65+,Captain America,8000,7200\n' +
-                    'India,65+,Civil War,400,300\n' +
-                    'India,55-64,Captain America,900,900\n' +
-                    'India,55-64,Civil war,100,100\n' +
-                    'United States,25-34,Captain America,2626700,1970500\n' +
-                    'United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n' +
-                    'United States,35-44,Captain America,2077200,1781300\n' +
-                    'United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n');
-            });
-        });
-
-
-
-        it('custom nested - 3 level', function() {
-
-            let config =  [
-                    {
-                        "Turkey__sahibinden.com__Cars": [
-                            {
-                                "key": "like",
-                                "interactions": 1500,
-                                "unique_authors": 1500
-                            },
-                            {
-                                "key": "comment",
-                                "interactions": 100,
-                                "unique_authors": 100
-                            }
-                        ],
-                        "United States__youtu.be__Cars": [
-                            {
-                                "key": "like",
-                                "interactions": 1100,
-                                "unique_authors": 1100
-                            },
-                            {
-                                "key": "comment",
-                                "interactions": 600,
-                                "unique_authors": 400
-                            }
-                        ],
-                        "United States__youtube.com__Cars": [
-                            {
-                                "key": "like",
-                                "interactions": 1200,
-                                "unique_authors": 1200
-                            },
-                            {
-                                "key": "comment",
-                                "interactions": 500,
-                                "unique_authors": 400
-                            }
-                        ]
-                    }
-                ];
-
-            return format.jsonToCsv(config).then(function(result){
-
-                expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
-                    'Turkey,sahibinden.com,Cars,like,1500,1500\n' +
-                    'Turkey,sahibinden.com,Cars,comment,100,100\n' +
-                    'United States,youtu.be,Cars,like,1100,1100\n' +
-                    'United States,youtu.be,Cars,comment,600,400\n' +
-                    'United States,youtube.com,Cars,like,1200,1200\n' +
-                    'United States,youtube.com,Cars,comment,500,400\n');
-            });
-        });
-
-
-
-        it('custom nested - 3 level - empty result sets', function() {
+        it('native nested merged - 2 level - empty result sets', function() {
 
             // note empty results - "key": "55-64",
             let config =  [
@@ -1270,17 +1068,357 @@ describe("Format - JSON to CSV", function(){
         });
 
 
+        it('custom nested - 1 level', function() {
+
+            let config =  [
+                    {
+                        "viralfeeds.biz": [
+                            {
+                                "key": "http://viralfeeds.biz/url2/v10",
+                                "interactions": 429900,
+                                "unique_authors": 147500
+                            }
+                        ],
+                        "bit.ly": [
+                            {
+                                "key": "http://bit.ly/1pQ4wmf",
+                                "interactions": 25500,
+                                "unique_authors": 25500
+                            },
+                            {
+                                "key": "http://bit.ly/22DMFjE",
+                                "interactions": 13200,
+                                "unique_authors": 13200
+                            }
+                        ]
+                    }
+                ]
+                ;
+
+            return format.jsonToCsv(config).then(function(result){
+
+                expect(result).to.be.an('string');
+                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                    'http://viralfeeds.biz/url2/v10,429900,147500\n' +
+                    'http://bit.ly/1pQ4wmf,25500,25500\n' +
+                    'http://bit.ly/22DMFjE,13200,13200\n');
+            });
+        });
+
+
+        it('custom nested - 2 level', function() {
+
+            let config =  [
+                {
+                    "India__35-44": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 48200,
+                            "unique_authors": 44800
+                        },
+                        {
+                            "key": "Civil War",
+                            "interactions": 5400,
+                            "unique_authors": 5100
+                        }
+                    ],
+                    "India__45-54": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 5200,
+                            "unique_authors": 4900
+                        },
+                        {
+                            "key": "India",
+                            "interactions": 2600,
+                            "unique_authors": 1400
+                        }
+                    ],
+                    "India__65+": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 8000,
+                            "unique_authors": 7200
+                        },
+                        {
+                            "key": "Civil War",
+                            "interactions": 400,
+                            "unique_authors": 300
+                        }
+                    ],
+                    "India__55-64": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 900,
+                            "unique_authors": 900
+                        },
+                        {
+                            "key": "Civil war",
+                            "interactions": 100,
+                            "unique_authors": 100
+                        }
+                    ],
+                    "United States__25-34": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 2626700,
+                            "unique_authors": 1970500
+                        },
+                        {
+                            "key": "Captain America: Civil ͏Wa͏r",
+                            "interactions": 593400,
+                            "unique_authors": 499800
+                        }
+                    ],
+                    "United States__35-44": [
+                        {
+                            "key": "Captain America",
+                            "interactions": 2077200,
+                            "unique_authors": 1781300
+                        },
+                        {
+                            "key": "Captain America: Civil ͏Wa͏r",
+                            "interactions": 383400,
+                            "unique_authors": 340100
+                        }
+                    ]
+                }
+            ];
+
+            return format.jsonToCsv(config).then(function(result){
+
+                expect(result).to.be.an('string');
+                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                    'India,35-44,Captain America,48200,44800\n' +
+                    'India,35-44,Civil War,5400,5100\n' +
+                    'India,45-54,Captain America,5200,4900\n' +
+                    'India,45-54,India,2600,1400\n' +
+                    'India,65+,Captain America,8000,7200\n' +
+                    'India,65+,Civil War,400,300\n' +
+                    'India,55-64,Captain America,900,900\n' +
+                    'India,55-64,Civil war,100,100\n' +
+                    'United States,25-34,Captain America,2626700,1970500\n' +
+                    'United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n' +
+                    'United States,35-44,Captain America,2077200,1781300\n' +
+                    'United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n');
+            });
+        });
+
+
+        it.only('custom nested - 2 level - empty result set', function() {
+
+            let config =   [
+                    {
+                        "United States__25-34": [
+                            {
+                                "key": "BMW",
+                                "interactions": 55300,
+                                "unique_authors": 51400
+                            },
+                            {
+                                "key": "Honda Civic",
+                                "interactions": 23900,
+                                "unique_authors": 20600
+                            }
+                        ],
+                        "United States__35-44": [
+                            {
+                                "key": "BMW",
+                                "interactions": 34300,
+                                "unique_authors": 29000
+                            },
+                            {
+                                "key": "Cars",
+                                "interactions": 14500,
+                                "unique_authors": 12600
+                            }
+                        ],
+                        "United States__18-24": [
+                            {
+                                "key": "BMW",
+                                "interactions": 33400,
+                                "unique_authors": 29000
+                            },
+                            {
+                                "key": "Honda Civic",
+                                "interactions": 18100,
+                                "unique_authors": 16400
+                            }
+                        ],
+                        "United States__45-54": [
+                            {
+                                "key": "BMW",
+                                "interactions": 21000,
+                                "unique_authors": 19000
+                            },
+                            {
+                                "key": "Cars",
+                                "interactions": 9200,
+                                "unique_authors": 8600
+                            }
+                        ],
+                        "United States__55-64": [
+                            {
+                                "key": "BMW",
+                                "interactions": 9400,
+                                "unique_authors": 8300
+                            },
+                            {
+                                "key": "Cars",
+                                "interactions": 4800,
+                                "unique_authors": 4400
+                            }
+                        ],
+                        "United States__65+": [
+                            {
+                                "key": "BMW",
+                                "interactions": 4500,
+                                "unique_authors": 3900
+                            },
+                            {
+                                "key": "Cars",
+                                "interactions": 2500,
+                                "unique_authors": 2100
+                            }
+                        ],
+                        "Turkey__25-34": [
+                            {
+                                "key": "BMW",
+                                "interactions": 26700,
+                                "unique_authors": 23700
+                            },
+                            {
+                                "key": "Honda Civic",
+                                "interactions": 3800,
+                                "unique_authors": 3600
+                            }
+                        ],
+                        "Turkey__18-24": [
+                            {
+                                "key": "BMW",
+                                "interactions": 24700,
+                                "unique_authors": 22900
+                            },
+                            {
+                                "key": "Honda",
+                                "interactions": 3600,
+                                "unique_authors": 3500
+                            }
+                        ],
+                        "Turkey__35-44": [
+                            {
+                                "key": "BMW",
+                                "interactions": 7800,
+                                "unique_authors": 6700
+                            },
+                            {
+                                "key": "Honda Civic",
+                                "interactions": 1100,
+                                "unique_authors": 1000
+                            }
+                        ],
+                        "Turkey__45-54": [
+                            {
+                                "key": "BMW",
+                                "interactions": 2200,
+                                "unique_authors": 2000
+                            },
+                            {
+                                "key": "Audi USA",
+                                "interactions": 200,
+                                "unique_authors": 200
+                            }
+                        ],
+                        "Turkey__65+": [],
+                        "Turkey__55-64": []
+                    }
+                ];
+
+            return format.jsonToCsv(config).then(function(result){
+
+
+                console.log(result);
+
+                expect(result).to.be.an('string');
+                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                    'India,35-44,Captain America,48200,44800\n' +
+                    'India,35-44,Civil War,5400,5100\n' +
+                    'India,45-54,Captain America,5200,4900\n' +
+                    'India,45-54,India,2600,1400\n' +
+                    'India,65+,Captain America,8000,7200\n' +
+                    'India,65+,Civil War,400,300\n' +
+                    'India,55-64,Captain America,900,900\n' +
+                    'India,55-64,Civil war,100,100\n' +
+                    'United States,25-34,Captain America,2626700,1970500\n' +
+                    'United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n' +
+                    'United States,35-44,Captain America,2077200,1781300\n' +
+                    'United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n');
+            });
+        });
+
+
+        it('custom nested - 3 level', function() {
+
+            let config =  [
+                    {
+                        "Turkey__sahibinden.com__Cars": [
+                            {
+                                "key": "like",
+                                "interactions": 1500,
+                                "unique_authors": 1500
+                            },
+                            {
+                                "key": "comment",
+                                "interactions": 100,
+                                "unique_authors": 100
+                            }
+                        ],
+                        "United States__youtu.be__Cars": [
+                            {
+                                "key": "like",
+                                "interactions": 1100,
+                                "unique_authors": 1100
+                            },
+                            {
+                                "key": "comment",
+                                "interactions": 600,
+                                "unique_authors": 400
+                            }
+                        ],
+                        "United States__youtube.com__Cars": [
+                            {
+                                "key": "like",
+                                "interactions": 1200,
+                                "unique_authors": 1200
+                            },
+                            {
+                                "key": "comment",
+                                "interactions": 500,
+                                "unique_authors": 400
+                            }
+                        ]
+                    }
+                ];
+
+            return format.jsonToCsv(config).then(function(result){
+
+                expect(result).to.be.an('string');
+                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                    'Turkey,sahibinden.com,Cars,like,1500,1500\n' +
+                    'Turkey,sahibinden.com,Cars,comment,100,100\n' +
+                    'United States,youtu.be,Cars,like,1100,1100\n' +
+                    'United States,youtu.be,Cars,comment,600,400\n' +
+                    'United States,youtube.com,Cars,like,1200,1200\n' +
+                    'United States,youtube.com,Cars,comment,500,400\n');
+            });
+        });
+
 
     });
 
 
 
-
-
-
     describe("timeSeries", function(){
-
-
 
         it('Single Task', function() {
 
@@ -1366,19 +1504,12 @@ describe("Format - JSON to CSV", function(){
                     '2016-03-18 00:00:00,398700,352800\n');
             });
         });
-        
-
 
     });
 
 
-
-
-    
     
     describe("Hybrid", function(){
-
-
 
         /*
         "timeSeries": [
@@ -1466,16 +1597,11 @@ describe("Format - JSON to CSV", function(){
             });
         });
 
-
-
     });
 
 
 
-
-
     describe("Escaping Characters", function(){
-
 
             it('commas and pipes in strings', function() {
 

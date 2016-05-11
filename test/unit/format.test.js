@@ -568,30 +568,30 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,key2,interactions,unique_authors\n' +
-                    '25-34,female,2476400,2019500\n' +
-                    '25-34,male,1551000,1145000\n' +
-                    '35-44,female,2020200,1481400\n' +
-                    '35-44,male,1109800,843100\n' +
-                    '18-24,female,1577300,1186700\n' +
-                    '18-24,male,1020000,732900\n' +
-                    '45-54,female,1590200,1160600\n' +
-                    '45-54,male,797100,574300\n' +
-                    '55-64,female,1103100,798400\n' +
-                    '55-64,male,461900,342800\n' +
-                    '65+,female,704900,524800\n' +
-                    '65+,male,295900,215200\n' +
-                    '25-34,female,900,900\n' +
-                    '25-34,male,700,700\n' +
-                    '35-44,female,600,500\n' +
-                    '35-44,male,400,400\n' +
-                    '45-54,female,400,400\n' +
-                    '45-54,male,200,200\n' +
-                    '18-24,female,400,300\n' +
-                    '18-24,male,200,200\n' +
-                    '55-64,female,100,100\n' +
-                    '55-64,male,100,100\n' +
-                    '65+,female,100,100\n');
+                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
+                    'yogi,25-34,female,2476400,2019500\n' +
+                    'yogi,25-34,male,1551000,1145000\n' +
+                    'yogi,35-44,female,2020200,1481400\n' +
+                    'yogi,35-44,male,1109800,843100\n' +
+                    'yogi,18-24,female,1577300,1186700\n' +
+                    'yogi,18-24,male,1020000,732900\n' +
+                    'yogi,45-54,female,1590200,1160600\n' +
+                    'yogi,45-54,male,797100,574300\n' +
+                    'yogi,55-64,female,1103100,798400\n' +
+                    'yogi,55-64,male,461900,342800\n' +
+                    'yogi,65+,female,704900,524800\n' +
+                    'yogi,65+,male,295900,215200\n' +
+                    'booboo,25-34,female,900,900\n' +
+                    'booboo,25-34,male,700,700\n' +
+                    'booboo,35-44,female,600,500\n' +
+                    'booboo,35-44,male,400,400\n' +
+                    'booboo,45-54,female,400,400\n' +
+                    'booboo,45-54,male,200,200\n' +
+                    'booboo,18-24,female,400,300\n' +
+                    'booboo,18-24,male,200,200\n' +
+                    'booboo,55-64,female,100,100\n' +
+                    'booboo,55-64,male,100,100\n' +
+                    'booboo,65+,female,100,100\n');
             });
         });
 
@@ -870,23 +870,23 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.a('string');
-                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
-                    'California,female,25-34,199400,157000\n' +
-                    'California,female,35-44,156900,131800\n' +
-                    'California,male,25-34,162000,123400\n' +
-                    'California,male,35-44,104500,79500\n' +
-                    'England,female,25-34,170600,138000\n' +
-                    'England,female,18-24,139100,117600\n' +
-                    'England,male,25-34,132000,105000\n' +
-                    'England,male,18-24,98100,78300\n' +
-                    'California,female,25-34,199400,157000\n' +
-                    'California,female,35-44,156900,131800\n' +
-                    'California,male,25-34,162000,123400\n' +
-                    'California,male,35-44,104500,79500\n' +
-                    'England,female,25-34,170600,138000\n' +
-                    'England,female,18-24,139100,117600\n' +
-                    'England,male,25-34,132000,105000\n' +
-                    'England,male,18-24,98100,78300\n');
+                expect(result).to.eql('key1,key2,key3,key4,interactions,unique_authors\n' +
+                    'yogi,California,female,25-34,199400,157000\n' +
+                    'yogi,California,female,35-44,156900,131800\n' +
+                    'yogi,California,male,25-34,162000,123400\n' +
+                    'yogi,California,male,35-44,104500,79500\n' +
+                    'yogi,England,female,25-34,170600,138000\n' +
+                    'yogi,England,female,18-24,139100,117600\n' +
+                    'yogi,England,male,25-34,132000,105000\n' +
+                    'yogi,England,male,18-24,98100,78300\n' +
+                    'booboo,California,female,25-34,199400,157000\n' +
+                    'booboo,California,female,35-44,156900,131800\n' +
+                    'booboo,California,male,25-34,162000,123400\n' +
+                    'booboo,California,male,35-44,104500,79500\n' +
+                    'booboo,England,female,25-34,170600,138000\n' +
+                    'booboo,England,female,18-24,139100,117600\n' +
+                    'booboo,England,male,25-34,132000,105000\n' +
+                    'booboo,England,male,18-24,98100,78300\n');
             });
         });
 
@@ -1068,7 +1068,7 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-        it('custom nested - 1 level', function() {
+        it('custom nested merged - 1 level', function() {
 
             let config =  [
                     {
@@ -1092,21 +1092,20 @@ describe("Format - JSON to CSV", function(){
                             }
                         ]
                     }
-                ]
-                ;
+                ];
 
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
-                    'http://viralfeeds.biz/url2/v10,429900,147500\n' +
-                    'http://bit.ly/1pQ4wmf,25500,25500\n' +
-                    'http://bit.ly/22DMFjE,13200,13200\n');
+                expect(result).to.eql('key1,key2,interactions,unique_authors\n' +
+                    'viralfeeds.biz,http://viralfeeds.biz/url2/v10,429900,147500\n' +
+                    'bit.ly,http://bit.ly/1pQ4wmf,25500,25500\n' +
+                    'bit.ly,http://bit.ly/22DMFjE,13200,13200\n');
             });
         });
 
 
-        it('custom nested - 2 level', function() {
+        it('custom nested merged - 2 level', function() {
 
             let config =  [
                 {
@@ -1188,7 +1187,7 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
                     'India,35-44,Captain America,48200,44800\n' +
                     'India,35-44,Civil War,5400,5100\n' +
                     'India,45-54,Captain America,5200,4900\n' +
@@ -1205,7 +1204,50 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-        it.only('custom nested - 2 level - empty result set', function() {
+        it('custom nested - 2 level', function() {
+
+            let config =  [
+                    {
+                        "Media/News/Publishing": [
+                            {
+                                "key": "http://bit.ly/1rFFkPW",
+                                "interactions": 17800,
+                                "unique_authors": 17400
+                            },
+                            {
+                                "key": "http://bit.ly/1olFbiq",
+                                "interactions": 16700,
+                                "unique_authors": 13100
+                            }
+                        ],
+                        "News/Media": [
+                            {
+                                "key": "https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/",
+                                "interactions": 10800,
+                                "unique_authors": 10400
+                            },
+                            {
+                                "key": "https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/",
+                                "interactions": 6200,
+                                "unique_authors": 6000
+                            }
+                        ]
+                    }
+                ];
+
+            return format.jsonToCsv(config).then(function(result){
+
+                expect(result).to.be.an('string');
+                expect(result).to.eql('key1,key2,interactions,unique_authors\n' +
+                    'Media/News/Publishing,http://bit.ly/1rFFkPW,17800,17400\n' +
+                    'Media/News/Publishing,http://bit.ly/1olFbiq,16700,13100\n' +
+                    'News/Media,https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/,10800,10400\n' +
+                    'News/Media,https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/,6200,6000\n');
+            });
+        });
+
+
+        it('custom nested - 2 level - empty result set', function() {
 
             let config =   [
                     {
@@ -1336,23 +1378,28 @@ describe("Format - JSON to CSV", function(){
 
             return format.jsonToCsv(config).then(function(result){
 
-
-                console.log(result);
-
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
-                    'India,35-44,Captain America,48200,44800\n' +
-                    'India,35-44,Civil War,5400,5100\n' +
-                    'India,45-54,Captain America,5200,4900\n' +
-                    'India,45-54,India,2600,1400\n' +
-                    'India,65+,Captain America,8000,7200\n' +
-                    'India,65+,Civil War,400,300\n' +
-                    'India,55-64,Captain America,900,900\n' +
-                    'India,55-64,Civil war,100,100\n' +
-                    'United States,25-34,Captain America,2626700,1970500\n' +
-                    'United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n' +
-                    'United States,35-44,Captain America,2077200,1781300\n' +
-                    'United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n');
+                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
+                    'United States,25-34,BMW,55300,51400\n' +
+                    'United States,25-34,Honda Civic,23900,20600\n' +
+                    'United States,35-44,BMW,34300,29000\n' +
+                    'United States,35-44,Cars,14500,12600\n' +
+                    'United States,18-24,BMW,33400,29000\n' +
+                    'United States,18-24,Honda Civic,18100,16400\n' +
+                    'United States,45-54,BMW,21000,19000\n' +
+                    'United States,45-54,Cars,9200,8600\n' +
+                    'United States,55-64,BMW,9400,8300\n' +
+                    'United States,55-64,Cars,4800,4400\n' +
+                    'United States,65+,BMW,4500,3900\n' +
+                    'United States,65+,Cars,2500,2100\n' +
+                    'Turkey,25-34,BMW,26700,23700\n' +
+                    'Turkey,25-34,Honda Civic,3800,3600\n' +
+                    'Turkey,18-24,BMW,24700,22900\n' +
+                    'Turkey,18-24,Honda,3600,3500\n' +
+                    'Turkey,35-44,BMW,7800,6700\n' +
+                    'Turkey,35-44,Honda Civic,1100,1000\n' +
+                    'Turkey,45-54,BMW,2200,2000\n' +
+                    'Turkey,45-54,Audi USA,200,200\n');
             });
         });
 
@@ -1403,7 +1450,7 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                expect(result).to.eql('key1,key2,key3,key4,interactions,unique_authors\n' +
                     'Turkey,sahibinden.com,Cars,like,1500,1500\n' +
                     'Turkey,sahibinden.com,Cars,comment,100,100\n' +
                     'United States,youtu.be,Cars,like,1100,1100\n' +
@@ -1585,7 +1632,7 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,interactions,unique_authors\n' +
+                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
                     '2016-04-01 00:00:00,like,BMW,4518700,3410200\n' +
                     '2016-04-01 00:00:00,like,Ford Mustang,803100,571800\n' +
                     '2016-04-01 00:00:00,reshare,BMW,1327300,1230900\n' +
@@ -1603,7 +1650,7 @@ describe("Format - JSON to CSV", function(){
 
     describe("Escaping Characters", function(){
 
-            it('commas and pipes in strings', function() {
+        it('commas and pipes in strings', function() {
 
                 let config =  [
                     {

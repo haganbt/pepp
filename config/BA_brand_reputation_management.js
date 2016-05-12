@@ -1,14 +1,16 @@
 /**
- * BRAND ANALYTICS
- * - Brand Reputation Management
+ * BRAND ANALYTICS - Brand Reputation Management
  *
- * 1. Rename tag name to match CSDL. See "interaction.tag_tree.<MY_TAGS>"
+ * 1. Rename tag on line 13 to match CSDL.
  *
  * API CALLS: ~260 (depending upon number of tags)
  * CSV FILES: 22
+ *
  */
 
 "use strict";
+
+const tagTree = "interaction.tag_tree.<MY_TAG_TREE>";
 
 module.exports = {
     "app": {
@@ -22,7 +24,7 @@ module.exports = {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
-        },
+        }
     },
 
     "analysis": {
@@ -60,7 +62,7 @@ module.exports = {
          */
             {
                 "name": "media_types_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "child": {
                     "target": "fb.media_type",
@@ -72,7 +74,7 @@ module.exports = {
          */
             {
                 "name": "type",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "child": {
                     "target": "fb.type",
@@ -84,7 +86,7 @@ module.exports = {
          */
             {
                 "name": "entity_volumes",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10
             },
         /**
@@ -92,7 +94,7 @@ module.exports = {
          */
             {
                 "name": "age_gender",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "child": {
                     "target": "fb.author.age",
@@ -108,7 +110,7 @@ module.exports = {
          */
             {
                 "name": "region_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "then": {
                     "target": "fb.author.region",
@@ -120,7 +122,7 @@ module.exports = {
          */
             {
                 "name": "domains_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "then": {
                     "filter": "not links.domain in \"bit.ly, bitly.com, facebook.com\"",
@@ -130,7 +132,7 @@ module.exports = {
             },
             {
                 "name": "links_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "then": {
                     "filter": "not links.domain in \"bit.ly, bitly.com, facebook.com\"",
@@ -143,7 +145,7 @@ module.exports = {
          */
             {
                 "name": "topics_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "then": {
                     "target": "fb.topics.name",
@@ -167,7 +169,7 @@ module.exports = {
          */
             {
                 "name": "timeSeries_by_entity",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "then": {
                     "type": "timeSeries",
@@ -179,7 +181,7 @@ module.exports = {
          */
             {
                 "name": "sentiment_gender_by_entity_engagements",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "child": {
                     "target": "fb.parent.author.gender",
@@ -195,7 +197,7 @@ module.exports = {
          */
             {
                 "name": "sentiment_age_by_entity_engagements",
-                "target": "interaction.tag_tree.<MY_TAGS>",
+                "target": tagTree,
                 "threshold": 10,
                 "child": {
                     "target": "fb.parent.author.age",

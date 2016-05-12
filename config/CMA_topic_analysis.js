@@ -11,8 +11,6 @@
 
 "use strict";
 
-const moment = require('moment');
-
 const topic_1 = "<TOPIC_1>";
 const topic_2 = "<TOPIC_2>";
 const topic_3 = "<TOPIC_3>";
@@ -32,21 +30,21 @@ module.exports = {
     },
     "index": {
         "default": {
-            "id": "f9e5219c898054524b1168d3c0981846",
+            "id": "<RECORDING_ID>",
             "auth": {
-                "username": "pylonsandbox",
-                "api_key": "3abea8c0f5209b087a1482b5e5ccc337"
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
             }
         },
         "baseline": {
-            "id": "51eca9261121b57d8b2360780252257f",
+            "id": "<RECORDING_ID>",
             "auth": {
-                "username": "pylonsandbox",
-                "api_key": "46a84e82d9af70b8cb872a443109b433"
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
             }
         }
     },
-    "start": moment.utc().subtract(13, 'days').unix(),
+    "start": require('moment').utc().subtract(13, 'days').unix(),
     "analysis": {
         "freqDist": [
         /**

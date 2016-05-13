@@ -599,35 +599,25 @@ Top topics by gender by week from two different indexes:
 ]
 ```
 
-Example response:
+
+Hourly url volumes by tag:
 
 ```json
- [
-      {
-          "booboo-1451865600-male": [
-              {
-                  "key": "BMW",
-                  "interactions": 64700,
-                  "unique_authors": 49200
-              },
-              {
-                  "key": "Ford Motor Company",
-                  "interactions": 26200,
-                  "unique_authors": 20900
-              }
-          ],
-          "yogi-1451865600-male": [
-              {
-                  "key": "Star Wars",
-                  "interactions": 176000,
-                  "unique_authors": 165800
-              },
-              {
-                  "key": "Star Wars Movies",
-                  "interactions": 88000,
-                  "unique_authors": 88000
-              }
-          ],
-          ...
+ "freqDist": [
+    {
+        "name": "tag_url_by_hour",
+        "target": "interaction.tag_tree.property",
+        "threshold": 20,
+        "then": {
+            "target": "links.url",
+            "threshold": 10,
+            "then": {
+                "type": "timeSeries",
+                "interval": "hour"
+            }
 
+        }
+    },
+
+]
 ```

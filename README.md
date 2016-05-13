@@ -20,9 +20,9 @@ DISCLAIMER: This library is not supported by DataSift and hence any questions or
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Installation](#installation)
 - [Quick Start](#quick-start)
 - [User Guide](#user-guide)
-- [Installation](#installation)
   - [Config File Structure](#config-file-structure)
     - [Single Task](#single-task)
     - [Nested Tasks](#nested-tasks)

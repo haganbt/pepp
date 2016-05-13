@@ -51,6 +51,22 @@ DISCLAIMER: This library is not supported by DataSift and hence any questions or
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+# Installation
+
+If Node.js is not installed, install it from https://nodejs.org/. Once complete, check by running ```node -v``` from a
+terminal window to show the install version.
+
+Clone the repo:
+
+```git clone https://github.com/haganbt/pepp.git```
+
+```cd pepp```
+
+Install node module dependencies:
+
+```sudo npm install```
+
+
 # Quick Start
 
 * Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
@@ -63,10 +79,6 @@ PEPP uses a configuration file to define request tasks. Files can be configured 
 * Define request tasks within a config file
 * Tell PEPP which config file to use
 * Run tasks
-
-# Installation
-
-todo.
 
 
 ## Config File Structure

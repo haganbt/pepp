@@ -6,7 +6,7 @@
  * each variable starting on line 15. If there are < than 10 tags, simply leave
  * the default placeholders and the results will be redacted.
  *
- * API CALLS: ~190
+ * API CALLS: ~240
  *
  */
 
@@ -50,17 +50,17 @@ module.exports = {
     "analysis": {
         "freqDist": [
 
-            /**
-             * tags
-             */
+        /**
+         * tags
+         */
             {
                 "name": "tag_volumes",
                 "target": tagTree,
                 "threshold": 20,
             },
-            /**
-             * tag domains
-             */
+        /**
+         * tag domains
+         */
             {
                 "name": "tag_domains",
                 "target": tagTree,
@@ -70,9 +70,33 @@ module.exports = {
                     "threshold": 200
                 }
             },
-            /**
-             * tag url's
-             */
+        /**
+         * tag categories
+         */
+            {
+                "name": "tag_categories",
+                "target": tagTree,
+                "threshold": 20,
+                "then": {
+                    "target": "fb.parent.topics.category",
+                    "threshold": 50
+                }
+            },
+        /**
+         * categories topics
+         */
+            {
+                "name": "category_topics",
+                "target": "fb.parent.topics.category",
+                "threshold": 50,
+                "then": {
+                    "target": "fb.parent.topics.name",
+                    "threshold": 100
+                }
+            },
+        /**
+         * tag url's
+         */
             {
                 "name": "tag_urls",
                 "target": tagTree,
@@ -82,9 +106,9 @@ module.exports = {
                     "threshold": 200
                 }
             },
-            /**
-             * tag engagement hashtags
-             */
+        /**
+         * tag engagement hashtags
+         */
             {
                 "name": "tag_engagement_hashtags",
                 "target": tagTree,
@@ -94,9 +118,9 @@ module.exports = {
                     "threshold": 200
                 }
             },
-            /**
-             * tag engagement topics
-             */
+        /**
+         * tag engagement topics
+         */
             {
                 "name": "tag_engagement_topics",
                 "target": tagTree,
@@ -106,13 +130,13 @@ module.exports = {
                     "threshold": 50
                 }
             },
-            /**
-             * Domain age gender
-             */
+        /**
+         * Domain age gender
+         */
             {
                 "name": "domain_age_gender",
                 "target": "links.domain",
-                "threshold": 50,
+                "threshold": 25,
                 "child": {
                     "target": "fb.author.age",
                     "threshold": 6,
@@ -122,9 +146,9 @@ module.exports = {
                     }
                 }
             },
-            /**
-             * domain url's
-             */
+        /**
+         * domain url's
+         */
             {
                 "name": "domain_urls",
                 "target": "links.domain",
@@ -134,26 +158,26 @@ module.exports = {
                     "threshold": 200
                 }
             },
-            /**
-             * tag urls by hour
-             */
-             {
-                 "name": "tag_url_by_hour",
-                 "target": tagTree,
-                 "threshold": 20,
-                 "then": {
-                     "target": "links.url",
-                     "threshold": 10,
-                     "then": {
-                         "type": "timeSeries",
-                         "interval": "hour"
-                     }
+        /**
+         * tag urls by hour
+         */
+            {
+                "name": "tag_url_by_hour",
+                "target": tagTree,
+                "threshold": 20,
+                "then": {
+                    "target": "links.url",
+                    "threshold": 10,
+                    "then": {
+                        "type": "timeSeries",
+                        "interval": "hour"
+                    }
 
-                 }
-             },
-            /**
-             * tag engagement countries
-             */
+                }
+            },
+        /**
+         * tag engagement countries
+         */
             {
                 "name": "tag_engagement_countries",
                 "target": tagTree,
@@ -163,9 +187,9 @@ module.exports = {
                     "threshold": 10
                 }
             },
-            /**
-             * tag age gender
-             */
+        /**
+         * tag age gender
+         */
             {
                 "name": "tag_age_gender",
                 "target": tagTree,
@@ -179,9 +203,9 @@ module.exports = {
                     }
                 }
             },
-            /**
-             * Baseline engagement tags
-             */
+        /**
+         * Baseline engagement tags
+         */
             {
                 "engagement_tag_baseline": [
                     {

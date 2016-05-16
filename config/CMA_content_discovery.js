@@ -51,6 +51,18 @@ module.exports = {
         "freqDist": [
 
         /**
+         * tag media types
+         */
+            {
+                "name": "tag_engagement_media_types",
+                "target": tagTree,
+                "threshold": 20,
+                "then": {
+                    "target": "fb.parent.media_type",
+                    "threshold": 10
+                }
+            },
+        /**
          * tags
          */
             {

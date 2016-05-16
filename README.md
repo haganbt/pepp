@@ -13,7 +13,7 @@ Features:
  * Request queue with concurrency limit
  * Automated Tableau workbook generation
 
-**DISCLAIMER: This library is in no way associated or supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).**
+### DISCLAIMER: This library is in no way associated with or supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

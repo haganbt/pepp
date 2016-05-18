@@ -464,7 +464,7 @@ PEPP supports the automated generation of Tableau workbooks. It does this by sim
 Each workbook is designed based on a specific use case as detailed below. Simply open the required config file and follow any instructions within the header.
 
 
-| Use Case        | Config File Name           | Explore BY  | Description  |
+| Use Case        | Config File Name           | Explore By  | Description  |
 |:------------- |:-------------|:-----|:-----|
 | Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | Tags | [Full Details](https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management) |
 | Content & Media Analytics - - Content Discovery | ```CMA_content_discovery.js``` | Tags | [Full Details](https://github.com/haganbt/pepp/wiki/Content-Discovery) |

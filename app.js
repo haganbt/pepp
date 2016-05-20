@@ -35,7 +35,9 @@ configTasks.forEach(task => {
         })
         .then(response => {
 
-            if(task.name.includes('baseline')) {
+            if(task.name.includes('nested_baseline')) {
+                return baseline.nestedgen(response, task);
+            } else if(task.name.includes('baseline')) {
                 return baseline.gen(response, task);
             } else {
                 return format.jsonToCsv(response);    

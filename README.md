@@ -153,7 +153,11 @@ todo
 
 To specify which config file to use, set the ```NODE_ENV``` environment variable:
 
+On a Mac:
 ```export NODE_ENV=myConfigFile```
+
+On a Windows machine:
+```set NODE_ENV=myConfigFile```
 
 If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
 config file.

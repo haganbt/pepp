@@ -1,5 +1,5 @@
-# PEPP
-PYLON Exporter++ is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
+# PEPP - PYLON Exporter++
+PEPP is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
 
 It is the goal of this utility to support any type of analysis requests using a config (not code) approach.
 
@@ -13,16 +13,16 @@ Features:
  * Request queue with concurrency limit
  * Automated Tableau workbook generation
 
-DISCLAIMER: This library is not supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).
+### DISCLAIMER: This library is in no way associated with or supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).
 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Installation](#installation)
 - [Quick Start](#quick-start)
 - [User Guide](#user-guide)
-- [Installation](#installation)
   - [Config File Structure](#config-file-structure)
     - [Single Task](#single-task)
     - [Nested Tasks](#nested-tasks)
@@ -51,6 +51,22 @@ DISCLAIMER: This library is not supported by DataSift and hence any questions or
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+# Installation
+
+If Node.js is not installed, install it from https://nodejs.org/. Once complete, check by running ```node -v``` from a
+terminal window to show the install version.
+
+Clone the repo:
+
+```git clone https://github.com/haganbt/pepp.git```
+
+```cd pepp```
+
+Install node module dependencies:
+
+```sudo npm install```
+
+
 # Quick Start
 
 * Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
@@ -63,10 +79,6 @@ PEPP uses a configuration file to define request tasks. Files can be configured 
 * Define request tasks within a config file
 * Tell PEPP which config file to use
 * Run tasks
-
-# Installation
-
-todo.
 
 
 ## Config File Structure
@@ -141,7 +153,11 @@ todo
 
 To specify which config file to use, set the ```NODE_ENV``` environment variable:
 
+On a Mac:
 ```export NODE_ENV=myConfigFile```
+
+On a Windows machine:
+```set NODE_ENV=myConfigFile```
 
 If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
 config file.
@@ -452,10 +468,11 @@ PEPP supports the automated generation of Tableau workbooks. It does this by sim
 Each workbook is designed based on a specific use case as detailed below. Simply open the required config file and follow any instructions within the header.
 
 
-| Use Case        | Config File Name           | Description  |
-|:------------- |:-------------|:-----|
-| Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management) |
-| Content & Media Analytics - - Topic Analysis | ```CMA_topic_analysis.js``` | [Full Details](https://github.com/haganbt/pepp/wiki/Topic%20Analysis) |
+| Use Case        | Config File Name           | Explore By  | Description  |
+|:------------- |:-------------|:-----|:-----|
+| Brand Analytics - Brand Reputation Management | ```BA_brand_reputation_management.js``` | Tags | [Full Details](https://github.com/haganbt/pepp/wiki/Brand%20Reputation%20Management) |
+| Content & Media Analytics - - Content Discovery | ```CMA_content_discovery.js``` | Tags | [Full Details](https://github.com/haganbt/pepp/wiki/Content-Discovery) |
+| Content & Media Analytics - - Topic Analysis | ```CMA_topic_analysis.js``` | Index | [Full Details](https://github.com/haganbt/pepp/wiki/Topic%20Analysis) |
 
 
 ### Custom Tableau Workbooks
@@ -598,35 +615,25 @@ Top topics by gender by week from two different indexes:
 ]
 ```
 
-Example response:
+
+Hourly url volumes by tag:
 
 ```json
- [
-      {
-          "booboo-1451865600-male": [
-              {
-                  "key": "BMW",
-                  "interactions": 64700,
-                  "unique_authors": 49200
-              },
-              {
-                  "key": "Ford Motor Company",
-                  "interactions": 26200,
-                  "unique_authors": 20900
-              }
-          ],
-          "yogi-1451865600-male": [
-              {
-                  "key": "Star Wars",
-                  "interactions": 176000,
-                  "unique_authors": 165800
-              },
-              {
-                  "key": "Star Wars Movies",
-                  "interactions": 88000,
-                  "unique_authors": 88000
-              }
-          ],
-          ...
+ "freqDist": [
+    {
+        "name": "tag_url_by_hour",
+        "target": "interaction.tag_tree.property",
+        "threshold": 20,
+        "then": {
+            "target": "links.url",
+            "threshold": 10,
+            "then": {
+                "type": "timeSeries",
+                "interval": "hour"
+            }
 
+        }
+    },
+
+]
 ```

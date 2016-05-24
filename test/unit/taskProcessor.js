@@ -1,7 +1,6 @@
 "use strict";
 process.env.NODE_ENV = 'test';
 
-const _ = require('underscore');
 const chai = require('chai');
 const expect = chai.expect;
 const chaiAsPromised = require('chai-as-promised');
@@ -36,7 +35,6 @@ describe("Task Processor", function(){
         });
 
     });
-
 
 
 
@@ -212,7 +210,6 @@ describe("Task Processor", function(){
 
 
 
-
     describe("Type Parameter", function(){
 
         it('freqDist - should create a type property for the task', function() {
@@ -251,7 +248,6 @@ describe("Task Processor", function(){
 
 
 
-
     describe("Threshold Parameter", function(){
 
         it('freqDist - should set a default threshold if not specified', function() {
@@ -284,6 +280,71 @@ describe("Task Processor", function(){
 
             expect(configTasks[0].json.parameters.parameters.threshold).to.equal(27);
         });
+
+    });
+
+
+
+    describe("Filter Parameter", function(){
+
+        it('freqDist - should be set for a single task', function() {
+
+            let config = {
+                "freqDist": [
+                    {
+                        "filter": "yogi"
+                    }
+                ]
+            };
+
+            let configTasks = taskProcessor.loadConfigTasks(config);
+
+            expect(configTasks[0].json.filter).to.equal("yogi");
+        });
+
+
+
+        it('freqDist - should be inherited for a custom nested task', function() {
+
+            let config = {
+
+                "freqDist": [
+                    {
+                        "filter": "yogi",
+                        "target": "fb.author.gender",
+                        "then": {
+                            "target": "fb.author.age"
+                        }
+                    }
+                ]
+            };
+
+            let configTasks = taskProcessor.loadConfigTasks(config);
+
+            //console.log(JSON.stringify(configTasks, undefined, 2));
+
+            expect(configTasks[0].json.filter).to.equal("yogi");
+            expect(configTasks[0].then.filter).to.equal("yogi");
+        });
+
+
+
+        it('timeSeries - should be set for a single task', function() {
+
+            let config = {
+                "timeSeries": [
+                    {
+                        "filter": "yogi"
+                    }
+                ]
+            };
+
+            let configTasks = taskProcessor.loadConfigTasks(config);
+
+            expect(configTasks[0].json.filter).to.equal("yogi");
+        });
+
+
 
     });
 

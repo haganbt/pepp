@@ -926,7 +926,7 @@ describe("Baseline calculation", function(){
         return baseline.gen(mergedTwo, task)
         .then(function(result){
             expect(result).to.be.an('string');
-            expect(result).to.eql('id,category,key,total_unique_authors,unique_author,probability,index,expected_baseline\n' +
+            expect(result).to.eql('key1,key2,key3,total_unique_authors,unique_author,probability,index,expected_baseline\n' +
                 'baseline,25-34,female,5741000,1144800,0.19940776868141438,1,1144800\n' +
                 'baseline,25-34,male,5741000,698000,0.12158160599198746,1,698000\n' +
                 'baseline,35-44,female,5741000,892400,0.15544330256052952,1,892400\n' +
@@ -961,7 +961,7 @@ describe("Baseline calculation", function(){
         return baseline.gen(mergedThree, task)
             .then(function(result){
                 expect(result).to.be.an('string');
-                expect(result).to.eql('id,category,key,total_unique_authors,unique_author,probability,index,expected_baseline\n' +
+                expect(result).to.eql('key1,key2,key3,total_unique_authors,unique_author,probability,index,expected_baseline\n' +
                     'baseline,25-34,female,8946100,1499700,0.16763729446350925,1,1499700\n' +
                     'baseline,25-34,male,8946100,971100,0.1085500944545668,1,971100\n' +
                     'baseline,35-44,female,8946100,1237000,0.1382725433429092,1,1237000\n' +

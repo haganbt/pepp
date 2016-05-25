@@ -196,9 +196,10 @@ Below is a summary of all supported config options.
 
 A ```filter``` parameter can be set in 3 places within PEPP: 
 
-1) global - apply a filter to all tasks within the config file
-2) task - apply a filter to a specific task
-3) custom nested child - apply a filter to a custom nested child task
+1. global - apply a filter to all tasks within the config file
+2. task - apply a filter to a specific task
+3. custom nested child - apply a filter to a custom nested child task
+
 
 If any of the above options are set in conjunction with each other, each will simply augment the next joining with an ```AND```. Examples of each type are below.
 

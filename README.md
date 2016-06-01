@@ -33,6 +33,9 @@ Features:
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
     - [Filter Property](#filter-property)
+      - [Global Filter](#global-filter)
+      - [Task Filter](#task-filter)
+      - [Custom Nested Child Filter](#custom-nested-child-filter)
     - [Start/End Properties](#startend-properties)
   - [Index Credentials](#index-credentials)
   - [Demographic Baselines](#demographic-baselines)
@@ -176,7 +179,7 @@ Below is a summary of all supported config options.
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
-| ```filter```      | task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
+| ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.id``` | global | The recording id of the index to analyze |
@@ -191,30 +194,95 @@ Below is a summary of all supported config options.
 
 ### Filter Property
 
-A ```filter``` property can be set as expected:
+A ```filter``` parameter can be set in 3 places within PEPP: 
+
+1. global - apply a filter to all tasks within the config file
+2. task - apply a filter to a specific task
+3. custom nested child - apply a filter to a custom nested child task
+
+
+If any of the above options are set in conjunction with each other, each will simply augment the next joining with an ```AND```. Examples of each type are below.
+
+
+#### Global Filter
+
+Specifying a global ```filter``` parameter will apply the filter to all tasks within the config file (including custom nested child tasks - see below). Example:
+
+```json
+{
+    "filter": "interaction.tag_tree.property ==\"Yogi\"",
+    "analysis": {
+        "freqDist": [
+            .....
+}
+
+```
+
+
+#### Task Filter
+
+A task level filter can be set as expected:
+
 
 ```json
 {
     "filter": "interaction.tag_tree.property ==\"Yogi\"",
     "threshold": 2,
-    "target": "fb.author.gender",
-    "then": {
-        "threshold": 3,
-        "target": "fb.topics.name",
+    "target": "fb.author.gender"
+}
+
+```
+
+
+**Custom Nested**
+
+In cases where a filter is set within a custom nested task, all child tasks automatically inherit the parent ```filter``` property from the parent task. Consider the following config:
+
+```json
+"freqDist": [
+    {
+        "filter": "fb.all.content any \"Yogi\"",
+        "target": "fb.author.gender",
+        "threshold": 2,
+        "then": {
+            "target": "fb.topics.name",
+            "threshold": 3,
+        }
     }
 }
 
 ```
 
-**Custom Nested Filters**
+Both the ```gender``` and the subsequent ```topics``` tasks will all have the "Yogi" filter appended. 
 
-In cases where a filter is used within a custom nested query (as per the above example), all child queries automatically inherit the parent filter property. For example, each child request would use the following filter format:
+
+#### Custom Nested Child Filter
+
+It is also possible to specify a filter as part of a custom child task as follows:
 
 ```json
-"filter":"(fb.author.gender == \"female\") AND interaction.tag_tree.property ==\"Yogi\""
+"freqDist": [
+    {
+        "filter": "fb.all.content any \"Yogi\"",
+        "target": "fb.author.gender",
+        "threshold": 2,
+        "then": {
+            "filter": "fb.all.content any \"Booboo\"", //<-- child filter
+            "target": "fb.topics.name",
+            "threshold": 3,
+        }
+    }
+}
+
 ```
 
-Currently it is not possible to overwrite the filter property for child queries.
+Once again, the filter parameters are simply augmented together. In the above example the ```gender``` task with have the "Yogi" filter applied and all child tasks with have both the "Yogi" and "Booboo" filters applied together e.g: 
+
+```json
+"filter":"(fb.author.gender == \"female\") AND (fb.all.content any \"Yogi\") AND (fb.all.content any \"Booboo\")""
+```
+
+NOTE: Setting the ```log_level``` to ```debug`` will show the requests being generated, including the ```filter```.
 
 
 ### Start/End Properties

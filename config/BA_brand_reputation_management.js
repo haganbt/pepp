@@ -4,13 +4,24 @@
  * 1. Rename tag on line 13 to match CSDL.
  *
  * API CALLS: ~260 (depending upon number of tags)
- * CSV FILES: 22
+ * CSV FILES: 27
  *
  */
 
 "use strict";
 
 const tagTree = "interaction.tag_tree.<MY_TAG_TREE>";
+
+const tag_1 = "<TAG_1>";
+const tag_2 = "<TAG_2>";
+const tag_3 = "<TAG_3>";
+const tag_4 = "<TAG_4>";
+const tag_5 = "<TAG_5>";
+const tag_6 = "<TAG_6>";
+const tag_7 = "<TAG_7>";
+const tag_8 = "<TAG_8>";
+const tag_9 = "<TAG_9>";
+const tag_10 = "<TAG_10>";
 
 module.exports = {
     "app": {
@@ -24,38 +35,59 @@ module.exports = {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
+        },
+        "baseline": {
+            "id": "<RECORDING_ID>",
+            "auth": {
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
+            }
         }
     },
 
     "analysis": {
         "freqDist": [
         /**
-         * Global Data types
+         * Author types
          */
-            {
-                "name": "types_global",
-                "target": "fb.type",
-                "threshold": 10
+           {
+                "name": "author_type_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "child": {
+                    "target": "fb.author.type",
+                    "threshold": 2
+                }    
             },
             {
-                "name": "media_types_global",
-                "target": "fb.media_type",
-                "threshold": 10
+                "name": "parent_author_type_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.author.type",
+                    "threshold": 2
+                }    
+            },
+
+        /**
+         * Languages
+         */            {
+                "name": "language_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "then": {
+                    "target": "fb.language",
+                    "threshold": 50
+                }    
             },
             {
-                "name": "parent_media_types_global",
-                "target": "fb.parent.media_type",
-                "threshold": 10
-            },
-            {
-                "name": "author_type_global",
-                "target": "fb.author.type",
-                "threshold": 10
-            },
-            {
-                "name": "parent_author_type_global",
-                "target": "fb.parent.author.type",
-                "threshold": 10
+                "name": "parent_language_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "then": {
+                    "target": "fb.parent.language",
+                    "threshold": 50
+                }    
             },
         /**
          * Media types by entity
@@ -66,6 +98,15 @@ module.exports = {
                 "threshold": 10,
                 "child": {
                     "target": "fb.media_type",
+                    "threshold": 6
+                }
+            },
+            {
+                "name": "parent_media_types_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.media_type",
                     "threshold": 6
                 }
             },
@@ -106,6 +147,18 @@ module.exports = {
                 }
             },
         /**
+         * Entity volume by country
+         */
+            {
+                "name": "country_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "then": {
+                    "target": "fb.author.country",
+                    "threshold": 200
+                }
+            },
+        /**
          * Entity volume by region
          */
             {
@@ -141,27 +194,31 @@ module.exports = {
                 }
             },
         /**
-         * Entity topics
+         * Categories and topics by entity
          */
             {
-                "name": "topics_by_entity",
+                "name": "topics_by_category_by_entity",
                 "target": tagTree,
                 "threshold": 10,
                 "then": {
-                    "target": "fb.topics.name",
-                    "threshold": 100
+                    "target": "fb.parent.topics.category",
+                    "threshold": 25,
+                    "then": {
+                        "target": "fb.parent.topics.name",
+                        "threshold": 50
+                    }
                 }
             },
         /**
-         * Topic hashtags
+         * Hashtags by entity
          */
             {
-                "name": "topic_hashtags",
-                "target": "fb.topics.name",
-                "threshold": 100,
+                "name": "hashtags_by_entity",
+                "target": tagTree,
+                "threshold": 10,
                 "then": {
-                    "target": "fb.hashtags",
-                    "threshold": 100
+                    "target": "fb.parent.hashtags",
+                    "threshold": 50
                 }
             },
         /**
@@ -207,6 +264,190 @@ module.exports = {
                         "threshold": 3
                     }
                 }
+            },
+        /**
+         * region sentiment by age - engagements
+         */
+            {
+                "name": "sentiment_age_by_region_engagements",
+                "target": "fb.parent.author.region",
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.author.age",
+                    "threshold": 6,
+                    "child": {
+                        "target": "fb.parent.sentiment",
+                        "threshold": 3
+                    }
+                }
+            },
+
+
+        /**
+         * region sentiment by gender - engagements
+         */
+            {
+                "name": "sentiment_gender_by_region_engagements",
+                "target": "fb.parent.author.region",
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2,
+                    "child": {
+                        "target": "fb.parent.sentiment",
+                        "threshold": 3
+                    }
+                }
+            },
+        /**
+         * topics sentiment by age - engagements
+         */
+            {
+                "name": "sentiment_age_by_topics_engagements",
+                "target": "fb.parent.topics.name",
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.author.age",
+                    "threshold": 6,
+                    "child": {
+                        "target": "fb.parent.sentiment",
+                        "threshold": 3
+                    }
+                }
+            },
+        /**
+         * topics sentiment by gender - engagements
+         */
+           {
+                "name": "sentiment_gender_by_topics_engagements",
+                "target": "fb.parent.topics.name",
+                "threshold": 10,
+                "child": {
+                    "target": "fb.parent.author.gender",
+                    "threshold": 2,
+                    "child": {
+                        "target": "fb.parent.sentiment",
+                        "threshold": 3
+                    }
+                }
+            },
+        /**
+         * Baseline engagement tags
+         */
+            {
+                "engagement_tag_baseline": [
+                    {
+                        "id": "baseline",
+                        "index": "baseline",
+                        "filter": "fb.type != \"story\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_1,
+                        "filter": tagTree + " == \"" + tag_1 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_2,
+                        "filter": tagTree + " == \"" + tag_2 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_3,
+                        "filter": tagTree + " == \"" + tag_3 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_4,
+                        "filter": tagTree + " == \"" + tag_4 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_5,
+                        "filter": tagTree + " == \"" + tag_5 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_6,
+                        "filter": tagTree + " == \"" + tag_6 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_7,
+                        "filter": tagTree + " == \"" + tag_7 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_8,
+                        "filter": tagTree + " == \"" + tag_8 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_9,
+                        "filter": tagTree + " == \"" + tag_9 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    },
+                    {
+                        "id": tag_10,
+                        "filter": tagTree + " == \"" + tag_10 + "\"",
+                        "target": "fb.parent.author.age",
+                        "threshold": 6,
+                        "child": {
+                            "target": "fb.parent.author.gender",
+                            "threshold": 2
+                        }
+                    }
+                ]
             }
         ],
         "timeSeries": [

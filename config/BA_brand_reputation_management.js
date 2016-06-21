@@ -1,10 +1,22 @@
 /**
  * BRAND ANALYTICS - Brand Reputation Management
  *
- * 1. Rename tag on line 13 to match CSDL.
+ * 1. Rename tag on line 25 to match CSDL.
  *
- * API CALLS: ~260 (depending upon number of tags)
- * CSV FILES: 27
+ * 2. Add recording credentials to DEFAULT starting on line 44
+ *
+ * 3. Add recording credentials to BASELINE starting on line 51
+ *      - If you do not have a separate index to baseline against,
+ *      - you can simply repeat the credentials used for DEFAULT
+ *      - to baseline each tag against the entire dataset.
+ *
+ * 4. Populate each tag name in to a variable starting on line 27.
+ *      - If you do not have 10 tags, simply leave the tag placeholder
+ *      - e.g. <TAG_5> and these queries will redact without error.
+ *
+ *
+ * API CALLS: ~440 (with 10 tags)
+ * CSV FILES: 28
  *
  */
 

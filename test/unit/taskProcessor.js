@@ -299,7 +299,7 @@ describe("Task Processor", function(){
 
             let configTasks = taskProcessor.loadConfigTasks(config);
 
-            expect(configTasks[0].json.filter).to.equal("yogi");
+            expect(configTasks[0].json.filter).to.equal("(yogi)");
         });
 
 
@@ -321,10 +321,7 @@ describe("Task Processor", function(){
 
             let configTasks = taskProcessor.loadConfigTasks(config);
 
-            //console.log(JSON.stringify(configTasks, undefined, 2));
-
-            expect(configTasks[0].json.filter).to.equal("yogi");
-            expect(configTasks[0].then.filter).to.equal("yogi");
+            expect(configTasks[0].json.filter).to.equal("(yogi)");
         });
 
 
@@ -341,7 +338,7 @@ describe("Task Processor", function(){
 
             let configTasks = taskProcessor.loadConfigTasks(config);
 
-            expect(configTasks[0].json.filter).to.equal("yogi");
+            expect(configTasks[0].json.filter).to.equal("(yogi)");
         });
 
 

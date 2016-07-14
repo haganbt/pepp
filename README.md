@@ -150,7 +150,22 @@ Custom nested tasks are configured within the config file using the ```then``` o
 
 ### Merged Tasks
 
-todo
+Multiple tasks can be merged together to deliver a single combined result set. Simply wrap the tasks in an array object. Note the task ```name``` is set using the array key: 
+
+```json
+"freqDist": [
+    {
+        "merged__example": [ // <-- Task name
+            {
+                task 1...
+            },
+            {
+                task 2...
+            }
+        ]
+    }
+]
+```
 
 ## Config File Selection
 

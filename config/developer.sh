@@ -12,9 +12,6 @@ export SECONDARY_ID=
 export SECONDARY_AUTH_USER=
 export SECONDARY_AUTH_KEY=
 
-#app specific
-export ENRICH_PERCENTAGES=false
-
 echo "ID: " $ID
 echo "AUTH_USER: " $AUTH_USER
 echo "AUTH_KEY: " $AUTH_KEY

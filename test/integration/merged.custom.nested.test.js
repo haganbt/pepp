@@ -46,20 +46,12 @@ describe("Merged Custom Nested", function(){
         let configTasks = taskProcessor.loadConfigTasks(config);
 
         return Promise.all(configTasks.map(function(each) {
-            return queue.queueTask(each);
+            return queue.queueRequest(each);
         })).then(function(result){
 
             result = taskHelper.compact(result);
 
-            expect(result[0]["yogi__male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi__male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi__female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["yogi__female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-
-            expect(result[0]["booboo__male"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo__male"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo__female"][0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
-            expect(result[0]["booboo__female"][1]).to.have.all.keys(["key", "interactions", "unique_authors"]);
+            expect(result[0]).to.have.any.keys("booboo__male", "booboo__female", "yogi__male", "yogi__female");
 
         });
 
@@ -106,7 +98,7 @@ describe("Merged Custom Nested", function(){
         let configTasks = taskProcessor.loadConfigTasks(config);
 
         return Promise.all(configTasks.map(function(each) {
-            return queue.queueTask(each);
+            return queue.queueRequest(each);
         })).then(function(result){
 
             result = taskHelper.compact(result);

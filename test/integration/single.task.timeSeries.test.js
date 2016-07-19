@@ -26,7 +26,7 @@ describe("Single task tests - timeSeries", function(){
 
         let configTasks = taskProcessor.loadConfigTasks(config);
 
-        return queue.queueTask(configTasks[0]).then(function(result){
+        return queue.queueRequest(configTasks[0]).then(function(result){
 
             expect(result[0]).to.have.all.keys(["key", "interactions", "unique_authors"]);
             expect(result[0].key).to.be.a('string'); //timestamp correctly converted

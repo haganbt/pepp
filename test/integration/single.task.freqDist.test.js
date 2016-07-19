@@ -26,7 +26,7 @@ describe("Single task tests - freqDist", function(){
 
         let configTasks = taskProcessor.loadConfigTasks(config);
 
-        var value = queue.queueTask(configTasks[0]).then(function(obj) {
+        var value = queue.queueRequest(configTasks[0]).then(function(obj) {
             return obj[1]; // check 2 values are returned
         });
 

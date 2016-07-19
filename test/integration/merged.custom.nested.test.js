@@ -46,7 +46,7 @@ describe("Merged Custom Nested", function(){
         let configTasks = taskProcessor.loadConfigTasks(config);
 
         return Promise.all(configTasks.map(function(each) {
-            return queue.queueTask(each);
+            return queue.queueRequest(each);
         })).then(function(result){
 
             result = taskHelper.compact(result);
@@ -98,7 +98,7 @@ describe("Merged Custom Nested", function(){
         let configTasks = taskProcessor.loadConfigTasks(config);
 
         return Promise.all(configTasks.map(function(each) {
-            return queue.queueTask(each);
+            return queue.queueRequest(each);
         })).then(function(result){
 
             result = taskHelper.compact(result);

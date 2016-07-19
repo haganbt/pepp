@@ -16,7 +16,7 @@
  *
  *
  * API CALLS: ~440 (with 10 tags)
- * CSV FILES: 28
+ * CSV FILES: 31
  *
  */
 
@@ -134,6 +134,14 @@ module.exports = {
                     "threshold": 6
                 }
             },
+         /**
+         * Author Type
+         */
+            {
+                "name": "author_type",
+                "target": "fb.author.type",
+                "threshold": 6
+            },
         /**
          * Total Entity Volumes
          */
@@ -178,7 +186,7 @@ module.exports = {
                 "target": tagTree,
                 "threshold": 10,
                 "then": {
-                    "target": "fb.author.region",
+                    "target": "fb.author.country_region",
                     "threshold": 200
                 }
             },
@@ -216,9 +224,33 @@ module.exports = {
                     "target": "fb.parent.topics.category",
                     "threshold": 25,
                     "then": {
-                        "target": "fb.parent.topics.name",
+                        "target": "fb.parent.topics.category_name",
                         "threshold": 50
                     }
+                }
+            },
+        /**
+         * Categories by entity
+         */
+            {
+                "name": "categories_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "then": {
+                    "target": "fb.parent.topics.category",
+                    "threshold": 200
+                }
+            },
+        /**
+         * Topics by entity
+         */
+            {
+                "name": "topics_by_entity",
+                "target": tagTree,
+                "threshold": 10,
+                "then": {
+                    "target": "fb.parent.topics.category_name",
+                    "threshold": 200
                 }
             },
         /**
@@ -246,49 +278,49 @@ module.exports = {
                 }
             },
         /**
-         * Entity sentiment by gender - engagements
+         * Entity sentiment by gender
          */
             {
-                "name": "sentiment_gender_by_entity_engagements",
+                "name": "sentiment_gender_by_entity",
                 "target": tagTree,
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.gender",
+                    "target": "fb.author.gender",
                     "threshold": 2,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
             },
         /**
-         * Entity sentiment by age - engagements
+         * Entity sentiment by age
          */
             {
-                "name": "sentiment_age_by_entity_engagements",
+                "name": "sentiment_age_by_entity",
                 "target": tagTree,
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.age",
+                    "target": "fb.author.age",
                     "threshold": 6,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
             },
         /**
-         * region sentiment by age - engagements
+         * region sentiment by age
          */
             {
-                "name": "sentiment_age_by_region_engagements",
-                "target": "fb.parent.author.region",
+                "name": "sentiment_age_by_region",
+                "target": "fb.author.region",
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.age",
+                    "target": "fb.author.age",
                     "threshold": 6,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
@@ -296,49 +328,49 @@ module.exports = {
 
 
         /**
-         * region sentiment by gender - engagements
+         * region sentiment by gender
          */
             {
-                "name": "sentiment_gender_by_region_engagements",
-                "target": "fb.parent.author.region",
+                "name": "sentiment_gender_by_region",
+                "target": "fb.author.region",
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.gender",
+                    "target": "fb.author.gender",
                     "threshold": 2,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
             },
         /**
-         * topics sentiment by age - engagements
+         * topics sentiment by age
          */
             {
-                "name": "sentiment_age_by_topics_engagements",
-                "target": "fb.parent.topics.name",
+                "name": "sentiment_age_by_topics",
+                "target": "fb.topics.name",
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.age",
+                    "target": "fb.author.age",
                     "threshold": 6,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
             },
         /**
-         * topics sentiment by gender - engagements
+         * topics sentiment by gender
          */
            {
-                "name": "sentiment_gender_by_topics_engagements",
-                "target": "fb.parent.topics.name",
+                "name": "sentiment_gender_by_topics",
+                "target": "fb.topics.name",
                 "threshold": 10,
                 "child": {
-                    "target": "fb.parent.author.gender",
+                    "target": "fb.author.gender",
                     "threshold": 2,
                     "child": {
-                        "target": "fb.parent.sentiment",
+                        "target": "fb.sentiment",
                         "threshold": 3
                     }
                 }
@@ -352,110 +384,110 @@ module.exports = {
                         "id": "baseline",
                         "index": "baseline",
                         "filter": "fb.type != \"story\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_1,
                         "filter": tagTree + " == \"" + tag_1 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_2,
                         "filter": tagTree + " == \"" + tag_2 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_3,
                         "filter": tagTree + " == \"" + tag_3 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_4,
                         "filter": tagTree + " == \"" + tag_4 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_5,
                         "filter": tagTree + " == \"" + tag_5 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_6,
                         "filter": tagTree + " == \"" + tag_6 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_7,
                         "filter": tagTree + " == \"" + tag_7 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_8,
                         "filter": tagTree + " == \"" + tag_8 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_9,
                         "filter": tagTree + " == \"" + tag_9 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     },
                     {
                         "id": tag_10,
                         "filter": tagTree + " == \"" + tag_10 + "\"",
-                        "target": "fb.parent.author.age",
+                        "target": "fb.author.age",
                         "threshold": 6,
                         "child": {
-                            "target": "fb.parent.author.gender",
+                            "target": "fb.author.gender",
                             "threshold": 2
                         }
                     }

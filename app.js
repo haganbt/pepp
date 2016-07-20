@@ -4,7 +4,7 @@ process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 const _ = require('underscore');
 const figlet = require('figlet');
 
-const taskProcessor = require('./lib/taskProcessor');
+const taskProcessor = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const cacheHelper = require('./lib/helpers/cache');

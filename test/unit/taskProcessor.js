@@ -6,7 +6,7 @@ const expect = chai.expect;
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
-const taskProcessor = require('../../lib/taskProcessor');
+const taskProcessor = require('../../lib/taskManager');
 
 describe("Task Processor", function(){
 

@@ -8,7 +8,7 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
 const queue = require('../../lib/queue');
-const taskProcessor = require('../../lib/taskProcessor');
+const taskProcessor = require('../../lib/taskManager');
 const taskHelper = require('../../lib/helpers/task');
 
 describe("Custom Nested", function(){

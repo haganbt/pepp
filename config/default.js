@@ -8,8 +8,8 @@ module.exports = {
         "log_level": "info", // warn, info, debug, trace
         "date_format": "YYYY-MM-DD HH:mm:ss",
         "api_base_url": "https://api.datasift.com/",
-        "api_resource": "task", // analyze, task
-        "api_version": "1.4",
+        "api_resource": "analyze", // analyze, task
+        "api_version": "1.3",
         "service": "linkedin" // facebook, linkdin
     }
 };

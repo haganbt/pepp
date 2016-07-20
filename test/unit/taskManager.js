@@ -8,7 +8,7 @@ chai.use(chaiAsPromised);
 
 const taskProcessor = require('../../lib/taskManager');
 
-describe("Task Processor", function(){
+describe("Task Manager", function(){
 
 
     describe("Index Parameter", function(){

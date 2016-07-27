@@ -5,7 +5,7 @@ module.exports = {
         "format": "json", // json, csv
         "write_to_file": false, // true, false
         "max_parallel_tasks": 10, // number of parallel requests
-        "log_level": "debug", // warn, info, debug, trace
+        "log_level": "info", // warn, info, debug, trace
         "date_format": "YYYY-MM-DD HH:mm:ss",
         "api_base_url": "http://api-linkedin-prod.devms.net/v1.4/pylon/",
         "api_resource": "task", // analyze, task

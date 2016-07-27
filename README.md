@@ -191,6 +191,7 @@ Below is a summary of all supported config options.
 | Option        | Scope           | Description  |
 |:------------- |:-------------|:-----|
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
+| ```app.template```      | global | Override name of Tableau Template Workbook to generate |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
@@ -560,7 +561,7 @@ Each workbook is designed based on a specific use case as detailed below. Simply
 
 ### Custom Tableau Workbooks
 
-PEPP will automatically check the ```/tableau-templates``` directory for a Tableau workbook (.twb) file with an identical name to that of the config file being executed. If a corresponding workbook is found, it will be copied to the output directory along with the other output files rewriting the directory paths within the workbook accordingly.
+PEPP will automatically check the ```/tableau-templates``` directory for a Tableau workbook (.twb) file with an identical name to that of the config file being executed. If a corresponding workbook is found, it will be copied to the output directory along with the other output files rewriting the directory paths within the workbook accordingly. You can specify to use a template with a different name by using the ```app.template``` property in your config file. (Do not include the .twb extension in this property.)
 
 With this in mind, it then becomes easy to create new custom Tableau workbooks simply by developing a config recipe an associated workbook, and copying the ```.tbx``` file back in to the ```/tableau-templates``` directory. This is especially useful for refreshing data sets.
 

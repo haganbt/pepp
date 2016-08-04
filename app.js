@@ -4,7 +4,7 @@ process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
 const _ = require('underscore');
 const figlet = require('figlet');
 
-const taskProcessor = require('./lib/taskManager');
+const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const cacheHelper = require('./lib/helpers/cache');
@@ -12,7 +12,7 @@ const format = require('./lib/format');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 
-const configTasks = taskProcessor.loadConfigTasks();
+const configTasks = taskManager.loadConfigTasks();
 
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");

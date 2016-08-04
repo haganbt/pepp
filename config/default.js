@@ -8,8 +8,8 @@ module.exports = {
         "log_level": "info", // warn, info, debug, trace
         "date_format": "YYYY-MM-DD HH:mm:ss",
         "api_base_url": "http://api-linkedin-prod.devms.net/v1.4/pylon/",
-        "api_resource": "task", // analyze, task
-        "api_version": "1.4",
-        "service": "linkedin" // facebook, linkdin
+        "api_resource": "analyze", // analyze, task
+        "api_version": "1.3",
+        "service": "facebook" // facebook, linkdin
     }
 };

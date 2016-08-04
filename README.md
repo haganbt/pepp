@@ -198,7 +198,7 @@ Below is a summary of all supported config options.
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
-| ```index.default.id``` | global | The recording id of the index to analyze |
+| ```index.default.subscription_id``` | global | The recording subscription id of the index |
 | ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```start``` | global | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
@@ -329,7 +329,7 @@ to support a proxy:
 module.exports = {
    "index": {
      "default": {
-       "id": "<RECORDING_ID>",
+       "subscription_id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"
@@ -337,7 +337,7 @@ module.exports = {
      },
      "foo": {
        "analyze_uri": "https://pylonsandbox.datasift.com/v1/pylon/analyze", //<-- override analyze URI
-       "id": "<RECORDING_ID>",
+       "subscription_id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"

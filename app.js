@@ -14,10 +14,12 @@ const file = require('./lib/file');
 
 const configTasks = taskManager.loadConfigTasks();
 
+let allRequests = taskManager.buildRequests(configTasks);
+
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
-configTasks.forEach(task => {
+allRequests.forEach(task => {
 
     //log.info("Requesting task: " + task.name);
 

@@ -11,19 +11,25 @@ const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
+const requestFactory = require("./lib/requestFactory").requestFactory;
 
-const configTasks = taskManager.loadConfigTasks();
 
-let allRequests = taskManager.buildRequests(configTasks);
+
+const normalizedTasks = taskManager.loadConfigTasks();
+
+//let allRequests = taskManager.buildRequests(configTasks);
 
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
-allRequests.forEach(task => {
+normalizedTasks.forEach(task => {
 
-    //log.info("Requesting task: " + task.name);
+    //build a request
+    const reqObj = requestFactory(task);
 
-    queue.queueRequest(task)
+
+    // queue request and api (task or analyze)
+    queue.queueRequest(reqObj, task.api_resource)
         .then(response => {
 
             //handle expected unresolved promises caused by recursion
@@ -37,15 +43,15 @@ allRequests.forEach(task => {
         })
         .then(response => {
 
-            if(task.name.includes('baseline')) {
-                return baseline.gen(response, task);
+            if(reqObj.name.includes('baseline')) {
+                return baseline.gen(response, reqObj);
             } else {
                 return format.jsonToCsv(response);
             }
 
         })
         .then(response => {
-            return file.write(task.name, response);
+            return file.write(reqObj.name, response);
         })
         .then(response => {
 

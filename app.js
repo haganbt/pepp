@@ -12,18 +12,17 @@ const format = require('./lib/format');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 
+const configTasks = taskManager.loadConfigTasks();
+
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
+configTasks.forEach(task => {
 
+    //log.info("Requesting task: " + task.name);
 
-const configTasks = taskManager.loadConfigTasks();
-
-const requests = taskManager.buildRequetsfromTasks(configTasks);
-
-requests.forEach(task => {
-
-    queue.queueRequest(task).then(response => {
+    queue.queueRequest(task)
+        .then(response => {
 
             //handle expected unresolved promises caused by recursion
             if(response === undefined || _.isEmpty(response)){
@@ -36,18 +35,10 @@ requests.forEach(task => {
         })
         .then(response => {
 
-            return queue.responseHandler(task, response);
-
-        })
-        .then(response => {
-
-            console.log("==========================================", task);
-            console.log("==========================================", response);
-
             if(task.name.includes('baseline')) {
                 return baseline.gen(response, task);
             } else {
-                return format.jsonToCsv(response);    
+                return format.jsonToCsv(response);
             }
 
         })
@@ -61,8 +52,9 @@ requests.forEach(task => {
             }
 
             if(_.isString(response)){
-                log.info(response, "\n");
+                log.info(response);
             }
+            console.log("\n");
 
         })
         .catch(err => {

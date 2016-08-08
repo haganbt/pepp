@@ -13,7 +13,11 @@ const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
 
+
+
 const normalizedTasks = taskManager.loadConfigTasks();
+
+//let allRequests = taskManager.buildRequests(configTasks);
 
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
@@ -23,8 +27,9 @@ normalizedTasks.forEach(task => {
     //build a request
     const reqObj = requestFactory(task);
 
-    // queue request and the normalized task
-    queue.queueRequest(reqObj, task)
+
+    // queue request and api (task or analyze)
+    queue.queueRequest(reqObj, task.api_resource)
         .then(response => {
 
             //handle expected unresolved promises caused by recursion

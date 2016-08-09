@@ -29,7 +29,7 @@ normalizedTasks.forEach(task => {
 
 
     // queue request and api (task or analyze)
-    queue.queueRequest(reqObj, task.api_resource)
+    queue.queueRequest(reqObj, task)
         .then(response => {
 
             //handle expected unresolved promises caused by recursion

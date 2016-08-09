@@ -205,7 +205,7 @@ Below is a summary of all supported config options.
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
-| ```then.type``` | task | Override custom nested task types |
+| ```then.analysis_type``` | task | Override custom nested task types |
 
 
 ### Filter Property
@@ -672,7 +672,7 @@ Top topics by gender by week from two different indexes:
                 "index": "other",
                 "interval": "week",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.author.gender",
                     "threshold": 2,
                     "then": {
@@ -685,7 +685,7 @@ Top topics by gender by week from two different indexes:
                 "id": "booboo",
                 "interval": "week",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.author.gender",
                     "threshold": 2,
                     "then": {
@@ -712,7 +712,7 @@ Hourly url volumes by tag:
             "target": "links.url",
             "threshold": 10,
             "then": {
-                "type": "timeSeries",
+                "analysis_type": "timeSeries",
                 "interval": "hour"
             }
 

@@ -7,6 +7,7 @@ Features:
 
  * Simplified JSON config "recipe" approach
  * Export as JSON or CSV
+ * Support for analyze and task api resources
  * Multi-index query
  * Result set merging
  * Result set to query inheritance
@@ -32,6 +33,7 @@ Features:
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
+    - [api_resource Property](#api_resource-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)
@@ -119,13 +121,26 @@ As noted above, to make a single request, define a single task object inside the
 ```
 
 
-### Nested Tasks
+### Native Nested Tasks
 
-todo
+PYLON supports nesting of low cardinality targets up tot 3 levels deep. PEPP supports these using the ```child``` key:
 
-#### Native Nested
+```json
+{
+    "name": "example_native_nested",
+    "target": "fb.author.gender",
+    "threshold": 2,
+    "child": {
+        "target": "fb.author.age",
+        "threshold": 2,
+        "child": {
+            "target": "fb.media_type",
+            "threshold": 2
+        }
+    }
+}   
+```
 
-todo
 
 #### Custom Nested
 
@@ -194,18 +209,33 @@ Below is a summary of all supported config options.
 | ```app.template```      | global | Override name of Tableau Template Workbook to generate |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
+| ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
 | ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.subscription_id``` | global | The recording subscription id of the index |
 | ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
+| ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```start``` | global | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
-| ```then.analysis_type``` | task | Override custom nested task types |
+| ```then.analysis_type``` | task | OPTIONAL. Override custom nested task types. ```freqDist```, ```timeSeries``` |
+
+
+### api_resource Property
+
+The ```api_resource``` property identifies if either the ```analyze``` or ```task``` api resource will be used for tasks. This property can be set in three different ways depending upon the required behavior.
+
+1. ```app.api_resource``` - Sets the default api resource for all tasks.
+2. ```index.<my_index>.api_resource``` - Set the default api resource for all tasks using the specific index.
+3. ```api_resource``` - Set the default api resource for a specific task. Custom nested tasks will inherit this value if set.
+
+
+NOTE: If more than one of the above is set, the override order is as per the above order i.e. ```app``` is overriden by ```index``` which is overridden by individual tasks.
+
 
 
 ### Filter Property

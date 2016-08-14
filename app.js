@@ -27,7 +27,6 @@ normalizedTasks.forEach(task => {
     //build a request
     const reqObj = requestFactory(task);
 
-
     // queue request and api (task or analyze)
     queue.queueRequest(reqObj, task)
         .then(response => {

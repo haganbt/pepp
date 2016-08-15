@@ -209,7 +209,7 @@ Below is a summary of all supported config options.
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
-| ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
+| ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
@@ -217,12 +217,12 @@ Below is a summary of all supported config options.
 | ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
 | ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
-| ```start``` | global | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
+| ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```start``` | global task | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
 | ```then.analysis_type``` | task | OPTIONAL. Override custom nested task types. ```freqDist```, ```timeSeries``` |
-| ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
 
 
 ### api_resource Property
@@ -333,7 +333,7 @@ NOTE: Setting the ```log_level``` to ```debug`` will show the requests being gen
 
 ### Start/End Properties
 
-Optional ```start``` and ```end``` unix timestamp properties can be set at the global level to specify the time range for analysis queries.
+Optional ```start``` and ```end``` unix timestamp properties can be set globally (apply to all tasks) or at a specific task level to specify the time range for analysis queries. If both are set, the task will override the global setting.
 
 In addition, if you are using a JavaScript config file (rather than JSON or YAML), you can use any JavaScript date library for simper configuration. For example, using moment.js:
 

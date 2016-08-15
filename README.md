@@ -7,7 +7,7 @@ Features:
 
  * Simplified JSON config "recipe" approach
  * Export as JSON or CSV
- * Support for analyze and task api resources
+ * Support for ```analyze``` and ```task``` api resources
  * Multi-index query
  * Result set merging
  * Result set to query inheritance
@@ -214,7 +214,6 @@ Below is a summary of all supported config options.
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
 | ```index.default.subscription_id``` | global | The recording subscription id of the index |
-| ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
 | ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |

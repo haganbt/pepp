@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/haganbt/pepp#readme",
   "dependencies": {
+    "boolean": "^0.1.1",
     "bunyan": "1.5.1",
     "bunyan-format": "0.2.1",
     "config": "1.17.1",

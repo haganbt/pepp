@@ -381,7 +381,7 @@ module.exports = {
             {
                 "engagement_tag_baseline": [
                     {
-                        "subscription_id": "baseline",
+                        "id": "baseline",
                         "index": "baseline",
                         "filter": "fb.type != \"story\"",
                         "target": "fb.author.age",

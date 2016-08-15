@@ -222,7 +222,7 @@ Below is a summary of all supported config options.
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
 | ```then.analysis_type``` | task | OPTIONAL. Override custom nested task types. ```freqDist```, ```timeSeries``` |
-| ```only``` | task | Only execute the specific task(s) with this flag set. Vlaue must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
 
 
 ### api_resource Property

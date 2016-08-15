@@ -33,7 +33,6 @@
     "hashmap": "^2.0.6",
     "moment": "2.10.6",
     "node-uuid": "1.4.7",
-    "pace": "0.0.4",
     "promise-queue": "2.2.0",
     "request-debug": "0.2.0",
     "request-promise": "1.0.2",

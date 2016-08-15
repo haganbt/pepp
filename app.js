@@ -1,5 +1,5 @@
 "use strict";
-process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
+process.env.NODE_ENV = process.env.NODE_ENV = "demo";
 
 const _ = require('underscore');
 const figlet = require('figlet');

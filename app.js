@@ -13,10 +13,10 @@ const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
 
-const normalizedTasks = taskManager.loadConfigTasks();
-
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
+
+const normalizedTasks = taskManager.loadConfigTasks();
 
 normalizedTasks.forEach(task => {
 

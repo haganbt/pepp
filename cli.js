@@ -1,5 +1,10 @@
 "use strict";
-process.env.NODE_ENV = process.env.NODE_ENV || "demo";
+
+if(process.env.NODE_ENV === undefined) {
+    console.error("\nPlease specify a config file by setting the NODE_ENV enviroment variable. For example:\n");
+    console.error((process.platform.toLowerCase().includes('win') ? "set NODE_ENV=demo\n\n" : "export NODE_ENV=demo\n\n"));
+    process.exit(1);
+}
 
 const _ = require('underscore');
 const figlet = require('figlet');

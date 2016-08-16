@@ -73,7 +73,8 @@ Install node module dependencies:
 
 # Quick Start
 
-* Edit ```config/demo.js``` and add values for the PYLON recording id along with authentication credentials.
+* Edit ```config/demo.js``` and add values for the PYLON recording subscription id along with authentication credentials.
+* Tell PEPP which config file to execute by setting the ```NODE_ENV``` environment variable: ```export NODE_ENV=demo```. Use ```set NODE_ENV=demo``` for Windows environments.
 * Run PEPP with the command ```node app.js```
 
 # User Guide

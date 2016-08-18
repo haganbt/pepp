@@ -217,6 +217,7 @@ Below is a summary of all supported config options.
 | ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```skip``` | task | Do not execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
 | ```start``` | global task | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |

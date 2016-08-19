@@ -27,7 +27,8 @@ Features:
   - [Config File Structure](#config-file-structure)
     - [Single Task](#single-task)
     - [Native Nested Tasks](#native-nested-tasks)
-      - [Custom Nested](#custom-nested)
+    - [Custom Nested](#custom-nested)
+    - [Mixing Nested Task Types](#mixing-nested-task-types)
     - [Merged Tasks](#merged-tasks)
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
@@ -141,7 +142,7 @@ PYLON supports nesting of low cardinality targets up tot 3 levels deep. PEPP sup
 ```
 
 
-#### Custom Nested
+### Custom Nested
 
 Custom nested tasks offer increased flexibility over native nested tasks by adding support for all targets (native nested tasks are currently restricted to low cardinality targets only).
 
@@ -161,6 +162,34 @@ Custom nested tasks are configured within the config file using the ```then``` o
     }
 ]
 ```
+
+### Mixing Nested Task Types
+
+It is possible to specify a custom nested task containing a native nested task. For example: 
+
+```json
+{
+    "target": "fb.parent.topics.name",
+    "threshold": 25,
+    "then": {  // <-- custom nested
+      "target":"fb.parent.author.region",
+      "threshold": 20,
+        "child": {  // <-- native nested
+          "target": "fb.parent.author.gender",
+          "threshold": 2,
+          "child": {
+            "target": "fb.parent.author.region",
+            "threshold": 50
+          }
+        }
+      }
+  }
+```
+
+As with any custom nested query, this will dynamically generate a ```filter``` property and next query (the 3 level native nested) from the result keys returned from the first task. 
+
+NOTE: Native nested followed by custom nested is not currently supported. 
+
 
 ### Merged Tasks
 

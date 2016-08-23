@@ -76,7 +76,7 @@ Install node module dependencies:
 
 # Sync New Changes
 
-The PEPP code changes reguarly with new features and bug fixes. To sync with the most recent changes, from your local PEPP directory:
+PEPP code changes reguarly with new features and bug fixes. To sync with the most recent changes, from your local PEPP directory:
 
 
 ```git pull origin master```

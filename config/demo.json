@@ -5,7 +5,7 @@
   },
   "index": {
     "default": {
-      "id": "<RECORDING_ID>",
+      "subscription_id": "<SUBSCRIPTION_ID>",
       "auth": {
         "username": "<USERNNAME>",
         "api_key": "<API_KEY>"
@@ -16,6 +16,7 @@
     "freqDist": [
 
       {
+        "name": "example-fd-task",
         "target": "fb.parent.author.gender"
       }
 
@@ -23,6 +24,7 @@
     "timeSeries": [
 
       {
+        "name": "example-ts-task",
         "interval": "day"
       }
 

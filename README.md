@@ -624,12 +624,6 @@ PEPP will automatically check the ```/tableau-templates``` directory for a Table
 
 With this in mind, it then becomes easy to create new custom Tableau workbooks simply by developing a config recipe an associated workbook, and copying the ```.tbx``` file back in to the ```/tableau-templates``` directory. This is especially useful for refreshing data sets.
 
-### Submitting Tableau Workbooks
-
-todo
-
-* Supply screens hots of each workbook (1024px width) for the [wiki](https://github.com/haganbt/pepp/wiki)
-
 
 # Development
 

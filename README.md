@@ -1,5 +1,5 @@
 # PEPP - PYLON Exporter++
-PEPP is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving to disk. PEPP also supports the ability to automatically generate Tableau workbooks and comes equiped with a number of use case driven examples out of the box.
+PEPP is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving the data to local file. PEPP also supports the ability to automatically generate Tableau workbooks and comes equipped with a number of use case driven examples out of the box.
 
 It is the goal of this utility to support any type of analysis requests using a config (not code) approach.
 
@@ -7,6 +7,7 @@ Features:
 
  * Simplified JSON config "recipe" approach
  * Export as JSON or CSV
+ * Support for ```analyze``` and ```task``` api resources
  * Multi-index query
  * Result set merging
  * Result set to query inheritance
@@ -25,13 +26,14 @@ Features:
 - [User Guide](#user-guide)
   - [Config File Structure](#config-file-structure)
     - [Single Task](#single-task)
-    - [Nested Tasks](#nested-tasks)
-      - [Native Nested](#native-nested)
-      - [Custom Nested](#custom-nested)
+    - [Native Nested Tasks](#native-nested-tasks)
+    - [Custom Nested](#custom-nested)
+    - [Mixing Nested Task Types](#mixing-nested-task-types)
     - [Merged Tasks](#merged-tasks)
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
+    - [api_resource Property](#api_resource-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)
@@ -119,15 +121,28 @@ As noted above, to make a single request, define a single task object inside the
 ```
 
 
-### Nested Tasks
+### Native Nested Tasks
 
-todo
+PYLON supports nesting of low cardinality targets up tot 3 levels deep. PEPP supports these using the ```child``` key:
 
-#### Native Nested
+```json
+{
+    "name": "example_native_nested",
+    "target": "fb.author.gender",
+    "threshold": 2,
+    "child": {
+        "target": "fb.author.age",
+        "threshold": 2,
+        "child": {
+            "target": "fb.media_type",
+            "threshold": 2
+        }
+    }
+}   
+```
 
-todo
 
-#### Custom Nested
+### Custom Nested
 
 Custom nested tasks offer increased flexibility over native nested tasks by adding support for all targets (native nested tasks are currently restricted to low cardinality targets only).
 
@@ -147,6 +162,34 @@ Custom nested tasks are configured within the config file using the ```then``` o
     }
 ]
 ```
+
+### Mixing Nested Task Types
+
+It is possible to specify a custom nested task containing a native nested task. For example: 
+
+```json
+{
+    "target": "fb.parent.topics.name",
+    "threshold": 25,
+    "then": {  // <-- custom nested
+      "target":"fb.parent.author.region",
+      "threshold": 20,
+        "child": {  // <-- native nested
+          "target": "fb.parent.author.gender",
+          "threshold": 2,
+          "child": {
+            "target": "fb.parent.author.region",
+            "threshold": 50
+          }
+        }
+      }
+  }
+```
+
+As with any custom nested query, this will dynamically generate a ```filter``` property and next query (the 3 level native nested) from the result keys returned from the first task. 
+
+NOTE: Native nested followed by custom nested is not currently supported. 
+
 
 ### Merged Tasks
 
@@ -194,18 +237,34 @@ Below is a summary of all supported config options.
 | ```app.template```      | global | Override name of Tableau Template Workbook to generate |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
-| ```end``` | global | OPTIONAL. unix timestamp. Defaults to now UTC |
+| ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
+| ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | global | The api key used for authentication |
 | ```index.default.auth.username``` | global | The username used for authentication |
-| ```index.default.id``` | global | The recording id of the index to analyze |
-| ```index.default.analyze_uri``` | index | Overwrite the default analyze uri for a given index |
+| ```index.default.subscription_id``` | global | The recording subscription id of the index |
+| ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
-| ```start``` | global | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
+| ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```skip``` | task | Do not execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```start``` | global task | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
 | ```then``` | freqDist task | Specify custom nested task properties |
-| ```then.type``` | task | Override custom nested task types |
+| ```then.analysis_type``` | task | OPTIONAL. Override custom nested task types. ```freqDist```, ```timeSeries``` |
+
+
+### api_resource Property
+
+The ```api_resource``` property identifies if either the ```analyze``` or ```task``` api resource will be used for tasks. This property can be set in three different ways depending upon the required behavior.
+
+1. ```app.api_resource``` - Sets the default api resource for all tasks.
+2. ```index.<my_index>.api_resource``` - Set the default api resource for all tasks using the specific index.
+3. ```api_resource``` - Set the default api resource for a specific task. Custom nested tasks will inherit this value if set.
+
+
+NOTE: If more than one of the above is set, the override order is as per the above order i.e. ```app``` is overriden by ```index``` which is overridden by individual tasks.
+
 
 
 ### Filter Property
@@ -303,7 +362,7 @@ NOTE: Setting the ```log_level``` to ```debug`` will show the requests being gen
 
 ### Start/End Properties
 
-Optional ```start``` and ```end``` unix timestamp properties can be set at the global level to specify the time range for analysis queries.
+Optional ```start``` and ```end``` unix timestamp properties can be set globally (apply to all tasks) or at a specific task level to specify the time range for analysis queries. If both are set, the task will override the global setting.
 
 In addition, if you are using a JavaScript config file (rather than JSON or YAML), you can use any JavaScript date library for simper configuration. For example, using moment.js:
 
@@ -329,7 +388,7 @@ to support a proxy:
 module.exports = {
    "index": {
      "default": {
-       "id": "<RECORDING_ID>",
+       "subscription_id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"
@@ -337,7 +396,7 @@ module.exports = {
      },
      "foo": {
        "analyze_uri": "https://pylonsandbox.datasift.com/v1/pylon/analyze", //<-- override analyze URI
-       "id": "<RECORDING_ID>",
+       "subscription_id": "<RECORDING_ID>",
        "auth": {
          "username": "<USERNNAME>",
          "api_key": "<API_KEY>"
@@ -672,7 +731,7 @@ Top topics by gender by week from two different indexes:
                 "index": "other",
                 "interval": "week",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.author.gender",
                     "threshold": 2,
                     "then": {
@@ -685,7 +744,7 @@ Top topics by gender by week from two different indexes:
                 "id": "booboo",
                 "interval": "week",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.author.gender",
                     "threshold": 2,
                     "then": {
@@ -712,7 +771,7 @@ Hourly url volumes by tag:
             "target": "links.url",
             "threshold": 10,
             "then": {
-                "type": "timeSeries",
+                "analysis_type": "timeSeries",
                 "interval": "hour"
             }
 

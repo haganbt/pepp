@@ -1,27 +1,28 @@
 "use strict";
-process.env.NODE_ENV === undefined ? process.env.NODE_ENV = "demo" : "";
+process.env.NODE_ENV = process.env.NODE_ENV || "demo";
 
 const _ = require('underscore');
 const figlet = require('figlet');
 
-const taskProcessor = require('./lib/taskProcessor');
+const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
-
-const configTasks = taskProcessor.loadConfigTasks();
+const requestFactory = require("./lib/requestFactory").requestFactory;
 
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
-configTasks.forEach(task => {
+const normalizedTasks = taskManager.loadConfigTasks();
 
-    //log.info("Requesting task: " + task.name);
+normalizedTasks.forEach(task => {
 
-    queue.queueRequest(task)
+    const reqObj = requestFactory(task);
+
+    queue.queueRequest(reqObj, task)
         .then(response => {
 
             //handle expected unresolved promises caused by recursion
@@ -35,15 +36,15 @@ configTasks.forEach(task => {
         })
         .then(response => {
 
-            if(task.name.includes('baseline')) {
-                return baseline.gen(response, task);
+            if(reqObj.name.includes('baseline')) {
+                return baseline.gen(response, reqObj);
             } else {
-                return format.jsonToCsv(response);    
+                return format.jsonToCsv(response);
             }
 
         })
         .then(response => {
-            return file.write(task.name, response);
+            return file.write(reqObj.name, response);
         })
         .then(response => {
 

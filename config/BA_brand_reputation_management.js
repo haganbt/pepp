@@ -42,14 +42,14 @@ module.exports = {
     },
     "index": {
         "default": {
-            "id": "<RECORDING_ID>",
+            "subscription_id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
         },
         "baseline": {
-            "id": "<RECORDING_ID>",
+            "subscription_id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
@@ -273,7 +273,7 @@ module.exports = {
                 "target": tagTree,
                 "threshold": 10,
                 "then": {
-                    "type": "timeSeries",
+                    "analysis_type": "timeSeries",
                     "interval": "day"
                 }
             },
@@ -392,7 +392,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_1,
+                        "subscription_id": tag_1,
                         "filter": tagTree + " == \"" + tag_1 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -402,7 +402,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_2,
+                        "subscription_id": tag_2,
                         "filter": tagTree + " == \"" + tag_2 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -412,7 +412,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_3,
+                        "subscription_id": tag_3,
                         "filter": tagTree + " == \"" + tag_3 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -422,7 +422,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_4,
+                        "subscription_id": tag_4,
                         "filter": tagTree + " == \"" + tag_4 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -432,7 +432,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_5,
+                        "subscription_id": tag_5,
                         "filter": tagTree + " == \"" + tag_5 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -442,7 +442,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_6,
+                        "subscription_id": tag_6,
                         "filter": tagTree + " == \"" + tag_6 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -452,7 +452,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_7,
+                        "subscription_id": tag_7,
                         "filter": tagTree + " == \"" + tag_7 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -462,7 +462,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_8,
+                        "subscription_id": tag_8,
                         "filter": tagTree + " == \"" + tag_8 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -472,7 +472,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_9,
+                        "subscription_id": tag_9,
                         "filter": tagTree + " == \"" + tag_9 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -482,7 +482,7 @@ module.exports = {
                         }
                     },
                     {
-                        "id": tag_10,
+                        "subscription_id": tag_10,
                         "filter": tagTree + " == \"" + tag_10 + "\"",
                         "target": "fb.author.age",
                         "threshold": 6,
@@ -509,7 +509,7 @@ module.exports = {
                 "name": "topics_by_day",
                 "interval": "day",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.parent.topics.name",
                     "threshold": 100
                 }
@@ -521,7 +521,7 @@ module.exports = {
                 "name": "hashtags_by_day",
                 "interval": "day",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "fb.parent.hashtags",
                     "threshold": 100
                 }
@@ -533,7 +533,7 @@ module.exports = {
                 "name": "links_by_day",
                 "interval": "day",
                 "then": {
-                    "type": "freqDist",
+                    "analysis_type": "freqDist",
                     "target": "links.url",
                     "threshold": 100
                 }

@@ -32,14 +32,14 @@ module.exports = {
     },
     "index": {
         "default": {
-            "id": "<RECORDING_ID>",
+            "subscription_id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
             }
         },
         "baseline": {
-            "id": "<RECORDING_ID>",
+            "subscription_id": "<RECORDING_ID>",
             "auth": {
                 "username": "<USERNNAME>",
                 "api_key": "<API_KEY>"
@@ -181,7 +181,7 @@ module.exports = {
                     "target": "links.url",
                     "threshold": 10,
                     "then": {
-                        "type": "timeSeries",
+                        "analysis_type": "timeSeries",
                         "interval": "hour"
                     }
 

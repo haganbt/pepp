@@ -234,15 +234,16 @@ Below is a summary of all supported config options.
 | Option        | Scope           | Description  |
 |:------------- |:-------------|:-----|
 | ```app.max_parallel_tasks```      | global | The number of tasks to run in parallel. |
-| ```app.template```      | global | Override name of Tableau Template Workbook to generate |
 | ```app.log_level```      | global | Output log level. ```debug``` shows full requests and responses. ```info```, ```warn```, ```debug```, ```trace``` |
 | ```app.date_format```      | global | Format used for all data outputs. Defaults to ```YYYY-MM-DD HH:mm:ss```. See http://momentjs.com/docs/#/displaying/format/ |
 | ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
+| ```app.analyze_uri```      | app index | The full URI of the /analyze resource endpoint. No trailing forward slash. |
+| ```app.task_uri```      | app index | The full URI of the /task resource endpoint. No trailing forward slash. |
 | ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
-| ```index.default.auth.api_key```      | global | The api key used for authentication |
-| ```index.default.auth.username``` | global | The username used for authentication |
-| ```index.default.subscription_id``` | global | The recording subscription id of the index |
+| ```index.default.auth.api_key```      | index | The api key used for authentication |
+| ```index.default.auth.username``` | index | The username used for authentication |
+| ```index.default.subscription_id``` | index | The recording subscription id of the index |
 | ```index.default.api_resource``` | index | Set the api respurce for all tasks using this index. ```analyze```, ```task``` |
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |

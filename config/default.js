@@ -7,6 +7,8 @@ module.exports = {
         "max_parallel_tasks": 10, // number of parallel requests
         "log_level": "info", // warn, info, debug, trace
         "date_format": "YYYY-MM-DD HH:mm:ss",
-        "api_resource": "analyze" // analyze, task
+        "api_resource": "analyze", // analyze, task
+        //"task_uri": todo - add default when finalized
+        "analyze_uri": "https://api.datasift.com/v1.3/pylon/analyze"
     }
 };

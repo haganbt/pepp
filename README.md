@@ -22,6 +22,7 @@ Features:
 **Table of Contents**
 
 - [Installation](#installation)
+- [Sync New Changes](#sync-new-changes)
 - [Quick Start](#quick-start)
 - [User Guide](#user-guide)
   - [Config File Structure](#config-file-structure)
@@ -46,7 +47,6 @@ Features:
       - [Bubble Chart](#bubble-chart)
   - [Tableau Workbook Generation](#tableau-workbook-generation)
     - [Custom Tableau Workbooks](#custom-tableau-workbooks)
-    - [Submitting Tableau Workbooks](#submitting-tableau-workbooks)
 - [Development](#development)
   - [Logging](#logging)
 - [Example Config Recipes](#example-config-recipes)
@@ -61,6 +61,8 @@ Features:
 If Node.js is not installed, install it from https://nodejs.org/. Once complete, check by running ```node -v``` from a
 terminal window to show the install version.
 
+Make sure you have Git installed. This will allow easy syncing to update the source code. Download and install Git from https://git-scm.com/. 
+
 Clone the repo:
 
 ```git clone https://github.com/haganbt/pepp.git```
@@ -68,6 +70,20 @@ Clone the repo:
 ```cd pepp```
 
 Install node module dependencies:
+
+```sudo npm install```
+
+
+# Sync New Changes
+
+The PEPP code changes reguarly with new features and bug fixes. To sync with the most recent changes, from your local PEPP directory:
+
+
+```git pull origin master```
+
+Check for any NPM module changes:
+
+```sudo npm prune```
 
 ```sudo npm install```
 

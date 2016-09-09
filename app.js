@@ -39,7 +39,7 @@ normalizedTasks.forEach(task => {
             if(reqObj.name.includes('baseline')) {
                 return baseline.gen(response, reqObj);
             } else {
-                return format.jsonToCsv(response);
+                return format.jsonToCsv(response, task);
             }
 
         })

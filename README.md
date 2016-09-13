@@ -312,17 +312,17 @@ A ```customTags``` parameter can be used to define tags/filters to be used in ne
 
 ```json
 "customTags": {
-      "company": [ <-- name to identify custom_tag family
+      "company": [ //<-- name to identify custom_tag family
           {
-            "key":"BMW", <-- key in tag family
-            "filter": "fb.all.content contains \"BMW\"" <-- CSDL filter defining tag
+            "key":"BMW", //<-- key in tag family
+            "filter": "fb.all.content contains \"BMW\"" //<-- CSDL filter defining tag
           },
           {
             "key":"Honda",
             "filter": "fb.all.content contains == \"Honda\""
           }
       ],
-      "us_areas": [  <-- second custom_tag family
+      "us_areas": [  //<-- second custom_tag family
           {
             "key":"New England",
             "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""

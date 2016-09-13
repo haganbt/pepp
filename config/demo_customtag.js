@@ -1,29 +1,5 @@
 "use strict";
 
-const custom_tags = {
-      "gender": [
-          {
-            "key":"male",
-            "filter": "fb.author.gender == \"male\""
-          },
-          {
-            "key":"female",
-            "filter": "fb.author.gender == \"female\""
-          }
-      ],
-      "age": [
-          {
-            "key":"18-24",
-            "filter": "fb.author.age == \"18-24\""
-          },
-          {
-            "key":"25-34",
-            "filter": "fb.author.age == \"25-34\""
-          }
-      ]
-    };
-
-
 module.exports = {
     "app": {
       "format": "csv",

@@ -37,6 +37,7 @@ module.exports = {
         "auth": {
           "username": "<USERNNAME>",
           "api_key": "<API_KEY>"
+        }
       }
     },
     "customTags": {

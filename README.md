@@ -34,6 +34,7 @@ Features:
     - [Custom Nested](#custom-nested)
     - [Mixing Nested Task Types](#mixing-nested-task-types)
     - [Merged Tasks](#merged-tasks)
+    - [Custom Tags](#custom-tags)
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
@@ -229,6 +230,22 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 ]
 ```
 
+### Custom Tags
+
+If you are working with an index that does not have VEDO tags but you are wanted to do analysis as if you had created tags, you can accompish this by using a ```custom_tag``` parameter in place of ```target``` and ```threshold``` in any nested task. The tags will be defined in your config file as well (see below). Each of these tags will be passed in as a filter, similar to the way a Custom Nested task works. Multiple custom tags can be used in the same task or in different tasks. Custom Tags can not be used as a ```child``` in a Native Nested task.
+
+```json
+"freqDist": [
+    {
+        "custom_tag": "company", // <-- custom_tag object defines custom tags to be used
+        "then": {  
+            "target": "fb.author.gender",
+            "threshold": 2
+        }
+    }
+]
+```
+
 ## Config File Selection
 
 To specify which config file to use, set the ```NODE_ENV``` environment variable:
@@ -258,6 +275,8 @@ Below is a summary of all supported config options.
 | ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
 | ```app.analyze_uri```      | app index | The full URI of the /analyze resource endpoint. No trailing forward slash. |
 | ```app.task_uri```      | app index | The full URI of the /task resource endpoint. No trailing forward slash. |
+| ```custom_tag``` | task | OPTIONAL. Specify which customTags to use in nested query |
+| ```customTags``` | global | OPTIONAL. Define any custom tags to be used in tasks |
 | ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | index | The api key used for authentication |
@@ -284,6 +303,39 @@ The ```api_resource``` property identifies if either the ```analyze``` or ```tas
 
 
 NOTE: If more than one of the above is set, the override order is as per the above order i.e. ```app``` is overriden by ```index``` which is overridden by individual tasks.
+
+
+
+### CustomTags Property
+
+A ```customTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
+
+```json
+"customTags": {
+      "company": [ <-- name to identify custom_tag family
+          {
+            "key":"BMW", <-- key in tag family
+            "filter": "fb.all.content contains \"BMW\"" <-- CSDL filter defining tag
+          },
+          {
+            "key":"Honda",
+            "filter": "fb.all.content contains == \"Honda\""
+          }
+      ],
+      "us_areas": [  <-- second custom_tag family
+          {
+            "key":"New England",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""
+          },
+          {
+            "key":"Pacific",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Alaska, California, Hawaii, Oregon, Washington\""
+          },
+          ...
+      ]
+    }
+
+```
 
 
 

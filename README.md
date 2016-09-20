@@ -233,26 +233,70 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 
 ### Analysis Tags
 
-If you are working with an index that does not have any VEDO tags applied to the data, similar behavior can be accomplished by using analysis filters.
+Analysis Tags provide freedom to define custom filters as part of the data analysis. Each Analysis Tag can be defined and then referenced and reused throughout a config recipe.
+ 
+This technique is especially useful for data sets where no VEDO is unavailable, or required tags have been omitted or were unknown at the time of recording.
 
-PEPP supports this by defining one or more "analysis tags" using the ```analysisTags``` key. These can then be referenced by using the ```analysis_tag``` parameter in place of ```target``` and ```threshold``` inside of a freqDist task.
+Analysis tags are simply config defined filters that can then be used within a task definition in place of a ```target``` and ```threshold```.
 
-PEPP will pass each of these analysis tags to a request as a ```filter```, similar to the behavior of Custom Nested tasks.
+Analysis Tags are defined at the config parent level using an ```analysisTags``` key and then referenced from within each task using the ```analysis_tag``` key.
+
+Consider the below example where custom filters have been defined for characters and US areas. These are defined within the ```analysisTags``` key. Each of the Analysis Tags are then referenced as part of a freqDist task:
+
+
+
+```
+"analysisTags": {
+    "character": [ //<-- name to identify analysis_tag family
+        {
+            "key": "yogi",
+            "filter": "fb.all.content contains_any \"yogi\""
+        },
+        {
+            "key": "booboo",
+            "filter": "fb.all.content contains_any \"booboo\""
+        }
+    ],
+    "us_areas": [  //<-- second analysis_tag family
+        {
+            "key": "New England",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""
+        },
+        {
+            "key": "Pacific",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Alaska, California, Hawaii, Oregon, Washington\""
+        }
+    ]
+},
+"analysis": {
+    "freqDist": [
+        {
+            "name": "example-fd-task_tag",
+            "analysis_tag": "character",  //<-- reference analysis_tag family
+            "then": {
+                "analysis_tag": "us_areas",  //<-- reference analysis_tag family
+                "then": {
+                    "target": "fb.topics.name",
+                    "threshold":2
+                }
+            }
+        }
+    ]
+}
+```
+
+Example output:
+
+```
+key1,key2,key3,interactions,unique_authors
+yogi,New England,Birthday,100,100
+yogi,Pacific,Birthday,300,300
+booboo,New England,Birthday,600,600
+booboo,Pacific,Birthday,1600,1600
+```
 
 Analysis Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
 
-
-```json
-"freqDist": [
-    {
-        "analysis_tag": "company", // <-- analysis_tag object defines analysis tags to be used
-        "then": {  
-            "target": "fb.author.gender",
-            "threshold": 2
-        }
-    }
-]
-```
 
 ## Config File Selection
 
@@ -311,40 +355,6 @@ The ```api_resource``` property identifies if either the ```analyze``` or ```tas
 
 
 NOTE: If more than one of the above is set, the override order is as per the above order i.e. ```app``` is overriden by ```index``` which is overridden by individual tasks.
-
-
-
-### analysisTags Property
-
-A ```analysisTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
-
-```json
-"analysisTags": {
-      "company": [ //<-- name to identify analysis_tag family
-          {
-            "key":"BMW", //<-- key in tag family
-            "filter": "fb.all.content contains \"BMW\"" //<-- CSDL filter defining tag
-          },
-          {
-            "key":"Honda",
-            "filter": "fb.all.content contains == \"Honda\""
-          }
-      ],
-      "us_areas": [  //<-- second analysis_tag family
-          {
-            "key":"New England",
-            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""
-          },
-          {
-            "key":"Pacific",
-            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Alaska, California, Hawaii, Oregon, Washington\""
-          },
-          ...
-      ]
-    }
-
-```
-
 
 
 ### Filter Property

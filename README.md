@@ -39,7 +39,7 @@ Features:
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
     - [api_resource Property](#api_resource-property)
-    - [CustomTags Property](#customtags-property)
+    - [customTags Property](#customtags-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)
@@ -307,7 +307,7 @@ NOTE: If more than one of the above is set, the override order is as per the abo
 
 
 
-### ```CustomTags``` Property
+### customTags Property
 
 A ```customTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
 

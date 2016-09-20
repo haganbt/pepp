@@ -34,6 +34,7 @@ Features:
     - [Custom Nested](#custom-nested)
     - [Mixing Nested Task Types](#mixing-nested-task-types)
     - [Merged Tasks](#merged-tasks)
+    - [Analysis Tags](#analysis-tags)
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
@@ -229,6 +230,73 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 ]
 ```
 
+### Analysis Tags
+
+Analysis Tags provide freedom to define custom filters as part of analysis tasks. Each Analysis Tag can be defined and then referenced and reused throughout a config recipe.
+
+This technique is especially useful for data sets where VEDO is unavailable, or required tags have been omitted or were unknown at the time of recording.
+
+Analysis tags are simply config defined filters that can then be used within a task definition in place of a ```target``` and ```threshold```.
+
+Analysis Tags are defined at the config parent level using an ```analysisTags``` key and then referenced from within each task using the ```analysis_tag``` key.
+
+Consider the below example where custom filters have been defined for characters and US areas. These are defined within the ```analysisTags``` key. Each of the Analysis Tags are then referenced as part of a freqDist task:
+
+
+
+```json
+"analysisTags": {
+    "character": [ //<-- name to identify analysis_tag family
+        {
+            "key": "yogi",
+            "filter": "fb.all.content contains_any \"yogi\""
+        },
+        {
+            "key": "booboo",
+            "filter": "fb.all.content contains_any \"booboo\""
+        }
+    ],
+    "us_areas": [  //<-- second analysis_tag family
+        {
+            "key": "New England",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""
+        },
+        {
+            "key": "Pacific",
+            "filter": "fb.author.country in \"United States\" and fb.author.region in \"Alaska, California, Hawaii, Oregon, Washington\""
+        }
+    ]
+},
+"analysis": {
+    "freqDist": [
+        {
+            "name": "example-fd-task_tag",
+            "analysis_tag": "character",  //<-- reference analysis_tag family
+            "then": {
+                "analysis_tag": "us_areas",  //<-- reference analysis_tag family
+                "then": {
+                    "target": "fb.topics.name",
+                    "threshold":2
+                }
+            }
+        }
+    ]
+}
+```
+
+Example output:
+
+```
+key1,key2,key3,interactions,unique_authors
+yogi,New England,Birthday,100,100
+yogi,Pacific,Birthday,300,300
+booboo,New England,Birthday,600,600
+booboo,Pacific,Birthday,1600,1600
+```
+
+Analysis Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
+
+
 ## Config File Selection
 
 To specify which config file to use, set the ```NODE_ENV``` environment variable:
@@ -258,6 +326,8 @@ Below is a summary of all supported config options.
 | ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
 | ```app.analyze_uri```      | app index | The full URI of the /analyze resource endpoint. No trailing forward slash. |
 | ```app.task_uri```      | app index | The full URI of the /task resource endpoint. No trailing forward slash. |
+| ```analysis_tag``` | task | OPTIONAL. Specify which analysisTags to use in nested query |
+| ```analysisTags``` | global | OPTIONAL. Define any analysis tags to be used in tasks |
 | ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | index | The api key used for authentication |
@@ -284,7 +354,6 @@ The ```api_resource``` property identifies if either the ```analyze``` or ```tas
 
 
 NOTE: If more than one of the above is set, the override order is as per the above order i.e. ```app``` is overriden by ```index``` which is overridden by individual tasks.
-
 
 
 ### Filter Property

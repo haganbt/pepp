@@ -7,14 +7,14 @@ module.exports = {
     },
     "index": {
         "default": {
-            "subscription_id": "<SUBSCRIPTION_ID>",
+            "subscription_id": "51eca9261121b57d8b2360780252257f",
             "auth": {
-                "username": "<USERNNAME>",
-                "api_key": "<API_KEY>"
+                "username": "pylonsandbox",
+                "api_key": "46a84e82d9af70b8cb872a443109b433"
             }
         }
     },
-    "customTags": {
+    "analysisTags": {
         "gender": [
             {
                 "key":"male",
@@ -40,9 +40,9 @@ module.exports = {
         "freqDist": [
             {
                 "name": "example-fd-task_tag",
-                "custom_tag": "gender",
+                "analysis_tag": "gender",
                 "then": {
-                    "custom_tag": "age",
+                    "analysis_tag": "age",
                     "then": {
                         "target": "fb.topics.name",
                         "threshold":2

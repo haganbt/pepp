@@ -34,12 +34,12 @@ Features:
     - [Custom Nested](#custom-nested)
     - [Mixing Nested Task Types](#mixing-nested-task-types)
     - [Merged Tasks](#merged-tasks)
-    - [Custom Tags](#custom-tags)
+    - [Analysis Tags](#analysis-tags)
   - [Config File Selection](#config-file-selection)
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
     - [api_resource Property](#api_resource-property)
-    - [customTags Property](#customtags-property)
+    - [analysisTags Property](#analysistags-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)
@@ -231,21 +231,21 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 ]
 ```
 
-### Custom Tags
+### Analysis Tags
 
 If you are working with an index that does not have any VEDO tags applied to the data, similar behavior can be accomplished by using analysis filters.
 
-PEPP supports this by defining one or more custom tags using the ```customTags``` key. These can then be referenced by using the ```custom_tag``` parameter in place of ```target``` and ```threshold``` inside of a freqDist task.
+PEPP supports this by defining one or more "analysis tags" using the ```analysisTags``` key. These can then be referenced by using the ```analysis_tag``` parameter in place of ```target``` and ```threshold``` inside of a freqDist task.
 
-PEPP will pass each of these custom tags to a request as a ```filter```, similar to the way a Custom Nested task works.
+PEPP will pass each of these analysis tags to a request as a ```filter```, similar to the behavior of Custom Nested tasks.
 
-Custom Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
+Analysis Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
 
 
 ```json
 "freqDist": [
     {
-        "custom_tag": "company", // <-- custom_tag object defines custom tags to be used
+        "analysis_tag": "company", // <-- analysis_tag object defines analysis tags to be used
         "then": {  
             "target": "fb.author.gender",
             "threshold": 2
@@ -283,8 +283,8 @@ Below is a summary of all supported config options.
 | ```app.api_resource```      | global | Sets the default resource for all tasks. ```analyze```, ```task``` |
 | ```app.analyze_uri```      | app index | The full URI of the /analyze resource endpoint. No trailing forward slash. |
 | ```app.task_uri```      | app index | The full URI of the /task resource endpoint. No trailing forward slash. |
-| ```custom_tag``` | task | OPTIONAL. Specify which customTags to use in nested query |
-| ```customTags``` | global | OPTIONAL. Define any custom tags to be used in tasks |
+| ```analysis_tag``` | task | OPTIONAL. Specify which analysisTags to use in nested query |
+| ```analysisTags``` | global | OPTIONAL. Define any analysis tags to be used in tasks |
 | ```end``` | global task | OPTIONAL. unix timestamp. Defaults to now UTC |
 | ```filter```      | global, task | OPTIONAL. PYLON analyze filter parameter containing CSDL |
 | ```index.default.auth.api_key```      | index | The api key used for authentication |
@@ -314,13 +314,13 @@ NOTE: If more than one of the above is set, the override order is as per the abo
 
 
 
-### customTags Property
+### analysisTags Property
 
-A ```customTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
+A ```analysisTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
 
 ```json
-"customTags": {
-      "company": [ //<-- name to identify custom_tag family
+"analysisTags": {
+      "company": [ //<-- name to identify analysis_tag family
           {
             "key":"BMW", //<-- key in tag family
             "filter": "fb.all.content contains \"BMW\"" //<-- CSDL filter defining tag
@@ -330,7 +330,7 @@ A ```customTags``` parameter can be used to define tags/filters to be used in ne
             "filter": "fb.all.content contains == \"Honda\""
           }
       ],
-      "us_areas": [  //<-- second custom_tag family
+      "us_areas": [  //<-- second analysis_tag family
           {
             "key":"New England",
             "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""

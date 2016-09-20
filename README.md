@@ -39,6 +39,7 @@ Features:
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
     - [api_resource Property](#api_resource-property)
+    - [CustomTags Property](#customtags-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)

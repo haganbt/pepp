@@ -233,7 +233,14 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 
 ### Custom Tags
 
-If you are working with an index that does not have VEDO tags but you are wanted to do analysis as if you had created tags, you can accompish this by using a ```custom_tag``` parameter in place of ```target``` and ```threshold``` in any nested task. The tags will be defined in your config file as well (see below). Each of these tags will be passed in as a filter, similar to the way a Custom Nested task works. Multiple custom tags can be used in the same task or in different tasks. Custom Tags can not be used as a ```child``` in a Native Nested task.
+If you are working with an index that does not have any VEDO tags applied to the data, similar behavior can be accomplished by using analysis filters.
+
+PEPP supports this by defining one or more custom tags using the ```customTags``` key. These can then be referenced by using the ```custom_tag``` parameter in place of ```target``` and ```threshold``` inside of a freqDist task.
+
+PEPP will pass each of these custom tags to a request as a ```filter```, similar to the way a Custom Nested task works.
+
+Custom Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
+
 
 ```json
 "freqDist": [

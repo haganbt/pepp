@@ -7,32 +7,32 @@ module.exports = {
     },
     "index": {
         "default": {
-            "subscription_id": "51eca9261121b57d8b2360780252257f",
+            "subscription_id": "<SUBSCRIPTION_ID>",
             "auth": {
-                "username": "pylonsandbox",
-                "api_key": "46a84e82d9af70b8cb872a443109b433"
+                "username": "<USERNNAME>",
+                "api_key": "<API_KEY>"
             }
         }
     },
     "analysisTags": {
-        "gender": [
+        "company": [ //<-- name to identify analysis_tag family
             {
-                "key":"male",
-                "filter": "fb.author.gender == \"male\""
+                "key": "yogi",
+                "filter": "fb.all.content contains_any \"yogi, the, a\""
             },
             {
-                "key":"female",
-                "filter": "fb.author.gender == \"female\""
+                "key": "booboo",
+                "filter": "fb.all.content contains_any \"booboo, and, birthday\""
             }
         ],
-        "age": [
+        "us_areas": [  //<-- second analysis_tag family
             {
-                "key":"18-24",
-                "filter": "fb.author.age == \"18-24\""
+                "key": "New England",
+                "filter": "fb.author.country in \"United States\" and fb.author.region in \"Maine, Vermont, New Hampshire, Massachusetts, Rhode Island, Connecticut\""
             },
             {
-                "key":"25-34",
-                "filter": "fb.author.age == \"25-34\""
+                "key": "Pacific",
+                "filter": "fb.author.country in \"United States\" and fb.author.region in \"Alaska, California, Hawaii, Oregon, Washington\""
             }
         ]
     },
@@ -40,30 +40,15 @@ module.exports = {
         "freqDist": [
             {
                 "name": "example-fd-task_tag",
-                "analysis_tag": "gender",
+                "analysis_tag": "company",  //<-- reference analysis_tag family
                 "then": {
-                    "analysis_tag": "age",
-                    "then": {
-                        "target": "fb.topics.name",
-                        "threshold":2
-                    }
-                }
-            },
-            {
-                "name": "example-fd-task",
-                "target": "fb.author.gender",
-                "threshold": 2,
-                "then": {
-                    "target": "fb.author.age",
-                    "threshold": 6,
+                    "analysis_tag": "us_areas",  //<-- reference analysis_tag family
                     "then": {
                         "target": "fb.topics.name",
                         "threshold":2
                     }
                 }
             }
-        ],
-        "timeSeries": [
         ]
     }
 };

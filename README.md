@@ -39,7 +39,6 @@ Features:
     - [Config File Directory](#config-file-directory)
   - [Config Options](#config-options)
     - [api_resource Property](#api_resource-property)
-    - [analysisTags Property](#analysistags-property)
     - [Filter Property](#filter-property)
       - [Global Filter](#global-filter)
       - [Task Filter](#task-filter)
@@ -245,7 +244,7 @@ Consider the below example where custom filters have been defined for characters
 
 
 
-```
+```json
 "analysisTags": {
     "character": [ //<-- name to identify analysis_tag family
         {

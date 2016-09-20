@@ -307,7 +307,7 @@ NOTE: If more than one of the above is set, the override order is as per the abo
 
 
 
-### CustomTags Property
+### ```CustomTags``` Property
 
 A ```customTags``` parameter can be used to define tags/filters to be used in nested queries. For each Custom Tag family, you specify its name, the keys within it, and the filter definitions:
 

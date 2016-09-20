@@ -232,9 +232,9 @@ Multiple tasks can be merged together to deliver a single combined result set. S
 
 ### Analysis Tags
 
-Analysis Tags provide freedom to define custom filters as part of the data analysis. Each Analysis Tag can be defined and then referenced and reused throughout a config recipe.
- 
-This technique is especially useful for data sets where no VEDO is unavailable, or required tags have been omitted or were unknown at the time of recording.
+Analysis Tags provide freedom to define custom filters as part of analysis tasks. Each Analysis Tag can be defined and then referenced and reused throughout a config recipe.
+
+This technique is especially useful for data sets where VEDO is unavailable, or required tags have been omitted or were unknown at the time of recording.
 
 Analysis tags are simply config defined filters that can then be used within a task definition in place of a ```target``` and ```threshold```.
 

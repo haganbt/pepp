@@ -294,7 +294,7 @@ booboo,New England,Birthday,600,600
 booboo,Pacific,Birthday,1600,1600
 ```
 
-Analysis Tags can be used anywhere a regular target would be used, with the exceptions of a child in a Native Nested task, or the bottom-most level in any other task.
+Analysis Tags can be used anywhere a regular target would be used, with the exceptions of at any level of a Native Nested task, or the bottom-most level in any other task.
 
 
 ## Config File Selection

@@ -7,6 +7,7 @@ const figlet = require('figlet');
 const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
+const requestStats = require("./lib/helpers/requestStats");
 const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
 const baseline = require('./lib/baseline');
@@ -29,8 +30,8 @@ normalizedTasks.forEach(task => {
             if(response === undefined || _.isEmpty(response)){
                 return reject();
             }
-
             cacheHelper.debugAll();
+
 
             return response;
         })
@@ -55,7 +56,9 @@ normalizedTasks.forEach(task => {
             if(_.isString(response)){
                 log.info(response);
             }
-            console.log("\n");
+
+            log.info("Request Summary:");
+            log.info(requestStats.get());
 
         })
         .catch(err => {

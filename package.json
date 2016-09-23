@@ -1,6 +1,6 @@
 {
   "name": "pepp",
-  "version": "2.1.1",
+  "version": "2.2.3",
   "description": "PYLON Exporter ++",
   "main": "app.js",
   "engines": {

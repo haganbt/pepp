@@ -3,6 +3,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || "demo";
 
 const _ = require('underscore');
 const figlet = require('figlet');
+const bytes = require('bytes');
 
 const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
@@ -13,7 +14,9 @@ const format = require('./lib/format');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
+const spinner = require("./lib/helpers/spinner");
 
+spinner.start();
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
@@ -49,12 +52,20 @@ normalizedTasks.forEach(task => {
         })
         .then(response => {
 
+            spinner.stop();
+
             if(_.isObject(response)){
                 log.info(JSON.stringify(response, undefined, 4));
             }
 
             if(_.isString(response)){
-                log.info(response);
+                if(response.length >= 50000){
+                    let b = Buffer.byteLength(response, 'utf8');
+                    log.info(response.substring(0, 800) + "....");
+                    log.warn("Large file output generated (" + bytes(b) + "), redacting from console.");
+                } else {
+                    log.info(response);
+                }
             }
 
             log.info("Request Summary:");

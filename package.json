@@ -23,10 +23,11 @@
   },
   "homepage": "https://github.com/haganbt/pepp#readme",
   "dependencies": {
-    "boolean": "^0.1.1",
+    "boolean": "0.1.1",
     "bunyan": "1.5.1",
     "bunyan-format": "0.2.1",
-    "bytes": "^2.4.0",
+    "bytes": "2.4.0",
+    "cli-spinner": "0.2.5",
     "cli-table": "0.3.1",
     "config": "1.17.1",
     "figlet": "1.1.1",
@@ -44,9 +45,9 @@
   "devDependencies": {
     "chai": "3.4.1",
     "chai-as-promised": "5.2.0",
-    "eslint": "^3.3.0",
-    "eslint-config-defaults": "^7.1.1",
-    "eslint-plugin-filenames": "^0.2.0",
+    "eslint": "3.3.0",
+    "eslint-config-defaults": "7.1.1",
+    "eslint-plugin-filenames": "0.2.0",
     "mocha": "2.3.4",
     "sinon": "1.17.2"
   }

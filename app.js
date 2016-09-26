@@ -73,6 +73,9 @@ normalizedTasks.forEach(task => {
 
         })
         .catch(err => {
+
+            spinner.stop();
+
             if(err.response.body){
                 log.error(err.response.body);
             } else {

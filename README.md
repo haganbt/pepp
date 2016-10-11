@@ -1,6 +1,6 @@
 # PEPP - PYLON Exporter++
 
-<sub><sup>V2.2.4 [Changelog](https://github.com/haganbt/pepp/wiki/Changelog)</sup></sub>
+<sub><sup>V2.2.5 [Changelog](https://github.com/haganbt/pepp/wiki/Changelog)</sup></sub>
 
 PEPP is a utility for exporting data from DataSift's PYLON product in either JSON or CSV format, optionally saving the data to local file. PEPP also supports the ability to automatically generate Tableau workbooks and comes equipped with a number of use case driven examples out of the box.
 
@@ -15,6 +15,7 @@ Features:
  * Result set merging
  * Result set to query inheritance
  * Request queue with concurrency limit
+ * Retry logic to handle API errors
  * Automated Tableau workbook generation
 
 ### DISCLAIMER: This library is in no way associated with or supported by DataSift and hence any questions or issues issues should be logged [here](https://github.com/haganbt/pepp/issues).

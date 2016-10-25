@@ -31,7 +31,7 @@ normalizedTasks.forEach(task => {
 
             //handle expected unresolved promises caused by recursion
             if(response === undefined || _.isEmpty(response)){
-                return reject();
+                return;
             }
             cacheHelper.debugAll();
 

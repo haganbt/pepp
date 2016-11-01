@@ -1,13 +1,10 @@
 "use strict";
 process.env.NODE_ENV = process.env.NODE_ENV || "demo";
 
-var plugins = require('require-all')(__dirname + '/plugins');
-
-console.log(plugins);
-
 const _ = require('underscore');
 const figlet = require('figlet');
 const bytes = require('bytes');
+const plugins = require('require-all')(__dirname + '/plugins');
 
 const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
@@ -19,7 +16,6 @@ const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
 const spinner = require("./lib/helpers/spinner");
-
 
 
 spinner.start();
@@ -39,16 +35,21 @@ normalizedTasks.forEach(task => {
             if(response === undefined || _.isEmpty(response)){
                 return;
             }
+
             cacheHelper.debugAll();
 
+            const pluginPromises  = Object.keys(plugins).map(function(key) {
+                return plugins[key](response);
+            });
 
-            return response;
+            return Promise.all(pluginPromises);
+
         })
-        .then(function(){
-            console.log("here------");
-            return Promise.all(plugins.map(plugins));
-        })
-        .then(response => {
+        .then(function(response) {
+
+            console.log(response)
+
+
 
             if(reqObj.name.includes('baseline')) {
                 return baseline.gen(response, reqObj);
@@ -83,6 +84,8 @@ normalizedTasks.forEach(task => {
 
         })
         .catch(err => {
+
+            console.log(err);
 
             spinner.stop();
 

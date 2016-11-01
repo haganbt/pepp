@@ -1,11 +1,11 @@
 "use strict";
 
-module.exports = function() {
-    console.log("********************************");
+module.exports = function(foo) {
     return new Promise(function(resolve, reject) {
-        console.log("********************************");
-        setTimeout(resolve, 200, 'example plugin succeeded!');
 
+
+
+
+        resolve("results from p1");
     });
 };
-

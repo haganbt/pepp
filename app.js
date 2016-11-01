@@ -1,6 +1,10 @@
 "use strict";
 process.env.NODE_ENV = process.env.NODE_ENV || "demo";
 
+var plugins = require('require-all')(__dirname + '/plugins');
+
+console.log(plugins);
+
 const _ = require('underscore');
 const figlet = require('figlet');
 const bytes = require('bytes');
@@ -15,6 +19,8 @@ const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
 const spinner = require("./lib/helpers/spinner");
+
+
 
 spinner.start();
 log.info(figlet.textSync(process.env.NODE_ENV));
@@ -37,6 +43,10 @@ normalizedTasks.forEach(task => {
 
 
             return response;
+        })
+        .then(function(){
+            console.log("here------");
+            return Promise.all(plugins.map(plugins));
         })
         .then(response => {
 

@@ -6,6 +6,8 @@ const figlet = require('figlet');
 const bytes = require('bytes');
 const plugins = require('require-all')(__dirname + '/plugins');
 
+var waterfall = require("promise-waterfall");
+
 const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
@@ -24,6 +26,18 @@ console.log("\n\n");
 
 const normalizedTasks = taskManager.loadConfigTasks();
 
+
+function promiseWaterfall(tasks) {
+    let finalTaskPromise = tasks.reduce(function(prevTaskPromise, task) {
+        return prevTaskPromise.then(task);
+    }, resolvedPromise);  // initial value
+
+    return finalTaskPromise;
+}
+
+
+
+
 normalizedTasks.forEach(task => {
 
     const reqObj = requestFactory(task);
@@ -38,16 +52,47 @@ normalizedTasks.forEach(task => {
 
             cacheHelper.debugAll();
 
-            const pluginPromises  = Object.keys(plugins).map(function(key) {
-                return plugins[key](response);
+            let p = [];
+
+
+            Object.keys(plugins).map(function(key) {
+                p.push(plugins[key]);
             });
 
-            return Promise.all(pluginPromises);
+
+            console.log(p);
+
+            return waterfall(p)
+
+
+            // the promiseSequence will executes sequentially
+            // just like func1().then(func2).then(func3)
+
+
+
+
+//            return promiseWaterfall(pluginPromises);
+
+
+/*
+            return Promise.all(pluginPromises).then(function(results) {
+                return results.map(function(item) {
+                    // can return either a value or another promise here
+                    console.log(item);
+                    console.log(typeof(item));
+                    return new Promise(resolve(item));
+                });
+            })
+
+*/
 
         })
         .then(function(response) {
 
-            console.log(response)
+
+
+
+            log.info("**************** "+response);
 
 
 

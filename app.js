@@ -52,17 +52,23 @@ normalizedTasks.forEach(task => {
 
             cacheHelper.debugAll();
 
-            let p = [];
 
 
-            Object.keys(plugins).map(function(key) {
-                p.push(plugins[key]);
+
+            return Object.keys(plugins).map(function(key) {
+                //p.push();
+
+
+                return plugins[key](response);
+
+
+
+
+
             });
 
 
-            console.log(p);
-
-            return waterfall(p)
+            //return waterfall(p)
 
 
             // the promiseSequence will executes sequentially

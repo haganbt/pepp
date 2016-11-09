@@ -308,12 +308,14 @@ On a Mac:
 On a Windows machine:
 ```set NODE_ENV=myConfigFile```
 
+NOTE: only specify the config file name. Omit the filetype extension, i.e. ```.json```
+
 If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
 config file.
 
 ### Config File Directory
 
-The directory from which config files are loaded cab be set by defining the ```NODE_CONFIG_DIR``` environment variable. This can be a full path from your root directory, or a relative path from the process if the value begins with ./ or ../.
+The directory from which config files are loaded can be set by defining the ```NODE_CONFIG_DIR``` environment variable. This can be a full path from your root directory, or a relative path from the process if the value begins with ```./``` or ```../```.
 
 
 ## Config Options

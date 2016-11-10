@@ -6,37 +6,23 @@ const figlet = require('figlet');
 const bytes = require('bytes');
 const plugins = require('require-all')(__dirname + '/plugins');
 
-var waterfall = require("promise-waterfall");
-
 const taskManager = require('./lib/taskManager');
 const queue = require('./lib/queue');
 const log = require("./lib/helpers/logger");
 const requestStats = require("./lib/helpers/requestStats");
 const cacheHelper = require('./lib/helpers/cache');
 const format = require('./lib/format');
+const normalize = require('./lib/normalize');
 const baseline = require('./lib/baseline');
 const file = require('./lib/file');
 const requestFactory = require("./lib/requestFactory").requestFactory;
 const spinner = require("./lib/helpers/spinner");
-
 
 spinner.start();
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
 const normalizedTasks = taskManager.loadConfigTasks();
-
-
-function promiseWaterfall(tasks) {
-    let finalTaskPromise = tasks.reduce(function(prevTaskPromise, task) {
-        return prevTaskPromise.then(task);
-    }, resolvedPromise);  // initial value
-
-    return finalTaskPromise;
-}
-
-
-
 
 normalizedTasks.forEach(task => {
 
@@ -45,6 +31,8 @@ normalizedTasks.forEach(task => {
     queue.queueRequest(reqObj, task)
         .then(response => {
 
+            spinner.stop();
+
             //handle expected unresolved promises caused by recursion
             if(response === undefined || _.isEmpty(response)){
                 return;
@@ -52,69 +40,37 @@ normalizedTasks.forEach(task => {
 
             cacheHelper.debugAll();
 
+            return response;
+        })
+        .then(response => {
 
-
-
-            return Object.keys(plugins).map(function(key) {
-                //p.push();
-
-
-                return plugins[key](response);
-
-
-
-
-
+            // Build a simple results object for plugins
+            return new Promise((resolve)=>{
+                return resolve([response, normalize.build(response)]);
             });
 
-
-            //return waterfall(p)
-
-
-            // the promiseSequence will executes sequentially
-            // just like func1().then(func2).then(func3)
-
-
-
-
-//            return promiseWaterfall(pluginPromises);
-
-
-/*
-            return Promise.all(pluginPromises).then(function(results) {
-                return results.map(function(item) {
-                    // can return either a value or another promise here
-                    console.log(item);
-                    console.log(typeof(item));
-                    return new Promise(resolve(item));
-                });
-            })
-
-*/
-
         })
-        .then(function(response) {
-
-
-
-
-            log.info("**************** "+response);
-
-
+        .then(function([response, normalizedResponse]) {
 
             if(reqObj.name.includes('baseline')) {
-                return baseline.gen(response, reqObj);
+                return [baseline.gen(response, reqObj), normalizedResponse];
             } else {
-                return format.jsonToCsv(response, task);
+                return [format.jsonToCsv(response, task), normalizedResponse];
             }
 
         })
-        .then(response => {
-            return file.write(reqObj.name, response);
+        .then(function([response, normalizedResponse]) {
+
+            // execute plugin
+            return plugins["example"](response, normalizedResponse);
+
         })
         .then(response => {
 
-            spinner.stop();
+            return file.write(reqObj.name, response);
+
+        })
+        .then(response => {
 
             if(_.isObject(response)){
                 log.info(JSON.stringify(response, undefined, 4));
@@ -128,6 +84,7 @@ normalizedTasks.forEach(task => {
                 } else {
                     log.info(response);
                 }
+
             }
 
             log.info("Request Summary:");
@@ -135,8 +92,6 @@ normalizedTasks.forEach(task => {
 
         })
         .catch(err => {
-
-            console.log(err);
 
             spinner.stop();
 

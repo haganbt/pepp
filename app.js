@@ -31,6 +31,8 @@ normalizedTasks.forEach(task => {
     queue.queueRequest(reqObj, task)
         .then(response => {
 
+            console.log(JSON.stringify(task, undefined, 4));
+
             spinner.stop();
 
             //handle expected unresolved promises caused by recursion
@@ -52,17 +54,38 @@ normalizedTasks.forEach(task => {
         })
         .then(function([response, normalizedResponse]) {
 
-            if(reqObj.name.includes('baseline')) {
-                return [baseline.gen(response, reqObj), normalizedResponse];
-            } else {
-                return [format.jsonToCsv(response, task), normalizedResponse];
-            }
+            return new Promise((resolve)=> {
+                if (reqObj.name.includes('baseline')) {
+
+                    return baseline.gen(response, reqObj)
+                        .then(response => {
+                            return resolve([response, normalizedResponse])
+                        });
+
+                } else {
+
+                    return format.jsonToCsv(response, task)
+                        .then(response => {
+                            return resolve([response, normalizedResponse])
+                        });
+
+                }
+            });
 
         })
         .then(function([response, normalizedResponse]) {
 
-            // execute plugin
-            return plugins["example"](response, normalizedResponse);
+            if(_.has(task,'plugin')){
+
+                console.log("*** task has plugins ** ");
+
+                // execute plugin
+                return plugins["selfBaseline"](response, normalizedResponse, false);
+
+            } else {
+
+                return response;
+            }
 
         })
         .then(response => {

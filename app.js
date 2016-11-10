@@ -31,8 +31,6 @@ normalizedTasks.forEach(task => {
     queue.queueRequest(reqObj, task)
         .then(response => {
 
-            console.log(JSON.stringify(task, undefined, 4));
-
             spinner.stop();
 
             //handle expected unresolved promises caused by recursion
@@ -77,10 +75,11 @@ normalizedTasks.forEach(task => {
 
             if(_.has(task,'plugin')){
 
-                console.log("*** task has plugins ** ");
+                let pluginKey = Object.keys(task.plugin)[0];
+                let pluginValue = task.plugin[pluginKey]
 
                 // execute plugin
-                return plugins["selfBaseline"](response, normalizedResponse, false);
+                return plugins[pluginKey](response, normalizedResponse, pluginValue, log);
 
             } else {
 

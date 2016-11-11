@@ -78,8 +78,15 @@ normalizedTasks.forEach(task => {
                 let pluginKey = Object.keys(task.plugin)[0];
                 let pluginValue = task.plugin[pluginKey]
 
+                if(!plugins[pluginKey]){
+                    return Promise.reject("Plugin not found: " + pluginKey);
+                }
+
                 // execute plugin
-                return plugins[pluginKey](response, normalizedResponse, pluginValue, log);
+                return plugins[pluginKey](response, normalizedResponse, pluginValue, log, task)
+                    .catch(function(err){
+                        return Promise.reject(pluginKey + " plugin error: " + err);
+                    });
 
             } else {
 
@@ -117,11 +124,7 @@ normalizedTasks.forEach(task => {
 
             spinner.stop();
 
-            if(err.response.body){
-                log.error(err.response.body);
-            } else {
-                log.error(JSON.stringify(err, undefined, 4));
-            }
+            log.error(JSON.stringify(err, undefined, 4));
 
         });
 });

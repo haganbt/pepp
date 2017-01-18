@@ -1,13 +1,11 @@
 "use strict";
 
-let execution_group;
 if(process.argv.length > 2 && process.argv[2]) {
     process.env.NODE_ENV = process.argv[2];
-    execution_group = process.argv[3];
+    process.env.PEPP_GROUP = process.argv[3];
 }
 
 process.env.NODE_ENV = process.env.NODE_ENV || "demo";
-execution_group = execution_group || process.env.PEPP_GROUP;
 
 const _ = require('underscore');
 const figlet = require('figlet');
@@ -28,7 +26,7 @@ spinner.start();
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
-const normalizedTasks = _.compact(taskManager.loadConfigTasks(null, execution_group));
+const normalizedTasks = _.compact(taskManager.loadConfigTasks(null, process.env.PEPP_GROUP));
 
 if(normalizedTasks.length == 0) {
     log.info("No tasks found.");

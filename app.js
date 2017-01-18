@@ -1,4 +1,10 @@
 "use strict";
+
+if(process.argv.length > 2 && process.argv[2]) {
+    process.env.NODE_ENV = process.argv[2];
+    process.env.PEPP_GROUP = process.argv[3];
+}
+
 process.env.NODE_ENV = process.env.NODE_ENV || "demo";
 
 const _ = require('underscore');
@@ -20,10 +26,15 @@ spinner.start();
 log.info(figlet.textSync(process.env.NODE_ENV));
 console.log("\n\n");
 
-const normalizedTasks = taskManager.loadConfigTasks();
+const normalizedTasks = _.compact(taskManager.loadConfigTasks(null, process.env.PEPP_GROUP));
+
+if(normalizedTasks.length == 0) {
+    log.info("No tasks found.");
+    spinner.stop();
+    return;
+}
 
 normalizedTasks.forEach(task => {
-
     const reqObj = requestFactory(task);
 
     queue.queueRequest(reqObj, task)

@@ -300,6 +300,8 @@ Analysis Tags can be used anywhere a regular target would be used, with the exce
 
 ## Config File Selection
 
+### Config File Selection by Environment Variable
+
 To specify which config file to use, set the ```NODE_ENV``` environment variable:
 
 On a Mac:
@@ -312,6 +314,14 @@ NOTE: only specify the config file name. Omit the filetype extension, i.e. ```.j
 
 If ```NODE_ENV``` is not specified, the ```demo``` config file will be used i.e.load the ```/config/demo.js```
 config file.
+
+### Config File Selection by Commandline Argument
+
+Alternatively, the filename may be specified by the first commandline argument to the app:
+
+```
+node app.js myConfigFile
+```
 
 ### Config File Directory
 
@@ -340,6 +350,7 @@ Below is a summary of all supported config options.
 | ```id``` | merged task | A unique identifier for each merged task result set. Used to distinguish between results on output. |
 | ```only``` | task | Only execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
 | ```skip``` | task | Do not execute the specific task(s) with this flag set. Must evaluate to boolean truthy: ```true```, ```"true"```, ```1```, ```"yes"```  |
+| ```group``` | task | Assign task to the execution group specified. Groups can be selected at runtime via commandline argument or PEPP_GROUP |
 | ```start``` | global task | OPTIONAL. start time - unix timestamp. Defaults to now -30 days UTC |
 | ```target``` | freqDist task | PYLON analyze target parameter |
 | ```threshold``` | freqDist task | OPTIONAL. PYLON parameter to identify the threshold. Defaults to 200 of omitted |
@@ -468,6 +479,23 @@ module.exports = {
     ...
 ```
 
+### Execution Groups
+
+When the ```group``` property is assigned on a task, it defines all tasks labeled with the same group value as a set. These groups can be useful when your recipe file has multiple logical groups of tasks that are often run together. For example, all tasks associated with brand monitoring vs. those for content monitoring, or when running all tasks in your recipe would exceed your hourly analyze limit.
+
+At runtime, the group to be executed may be specified on the commandline:
+
+```
+node app.js myrecipe mygroup
+```
+
+or via the ```PEPP_GROUP``` environment variable:
+
+```
+export PEPP_GROUP=mygroup
+```
+
+The ```skip``` and ```only``` properties may also be used in conjunction with the execution group functionality. In the context of a single group, if a task is designated as ```only```, other tasks in the group without this flag will not be executed. When ```skip``` is used, the identified task will not be executed in the context of the group. NOTE: When no group is specified, the group context does not apply, and any task with ```only``` specified will be executed from the recipe.
 
 ## Index Credentials
 

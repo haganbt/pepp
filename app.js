@@ -2,7 +2,7 @@
 
 if(process.argv.length > 2 && process.argv[2]) {
     process.env.NODE_ENV = process.argv[2];
-    process.env.PEPP_GROUP = process.argv[3];
+    process.env.PEPP_GROUP = process.argv[3] || '';
 }
 
 process.env.NODE_ENV = process.env.NODE_ENV || "demo";

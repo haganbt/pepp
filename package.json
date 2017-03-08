@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node app.js",
+    "develop": "NODE_ENV=development node-dev --notify=false app.js",
     "test": "mocha --timeout 20000",
     "test:watch": "mocha -w --timeout 20000",
     "lint": "eslint ."
@@ -35,6 +36,7 @@
     "fs-extra": "0.26.5",
     "hashmap": "2.0.6",
     "moment": "2.10.6",
+    "node-dev": "^3.1.3",
     "node-uuid": "1.4.7",
     "promise-queue": "2.2.0",
     "request-debug": "0.2.0",

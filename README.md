@@ -747,6 +747,8 @@ With this in mind, it then becomes easy to create new custom Tableau workbooks s
 
 # Development
 
+```npm run develop```
+
 
 **Tests**
 

@@ -8,7 +8,7 @@ module.exports = {
         "log_level": "info", // warn, info, debug, trace
         "date_format": "YYYY-MM-DD HH:mm:ss",
         "api_resource": "analyze", // analyze, task
-        "task_uri": "https://api.datasift.com/v1.4/pylon/<SERVICE>/task",
+        "task_uri": "https://api.datasift.com/v1.4/pylon/linkedin/task",
         "analyze_uri": "https://api.datasift.com/v1.3/pylon/analyze"
     }
 };

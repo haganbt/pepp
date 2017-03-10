@@ -13,7 +13,6 @@ const requestStats = require("./lib/helpers/requestStats");
 const cacheHelper = require("./lib/helpers/cache");
 const format = require("./lib/format");
 const normalize = require("./lib/normalize");
-const baseline = require("./lib/baseline");
 const file = require("./lib/file");
 const requestFactory = require("./lib/requestFactory").requestFactory;
 const spinner = require("./lib/helpers/spinner");
@@ -44,40 +43,43 @@ normalizedTasks.forEach(task => {
     .then(response => {
       // Build a simple results object for plugins
       return new Promise(resolve => {
+
+        // Handle expected unresolved promises caused by recursion
+        // - merged queries
+        if (response === undefined || _.isEmpty(response)) {
+          return;
+        }
+
         return resolve([response, normalize.build(response)]);
       });
     })
     .then(function([response, normalizedResponse]) {
       return new Promise(resolve => {
-        if (reqObj.name.includes("baseline")) {
-          return baseline.gen(response, reqObj).then(response => {
-            return resolve([response, normalizedResponse]);
-          });
-        } else {
+
           return format.jsonToCsv(response, task).then(response => {
             return resolve([response, normalizedResponse]);
           });
-        }
       });
     })
     .then(function([response, normalizedResponse]) {
-      if (_.has(task, "plugin")) {
-        let pluginKey = Object.keys(task.plugin)[0];
-        let pluginValue = task.plugin[pluginKey];
 
-        if (!plugins[pluginKey]) {
-          return Promise.reject("Plugin not found: " + pluginKey);
-        }
-
-        // execute plugin
-        return plugins
-          [pluginKey](response, normalizedResponse, pluginValue, log, task)
-          .catch(function(err) {
-            return Promise.reject(pluginKey + " plugin error: " + err);
-          });
-      } else {
+      if (!task.plugin) {
         return response;
       }
+
+      let pluginKey = Object.keys(task.plugin)[0];
+      let pluginValue = task.plugin[pluginKey];
+
+      if (!plugins[pluginKey]) {
+        return Promise.reject("Plugin not found: " + pluginKey);
+      }
+
+      // execute plugin
+      return plugins
+        [pluginKey](response, normalizedResponse, pluginValue, log, task)
+        .catch(err => {
+          return Promise.reject(pluginKey + " plugin error: " + err);
+        });
     })
     .then(response => {
       return file.write(reqObj.name, response);

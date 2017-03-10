@@ -46,10 +46,8 @@ Features:
       - [Custom Nested Child Filter](#custom-nested-child-filter)
     - [Start/End Properties](#startend-properties)
   - [Index Credentials](#index-credentials)
-  - [Demographic Baselines](#demographic-baselines)
-    - [Baseline Calculations](#baseline-calculations)
-      - [Bar Chart](#bar-chart)
-      - [Bubble Chart](#bubble-chart)
+  - [Plugins - todo](#plugins---todo)
+    - [Merged Task Example](#merged-task-example)
   - [Tableau Workbook Generation](#tableau-workbook-generation)
     - [Custom Tableau Workbooks](#custom-tableau-workbooks)
 - [Development](#development)
@@ -528,172 +526,46 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
 ```
 
 
-## Demographic Baselines
+## Plugins - todo
 
-PEPP supports baseline and microtargeting use cases by automatically calculating 1 or more probability comparators against a baseline data set.
 
-NOTE: Currently, PEPP only supports age and gender targets for baseline comparisons. A baseline task can be created as follows:
-
-**1) Name the merged tasks**
- 
-The merged task name must include the string "baseline" to trigger the baseline calculation workflow:
+### Merged Task Example
 
 ```json
- "freqDist": [
-    {
-        "merged_baseline_example": [ // <-- name must include "baseline"
-            {
-                task 1...
-            },
-            {
-                task 2...
+{
+          target: "li.all.concepts.types",
+          threshold: 2,
+          plugin: {
+            baseline: null
+          }
+      }
+```
+
+
+```json
+ {
+        merged_example: [
+          {
+            plugin: {
+              baseline: {
+                foo: "bar"
+              }
             }
+          },
+          {
+            filter: 'li.content ANY "trump"',
+            id: "local",
+            target: "li.user.member.employer_industry_sectors",
+            threshold: 2
+          },
+          {
+            id: "global",
+            target: "li.user.member.employer_industry_sectors",
+            threshold: 2
+          }
         ]
-    }
-]    
+      }
 ```
-
-**2) Create age/gender tasks**
-
-Tasks can be age gender (or gender age, no difference) however all tasks must be identical i.e. if one task uses age and gender others should not use gender and age:
-
-```json
- "freqDist": [
-    {
-        "merged_baseline_example": [
-            {
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-            {
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-        ]
-    }
-]
-```
-
-**3) Add an ```id``` for each task**
-
-Each task must have a unique ```id``` key and value. The baseline tasks must have an ```id``` that contains the string "baseline" to declare which result set to compare to.
-Comparator tasks can have any ```id```. If the ```id``` is omitted, one will be generated:
-
-
-```json
- "freqDist": [
-    {
-        "merged_baseline_example": [
-            {
-                "id": "yogi", //                    <-- unique id
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-            {
-                "id": "baseline", //                <-- unique id
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-        ]
-    }
-]
-```
-
-**4) Define what you wish to baseline**
-
-Using either a ```filter``` and/or a different ```index```, define the tasks accordingly to compare data sets. 
-
-The below example uses a micro targeting approach to compare two products (defined using VEDO tags) within the default index, to the baseline index (note the different ```index``` parameter used to specify a different set of index credentials).
-
-```json
- "freqDist": [
-    {
-        "merged_baseline_example": [
-            {
-                "id": "yogi",
-                "filter": "interaction.tag_tree.brand == \"yogi\"", // <-- Yogi filter
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-            {
-                "id": "booboo",
-                "filter": "interaction.tag_tree.brand == \"booboo\"", // <-- Booboo filter
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-            {
-                "id": "baseline",
-                "index": "global" // <-- specify another index to query
-                "target": "fb.parent.author.age",
-                "threshold": 6,
-                "child": {
-                    "target": "fb.parent.author.gender",
-                    "threshold": 2
-                }
-            },
-        ]
-    }
-]
-```
-
-
-### Baseline Calculations
-
-When a baseline task is run, by default a CSV result set is generated with the following format:
-
-| id       | category | key    | total_unique_authors | unique_author | probability | index       | expected_baseline |
-|----------|----------|--------|----------------------|---------------|-------------|-------------|-------------------|
-| baseline | 25-34    | female | 916900               | 178200        | 0.194350529 | 1           | 178200            |
-| baseline | 25-34    | male   | 916900               | 81400         | 0.088777402 | 1           | 81400             |
-| yogi     | 25-34    | male   | 1197600              | 237600        | 0.198396794 | 2.234766831 | 106319.8168       |
-| yogi     | 25-34    | female | 1197600              | 159900        | 0.133517034 | 0.686990845 | 232754.1935       |
-| booboo   | 25-34    | male   | 1971700              | 453300        | 0.229903129 | 2.589658222 | 175042.4038       |
-| booboo   | 25-34    | female | 1971700              | 460900        | 0.233757671 | 1.202763236 | 383200.9379       |
-
-
-* **total_unique_authors**: the total number of unique authors for the id
-* **unique_author**: the unique author count for the specific ide, category and key combination
-* **probability**: unique_author / total_unique_authors
-* **index**: comparator probability / baseline probability
-* **expected baseline**: total_unique_authors * baseline probability
-
-With these results, it become simple to plot meaningful visualizations.
-
-#### Bar Chart
-
-Plotting ```unique_author``` (foreground) against ```expected_baseline``` (background):
-
-![Baseline Bar Chart](https://raw.githubusercontent.com/haganbt/pepp/master/docs/baseline-bar.png)
-
-#### Bubble Chart
-
-Plotting the ```index``` with a reference line of 1:
-
-![Baseline Bar Chart](https://raw.githubusercontent.com/haganbt/pepp/master/docs/baseline-bubble.png)
 
 
 ## Tableau Workbook Generation

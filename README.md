@@ -533,6 +533,57 @@ If an ```index``` key is set as part of a parent custom nested task, the child t
 
 ```json
 {
+      "totalAuthors": 11775900,
+      "totalInteractions": 275920400,
+      "data": {
+          "local,high-tech": {
+              "unique_authors": 6400,
+              "interactions": 22600
+          },
+          "local,finance": {
+              "unique_authors": 8900,
+              "interactions": 21100
+          },
+          "global,high-tech": {
+              "unique_authors": 6769500,
+              "interactions": 163586500
+          },
+          "global,finance": {
+              "unique_authors": 4991100,
+              "interactions": 112290200
+          }
+      },
+      "data_raw": {
+          "local": [
+              {
+                  "key": "high-tech",
+                  "interactions": 22600,
+                  "unique_authors": 6400
+              },
+              {
+                  "key": "finance",
+                  "interactions": 21100,
+                  "unique_authors": 8900
+              }
+          ],
+          "global": [
+              {
+                  "key": "high-tech",
+                  "interactions": 163586500,
+                  "unique_authors": 6769500
+              },
+              {
+                  "key": "finance",
+                  "interactions": 112290200,
+                  "unique_authors": 4991100
+              }
+          ]
+      }
+  }
+```
+
+```json
+{
           target: "li.all.concepts.types",
           threshold: 2,
           plugin: {

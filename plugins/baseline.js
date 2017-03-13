@@ -18,24 +18,6 @@ module.exports = function(
     log.info("----------------------------------------------------");
     log.info(JSON.stringify(task, undefined, 4));
 
-
-    // fraction = unique_authors / sum of unique_authors
-
-
-    for (let idx in n.data) {
-
-
-
-        console.log(idx);
-        console.log(n.data[idx]);
-      console.log("======");
-
-
-
-    }
-
-
-
     resolve(defaultResponse);
   });
 };

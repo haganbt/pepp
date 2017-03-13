@@ -75,8 +75,7 @@ normalizedTasks.forEach(task => {
       }
 
       // execute plugin
-      return plugins
-        [pluginKey](response, normalizedResponse, pluginValue, log, task)
+      return plugins[pluginKey](response, normalizedResponse, pluginValue, log, task)
         .catch(err => {
           return Promise.reject(pluginKey + " plugin error: " + err);
         });

@@ -41,7 +41,7 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-        it('native nested - 1 level', function() {
+        it('native nested - 2 level', function() {
 
             let config = [
                     {
@@ -108,7 +108,7 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-        it('native nested - 2 level', function() {
+        it.only('native nested - 3 level', function() {
 
             let config = [
                 {

@@ -1,3 +1,12 @@
+todo
+
+output data for all fields
+
+filter - ignore parent
+
+filter - override inheritance
+
+
 # PEPP - PYLON Exporter++
 
 <sub><sup>V2.2.9 [Changelog](https://github.com/haganbt/pepp/wiki/Changelog)</sup></sub>

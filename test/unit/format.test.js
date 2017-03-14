@@ -560,30 +560,7 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
-                    'yogi,25-34,female,2476400,2019500\n' +
-                    'yogi,25-34,male,1551000,1145000\n' +
-                    'yogi,35-44,female,2020200,1481400\n' +
-                    'yogi,35-44,male,1109800,843100\n' +
-                    'yogi,18-24,female,1577300,1186700\n' +
-                    'yogi,18-24,male,1020000,732900\n' +
-                    'yogi,45-54,female,1590200,1160600\n' +
-                    'yogi,45-54,male,797100,574300\n' +
-                    'yogi,55-64,female,1103100,798400\n' +
-                    'yogi,55-64,male,461900,342800\n' +
-                    'yogi,65+,female,704900,524800\n' +
-                    'yogi,65+,male,295900,215200\n' +
-                    'booboo,25-34,female,900,900\n' +
-                    'booboo,25-34,male,700,700\n' +
-                    'booboo,35-44,female,600,500\n' +
-                    'booboo,35-44,male,400,400\n' +
-                    'booboo,45-54,female,400,400\n' +
-                    'booboo,45-54,male,200,200\n' +
-                    'booboo,18-24,female,400,300\n' +
-                    'booboo,18-24,male,200,200\n' +
-                    'booboo,55-64,female,100,100\n' +
-                    'booboo,55-64,male,100,100\n' +
-                    'booboo,65+,female,100,100\n');
+                expect(result).to.eql('interactions,unique_authors\nyogi,25-34,4053400,female,2476400\nyogi,25-34,4053400,male,1551000\nyogi,35-44,3149000,female,2020200\nyogi,35-44,3149000,male,1109800\nyogi,18-24,2613800,female,1577300\nyogi,18-24,2613800,male,1020000\nyogi,45-54,2402200,female,1590200\nyogi,45-54,2402200,male,797100\nyogi,55-64,1575800,female,1103100\nyogi,55-64,1575800,male,461900\nyogi,65+,1009300,female,704900\nyogi,65+,1009300,male,295900\nbooboo,25-34,1700,female,900\nbooboo,25-34,1700,male,700\nbooboo,35-44,1000,female,600\nbooboo,35-44,1000,male,400\nbooboo,45-54,600,female,400\nbooboo,45-54,600,male,200\nbooboo,18-24,600,female,400\nbooboo,18-24,600,male,200\nbooboo,55-64,300,female,100\nbooboo,55-64,300,male,100\nbooboo,65+,200,female,100\n');
             });
         });
 

@@ -246,15 +246,7 @@ describe("Format - JSON to CSV", function(){
             return format.jsonToCsv(config).then(function(result){
 
                 expect(result).to.be.an('string');
-                expect(result).to.eql('key1,key2,key3,interactions,unique_authors\n' +
-                    'England,25-34,male,204200,116600\n' +
-                    'England,25-34,female,66400,52100\n' +
-                    'England,18-24,male,162000,90200\n' +
-                    'England,18-24,female,53600,41700\n' +
-                    'Texas,25-34,male,171600,85600\n' +
-                    'Texas,25-34,female,89200,71500\n' +
-                    'Texas,18-24,male,155900,65000\n' +
-                    'Texas,18-24,female,63200,48900\n');
+                expect(result).to.eql('interactions,unique_authors\nEngland,936900,25-34,271900,male,204200\nEngland,936900,25-34,271900,female,66400\nEngland,936900,18-24,216000,male,162000\nEngland,936900,18-24,216000,female,53600\nTexas,921500,25-34,261600,male,171600\nTexas,921500,25-34,261600,female,89200\nTexas,921500,18-24,219500,male,155900\nTexas,921500,18-24,219500,female,63200\n');
             });
         });
 

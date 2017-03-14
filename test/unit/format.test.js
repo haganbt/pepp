@@ -251,7 +251,7 @@ describe("Format - JSON to CSV", function(){
         });
 
 
-        it('native nested merged - 1 level', function() {
+        it.only('native nested merged - 1 level', function() {
 
             let config = [
                 {

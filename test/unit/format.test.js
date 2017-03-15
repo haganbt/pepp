@@ -1181,6 +1181,7 @@ describe("Format - JSON to CSV", function() {
   });
 
   describe("timeSeries", function() {
+
     it("Single Task", function() {
       let config = [
         {
@@ -1255,23 +1256,25 @@ describe("Format - JSON to CSV", function() {
   });
 
   describe("Hybrid", function() {
-    /*
-        "timeSeries": [
-            {
-                "interval": "month",
-                "then": {
-                    "type": "freqDist",
-                    "target": "fb.type",
-                    "threshold": 2,
-                    "then": {
-                        "target": "fb.parent.topics.name",
-                        "threshold": 2
-                    }
-                }
-            },
-         ]
-          */
+
     it("TimeSeries - nested custom freqDist - 2 levels", function() {
+
+       /*"timeSeries": [
+        {
+          "interval": "month",
+          "then": {
+            "type": "freqDist",
+            "target": "fb.type",
+            "threshold": 2,
+            "then": {
+              "target": "fb.parent.topics.name",
+              "threshold": 2
+            }
+          }
+        }
+       ]
+       */
+
       let config = [
         {
           "2016-04-01 00:00:00__like": [

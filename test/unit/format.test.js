@@ -39,7 +39,7 @@ describe.only("Format - JSON to CSV", function(){
         });
 
 
-        it('native nested - 2 level', function() {
+        it.only('native nested - 2 level', function() {
 
             let config = [
                     {
@@ -563,7 +563,7 @@ describe.only("Format - JSON to CSV", function(){
         });
 
 
-        it('native nested merged - 2 level', function() {
+        it.only('native nested merged - 2 level', function() {
 
             let config = [
                 {

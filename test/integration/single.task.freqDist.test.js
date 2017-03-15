@@ -20,7 +20,7 @@ const config = {
 };
 
 
-describe("Single task tests - freqDist", function(){
+describe.skip("Single task tests - freqDist", function(){
 
     it('freqDist', function() {
 

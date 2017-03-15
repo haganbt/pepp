@@ -13,7 +13,7 @@ const format = require("../../lib/format");
 describe("Format - JSON to CSV", function() {
   describe("freqDist", function() {
 
-    it.only("Single Task", function() {
+    it("Single Task", function() {
       let config = [
         { "key": "male", "interactions": 10100300, "unique_authors": 6022000 },
         { "key": "female", "interactions": 3271000, "unique_authors": 2674400 }
@@ -29,7 +29,7 @@ describe("Format - JSON to CSV", function() {
       });
     });
 
-    it.only("native nested - 2 level", function() {
+    it("native nested - 2 level", function() {
       let config = [
         {
           "key": "São Paulo",
@@ -85,7 +85,7 @@ describe("Format - JSON to CSV", function() {
       });
     });
 
-    it.only("native nested - 3 level", function() {
+    it("native nested - 3 level", function() {
       let config = [
         {
           "key": "England",
@@ -772,7 +772,7 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.a("string");
         expect(
           result
-        ).to.eql("interactions,unique_authors\nyogi,California,1247600,female,731400,25-34,199400\nyogi,California,1247600,female,731400,35-44,156900\nyogi,California,1247600,male,507400,25-34,162000\nyogi,California,1247600,male,507400,35-44,104500\nyogi,England,1070200,female,631700,25-34,170600\nyogi,England,1070200,female,631700,18-24,139100\nyogi,England,1070200,male,429100,25-34,132000\nyogi,England,1070200,male,429100,18-24,98100\nbooboo,California,1247600,female,731400,25-34,199400\nbooboo,California,1247600,female,731400,35-44,156900\nbooboo,California,1247600,male,507400,25-34,162000\nbooboo,California,1247600,male,507400,35-44,104500\nbooboo,England,1070200,female,631700,25-34,170600\nbooboo,England,1070200,female,631700,18-24,139100\nbooboo,England,1070200,male,429100,25-34,132000\nbooboo,England,1070200,male,429100,18-24,98100\n");
+        ).to.eql("key1,key2,key2_interactions,key2_unique_authors,key3,key3_interactions,key3_unique_authors,key4,interactions,unique_authors\nyogi,California,1247600,957000,female,731400,599200,25-34,199400,157000\nyogi,California,1247600,957000,female,731400,599200,35-44,156900,131800\nyogi,California,1247600,957000,male,507400,382200,25-34,162000,123400\nyogi,California,1247600,957000,male,507400,382200,35-44,104500,79500\nyogi,England,1070200,871300,female,631700,528300,25-34,170600,138000\nyogi,England,1070200,871300,female,631700,528300,18-24,139100,117600\nyogi,England,1070200,871300,male,429100,327500,25-34,132000,105000\nyogi,England,1070200,871300,male,429100,327500,18-24,98100,78300\nbooboo,California,1247600,957000,female,731400,599200,25-34,199400,157000\nbooboo,California,1247600,957000,female,731400,599200,35-44,156900,131800\nbooboo,California,1247600,957000,male,507400,382200,25-34,162000,123400\nbooboo,California,1247600,957000,male,507400,382200,35-44,104500,79500\nbooboo,England,1070200,871300,female,631700,528300,25-34,170600,138000\nbooboo,England,1070200,871300,female,631700,528300,18-24,139100,117600\nbooboo,England,1070200,871300,male,429100,327500,25-34,132000,105000\nbooboo,England,1070200,871300,male,429100,327500,18-24,98100,78300\n");
       });
     });
 
@@ -936,7 +936,18 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("key1,key2,key3,interactions,unique_authors\n" + "youtube.com,25-34,male,5800,4900\n" + "youtube.com,25-34,female,1300,1000\n" + "youtube.com,18-24,male,4600,3700\n" + "youtube.com,18-24,female,1000,700\n" + "youtube.com,35-44,male,1800,1500\n" + "youtube.com,35-44,female,600,500\n" + "youtube.com,45-54,male,400,300\n" + "youtube.com,45-54,female,300,300\n" + "youtube.com,65+,female,100,100\n" + "youtube.com,65+,male,100,100\n");
+        ).to.eql("key1,key1_interactions,key1_unique_authors,key2,key2_interactions," +
+          "key2_unique_authors,key3,interactions,unique_authors\n" +
+          "youtube.com,35300,31100,25-34,7200,6100,male,5800,4900\n" +
+          "youtube.com,35300,31100,25-34,7200,6100,female,1300,1000\n" +
+          "youtube.com,35300,31100,18-24,5600,4500,male,4600,3700\n" +
+          "youtube.com,35300,31100,18-24,5600,4500,female,1000,700\n" +
+          "youtube.com,35300,31100,35-44,2500,2100,male,1800,1500\n" +
+          "youtube.com,35300,31100,35-44,2500,2100,female,600,500\n" +
+          "youtube.com,35300,31100,45-54,800,600,male,400,300\n" +
+          "youtube.com,35300,31100,45-54,800,600,female,300,300\n" +
+          "youtube.com,35300,31100,65+,300,200,female,100,100\n" +
+          "youtube.com,35300,31100,65+,300,200,male,100,100\n");
       });
     });
 
@@ -1039,7 +1050,19 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("interactions,unique_authors\nIndia,35-44,Captain America,48200\nIndia,35-44,Civil War,5400\nIndia,45-54,Captain America,5200\nIndia,45-54,India,2600\nIndia,65+,Captain America,8000\nIndia,65+,Civil War,400\nIndia,55-64,Captain America,900\nIndia,55-64,Civil war,100\nUnited States,25-34,Captain America,2626700\nUnited States,25-34,Captain America: Civil ͏Wa͏r,593400\nUnited States,35-44,Captain America,2077200\nUnited States,35-44,Captain America: Civil ͏Wa͏r,383400\n");
+        ).to.eql("key1,key2,key3,interactions,unique_authors\n" +
+          "India,35-44,Captain America,48200,44800\n" +
+          "India,35-44,Civil War,5400,5100\n" +
+          "India,45-54,Captain America,5200,4900\n" +
+          "India,45-54,India,2600,1400\n" +
+          "India,65+,Captain America,8000,7200\n" +
+          "India,65+,Civil War,400,300\n" +
+          "India,55-64,Captain America,900,900\n" +
+          "India,55-64,Civil war,100,100\n" +
+          "United States,25-34,Captain America,2626700,1970500\n" +
+          "United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n" +
+          "United States,35-44,Captain America,2077200,1781300\n" +
+          "United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n");
       });
     });
 
@@ -1077,7 +1100,11 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("interactions,unique_authors\nMedia/News/Publishing,http://bit.ly/1rFFkPW,17800\nMedia/News/Publishing,http://bit.ly/1olFbiq,16700\nNews/Media,https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/,10800\nNews/Media,https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/,6200\n");
+        ).to.eql("key1,key2,interactions,unique_authors\n" +
+          "Media/News/Publishing,http://bit.ly/1rFFkPW,17800,17400\n" +
+          "Media/News/Publishing,http://bit.ly/1olFbiq,16700,13100\n" +
+          "News/Media,https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/,10800,10400\n" +
+          "News/Media,https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/,6200,6000\n");
       });
     });
 
@@ -1149,7 +1176,27 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("interactions,unique_authors\nUnited States,25-34,BMW,55300\nUnited States,25-34,Honda Civic,23900\nUnited States,35-44,BMW,34300\nUnited States,35-44,Cars,14500\nUnited States,18-24,BMW,33400\nUnited States,18-24,Honda Civic,18100\nUnited States,45-54,BMW,21000\nUnited States,45-54,Cars,9200\nUnited States,55-64,BMW,9400\nUnited States,55-64,Cars,4800\nUnited States,65+,BMW,4500\nUnited States,65+,Cars,2500\nTurkey,25-34,BMW,26700\nTurkey,25-34,Honda Civic,3800\nTurkey,18-24,BMW,24700\nTurkey,18-24,Honda,3600\nTurkey,35-44,BMW,7800\nTurkey,35-44,Honda Civic,1100\nTurkey,45-54,BMW,2200\nTurkey,45-54,Audi USA,200\n");
+        ).to.eql("key1,key2,key3,interactions,unique_authors\n" +
+          "United States,25-34,BMW,55300,51400\n" +
+          "United States,25-34,Honda Civic,23900,20600\n" +
+          "United States,35-44,BMW,34300,29000\n" +
+          "United States,35-44,Cars,14500,12600\n" +
+          "United States,18-24,BMW,33400,29000\n" +
+          "United States,18-24,Honda Civic,18100,16400\n" +
+          "United States,45-54,BMW,21000,19000\n" +
+          "United States,45-54,Cars,9200,8600\n" +
+          "United States,55-64,BMW,9400,8300\n" +
+          "United States,55-64,Cars,4800,4400\n" +
+          "United States,65+,BMW,4500,3900\n" +
+          "United States,65+,Cars,2500,2100\n" +
+          "Turkey,25-34,BMW,26700,23700\n" +
+          "Turkey,25-34,Honda Civic,3800,3600\n" +
+          "Turkey,18-24,BMW,24700,22900\n" +
+          "Turkey,18-24,Honda,3600,3500\n" +
+          "Turkey,35-44,BMW,7800,6700\n" +
+          "Turkey,35-44,Honda Civic,1100,1000\n" +
+          "Turkey,45-54,BMW,2200,2000\n" +
+          "Turkey,45-54,Audi USA,200,200\n");
       });
     });
 
@@ -1175,9 +1222,16 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("interactions,unique_authors\nTurkey,sahibinden.com,Cars,like,1500\nTurkey,sahibinden.com,Cars,comment,100\nUnited States,youtu.be,Cars,like,1100\nUnited States,youtu.be,Cars,comment,600\nUnited States,youtube.com,Cars,like,1200\nUnited States,youtube.com,Cars,comment,500\n");
+        ).to.eql("key1,key2,key3,key4,interactions,unique_authors\n" +
+          "Turkey,sahibinden.com,Cars,like,1500,1500\n" +
+          "Turkey,sahibinden.com,Cars,comment,100,100\n" +
+          "United States,youtu.be,Cars,like,1100,1100\n" +
+          "United States,youtu.be,Cars,comment,600,400\n" +
+          "United States,youtube.com,Cars,like,1200,1200\n" +
+          "United States,youtube.com,Cars,comment,500,400\n");
       });
     });
+
   });
 
   describe("timeSeries", function() {
@@ -1253,6 +1307,7 @@ describe("Format - JSON to CSV", function() {
         ).to.eql("key1,interactions,unique_authors\n" + "2016-03-07 00:00:00,490600,432800\n" + "2016-03-08 00:00:00,526300,447700\n" + "2016-03-09 00:00:00,666400,596000\n" + "2016-03-10 00:00:00,724600,599100\n" + "2016-03-11 00:00:00,683900,599100\n" + "2016-03-12 00:00:00,515200,438500\n" + "2016-03-13 00:00:00,690700,608900\n" + "2016-03-14 00:00:00,611200,505000\n" + "2016-03-15 00:00:00,410900,355200\n" + "2016-03-16 00:00:00,457700,383200\n" + "2016-03-17 00:00:00,414500,367900\n" + "2016-03-18 00:00:00,398700,352800\n");
       });
     });
+
   });
 
   describe("Hybrid", function() {
@@ -1327,9 +1382,11 @@ describe("Format - JSON to CSV", function() {
         ).to.eql("key1,key2,key3,interactions,unique_authors\n" + "2016-04-01 00:00:00,like,BMW,4518700,3410200\n" + "2016-04-01 00:00:00,like,Ford Mustang,803100,571800\n" + "2016-04-01 00:00:00,reshare,BMW,1327300,1230900\n" + "2016-04-01 00:00:00,reshare,Pará,272100,258100\n" + "2016-03-01 00:00:00,like,BMW,4518700,3410200\n" + "2016-03-01 00:00:00,like,Ford Mustang,803100,571800\n" + "2016-03-01 00:00:00,reshare,BMW,1327300,1230900\n" + "2016-03-01 00:00:00,reshare,Pará,272100,258100\n");
       });
     });
+
   });
 
   describe("Escaping Characters", function() {
+
     it("commas and pipes in strings", function() {
       let config = [
         { "key": "m|ale", "interactions": 10100300, "unique_authors": 6022000 },
@@ -1340,8 +1397,11 @@ describe("Format - JSON to CSV", function() {
         expect(result).to.be.an("string");
         expect(
           result
-        ).to.eql("key1,interactions,unique_authors\n" + "m|ale,10100300,6022000\n" + "\"fem,ale\",3271000,2674400\n");
+        ).to.eql('key1,interactions,unique_authors,key2\n' +
+          'm|ale,10100300,6022000\n' +
+          '"fem,ale",3271000,2674400\n');
       });
     });
+
   });
 });

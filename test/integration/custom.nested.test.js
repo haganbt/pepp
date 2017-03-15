@@ -11,7 +11,7 @@ const queue = require('../../lib/queue');
 const taskProcessor = require('../../lib/taskManager');
 const taskHelper = require('../../lib/helpers/task');
 
-describe("Custom Nested", function(){
+describe.skip("Custom Nested", function(){
 
     it('2 level depth', function() {
 

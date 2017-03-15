@@ -20,7 +20,7 @@ const config = {
 };
 
 
-describe("Single task tests - timeSeries", function(){
+describe.skip("Single task tests - timeSeries", function(){
 
     it('timeSeries', function() {
 

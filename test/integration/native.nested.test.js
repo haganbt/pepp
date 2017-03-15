@@ -28,7 +28,7 @@ const config = {
 };
 
 
-describe("Native Nested", function(){
+describe.skip("Native Nested", function(){
 
     it('3 level nested', function() {
 

@@ -12,7 +12,7 @@ const taskProcessor = require('../../lib/taskManager');
 const taskHelper = require('../../lib/helpers/task');
 
 
-describe("Merged Custom Nested", function(){
+describe.skip("Merged Custom Nested", function(){
 
     it('2 level nested', function() {
 

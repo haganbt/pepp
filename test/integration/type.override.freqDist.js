@@ -10,7 +10,7 @@ chai.use(chaiAsPromised);
 const queue = require('../../lib/queue');
 const taskProcessor = require('../../lib/taskManager');
 
-describe("Type Override - freqDist to timeSeries", function(){
+describe.skip("Type Override - freqDist to timeSeries", function(){
 
     it('2 level depth', function() {
 

@@ -1,7 +1,5 @@
 todo
 
-output data for all fields
-
 filter - ignore parent
 
 filter - override inheritance

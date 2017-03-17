@@ -404,7 +404,7 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.skip("merged - native nested - 1 level", () => {
+    it("merged - native nested - 1 level", () => {
 
       // freqDist: [
       //   {
@@ -562,18 +562,19 @@ describe.only("Format - JSON to CSV", () => {
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
-        expect(result).to.eql('key1,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,united states,95200,24200,male,3500,2100\n' +
-          'yogi,united states,95200,24200,female,800,600\n' +
-          'yogi,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,united states,253027400,16234000,male,33977600,7468200\n' +
-          'booboo,united states,253027400,16234000,female,11224900,4009900\n' +
-          'booboo,united kingdom,105228300,3980000,male,9474400,1801300\n' +
-          'booboo,united kingdom,105228300,3980000,female,3214900,1046400\n');
+        expect(result).to.eql(
+          'key1,key1_interactions,key1_unique_authors,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
+          'yogi,188800,56800,united states,95200,24200,male,3500,2100\n' +
+          'yogi,188800,56800,united states,95200,24200,female,800,600\n' +
+          'yogi,188800,56800,united kingdom,8800,3500,male,400,300\n' +
+          'booboo,1011538800,50844500,united states,253027400,16234000,male,33977600,7468200\n' +
+          'booboo,1011538800,50844500,united states,253027400,16234000,female,11224900,4009900\n' +
+          'booboo,1011538800,50844500,united kingdom,105228300,3980000,male,9474400,1801300\n' +
+          'booboo,1011538800,50844500,united kingdom,105228300,3980000,female,3214900,1046400\n');
       });
     });
 
-    it.skip("merged - native nested - 2 level", () => {
+    it("merged - native nested - 2 level", () => {
 
       // freqDist: [
       //   {
@@ -743,19 +744,20 @@ describe.only("Format - JSON to CSV", () => {
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.a("string");
-        expect(result).to.eql('key1,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,united states,95200,24200,male,3500,2100\n' +
-          'yogi,united states,95200,24200,female,800,600\n' +
-          'yogi,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,united states,252975600,16234000,male,33969000,7468200\n' +
-          'booboo,united states,252975600,16234000,female,11222500,4009900\n' +
-          'booboo,united kingdom,105211400,3980000,male,9472500,1801300\n' +
-          'booboo,united kingdom,105211400,3980000,female,3214500,1046400\n'
+        expect(result).to.eql(
+          'key1,key1_interactions,key1_unique_authors,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
+          'yogi,188800,56800,united states,95200,24200,male,3500,2100\n' +
+          'yogi,188800,56800,united states,95200,24200,female,800,600\n' +
+          'yogi,188800,56800,united kingdom,8800,3500,male,400,300\n' +
+          'booboo,1011416400,50844500,united states,252975600,16234000,male,33969000,7468200\n' +
+          'booboo,1011416400,50844500,united states,252975600,16234000,female,11222500,4009900\n' +
+          'booboo,1011416400,50844500,united kingdom,105211400,3980000,male,9472500,1801300\n' +
+          'booboo,1011416400,50844500,united kingdom,105211400,3980000,female,3214500,1046400\n'
         );
       });
     });
 
-    it.skip("merged - native nested - 2 level - empty result sets", () => {
+    it("merged - native nested - 2 level - empty result sets", () => {
       // note empty results - "key": "united kingdom",
       let config = [
         {
@@ -877,206 +879,196 @@ describe.only("Format - JSON to CSV", () => {
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          'key1,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,united states,95200,24200,male,3500,2100\n' +
-          'yogi,united states,95200,24200,female,800,600\n' +
-          'yogi,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,united states,252975600,16234000,male,33969000,7468200\n' +
-          'booboo,united states,252975600,16234000,female,11222500,4009900\n'
+          'key1,key1_interactions,key1_unique_authors,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
+          'yogi,188800,56800,united states,95200,24200,male,3500,2100\n' +
+          'yogi,188800,56800,united states,95200,24200,female,800,600\n' +
+          'yogi,188800,56800,united kingdom,8800,3500,male,400,300\n' +
+          'booboo,1011416400,50844500,united states,252975600,16234000,male,33969000,7468200\n' +
+          'booboo,1011416400,50844500,united states,252975600,16234000,female,11222500,4009900\n'
         );
       });
     });
 
-    it.skip("merged - custom nested - 1 level", () => {
+    it("merged - custom nested - 1 level", () => {
+
+      // freqDist: [
+      //   {
+      //     "foo": [
+      //       {
+      //         id: "yogi",
+      //         filter: 'li.content ANY "trump"',
+      //         target: "li.user.member.country",
+      //         threshold: 2,
+      //         then: {
+      //           target: "li.all.articles.author.member.gender",
+      //           threshold: 2
+      //         }
+      //       },
+      //       {
+      //         id: "booboo",
+      //         target: "li.user.member.country",
+      //         threshold: 2,
+      //         then: {
+      //           target: "li.all.articles.author.member.gender",
+      //           threshold: 2
+      //         }
+      //       }
+      //     ]
+      //   }
+      // ]
+
       let config = [
-        {
-          "yogi__united states": {
-            "interactions": 95200,
-            "unique_authors": 24200,
-            "analysis": {
-              "analysis_type": "freqDist",
-              "parameters": {
-                "target": "li.all.articles.author.member.gender",
-                "threshold": 2
-              },
-              "results": [
-                {
-                  "key": "male",
-                  "interactions": 3500,
-                  "unique_authors": 2100
+          {
+            "yogi__united states": {
+              "interactions": 94700,
+              "unique_authors": 24100,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.all.articles.author.member.gender",
+                  "threshold": 2
                 },
-                {
-                  "key": "female",
-                  "interactions": 800,
-                  "unique_authors": 600
-                }
-              ],
-              "redacted": false
-            }
-          },
-          "yogi__united kingdom": {
-            "interactions": 8800,
-            "unique_authors": 3500,
-            "analysis": {
-              "analysis_type": "freqDist",
-              "parameters": {
-                "target": "li.all.articles.author.member.gender",
-                "threshold": 2
-              },
-              "results": [
-                {
-                  "key": "male",
-                  "interactions": 400,
-                  "unique_authors": 300
-                }
-              ],
-              "redacted": false
-            }
-          },
-          "booboo__united states": {
-            "interactions": 252919500,
-            "unique_authors": 16234000,
-            "analysis": {
-              "analysis_type": "freqDist",
-              "parameters": {
-                "target": "li.all.articles.author.member.gender",
-                "threshold": 2
-              },
-              "results": [
-                {
-                  "key": "male",
-                  "interactions": 33960000,
-                  "unique_authors": 7468200
+                "results": [
+                  {
+                    "key": "male",
+                    "interactions": 3400,
+                    "unique_authors": 2100
+                  },
+                  {
+                    "key": "female",
+                    "interactions": 800,
+                    "unique_authors": 600
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "yogi__united kingdom": {
+              "interactions": 8700,
+              "unique_authors": 3500,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.all.articles.author.member.gender",
+                  "threshold": 2
                 },
-                {
-                  "key": "female",
-                  "interactions": 11219700,
-                  "unique_authors": 4009900
-                }
-              ],
-              "redacted": false
-            }
-          },
-          "booboo__united kingdom": {
-            "interactions": 105193400,
-            "unique_authors": 3984500,
-            "analysis": {
-              "analysis_type": "freqDist",
-              "parameters": {
-                "target": "li.all.articles.author.member.gender",
-                "threshold": 2
-              },
-              "results": [
-                {
-                  "key": "male",
-                  "interactions": 9470600,
-                  "unique_authors": 1801300
+                "results": [
+                  {
+                    "key": "male",
+                    "interactions": 400,
+                    "unique_authors": 300
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo__united states": {
+              "interactions": 252104600,
+              "unique_authors": 16171700,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.all.articles.author.member.gender",
+                  "threshold": 2
                 },
-                {
-                  "key": "female",
-                  "interactions": 3213900,
-                  "unique_authors": 1046400
-                }
-              ],
-              "redacted": false
+                "results": [
+                  {
+                    "key": "male",
+                    "interactions": 33821200,
+                    "unique_authors": 7461500
+                  },
+                  {
+                    "key": "female",
+                    "interactions": 11180500,
+                    "unique_authors": 4007300
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo__united kingdom": {
+              "interactions": 104879600,
+              "unique_authors": 3975500,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.all.articles.author.member.gender",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "male",
+                    "interactions": 9433500,
+                    "unique_authors": 1793500
+                  },
+                  {
+                    "key": "female",
+                    "interactions": 3202600,
+                    "unique_authors": 1045300
+                  }
+                ],
+                "redacted": false
+              }
             }
           }
-        }
-      ];
+        ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
           'key1,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,united states,95200,24200,male,3500,2100\n' +
-          'yogi,united states,95200,24200,female,800,600\n' +
-          'yogi,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,united states,252919500,16234000,male,33960000,7468200\n' +
-          'booboo,united states,252919500,16234000,female,11219700,4009900\n' +
-          'booboo,united kingdom,105193400,3984500,male,9470600,1801300\n' +
-          'booboo,united kingdom,105193400,3984500,female,3213900,1046400\n'
+          'yogi,united states,94700,24100,male,3400,2100\n' +
+          'yogi,united states,94700,24100,female,800,600\n' +
+          'yogi,united kingdom,8700,3500,male,400,300\n' +
+          'booboo,united states,252104600,16171700,male,33821200,7461500\n' +
+          'booboo,united states,252104600,16171700,female,11180500,4007300\n' +
+          'booboo,united kingdom,104879600,3975500,male,9433500,1793500\n' +
+          'booboo,united kingdom,104879600,3975500,female,3202600,1045300\n'
         );
       });
     });
 
-    it.skip("merged - custom nested - 2 level", () => {
-      let config = [
-        {
-          "India__35-44": [
-            {
-              key: "Captain America",
-              interactions: 48200,
-              unique_authors: 44800
-            },
-            { key: "Civil War", interactions: 5400, unique_authors: 5100 }
-          ],
-          "India__45-54": [
-            {
-              key: "Captain America",
-              interactions: 5200,
-              unique_authors: 4900
-            },
-            { key: "India", interactions: 2600, unique_authors: 1400 }
-          ],
-          "India__65+": [
-            {
-              key: "Captain America",
-              interactions: 8000,
-              unique_authors: 7200
-            },
-            { key: "Civil War", interactions: 400, unique_authors: 300 }
-          ],
-          "India__55-64": [
-            {
-              key: "Captain America",
-              interactions: 900,
-              unique_authors: 900
-            },
-            { key: "Civil war", interactions: 100, unique_authors: 100 }
-          ],
-          "United States__25-34": [
-            {
-              key: "Captain America",
-              interactions: 2626700,
-              unique_authors: 1970500
-            },
-            {
-              key: "Captain America: Civil ͏Wa͏r",
-              interactions: 593400,
-              unique_authors: 499800
-            }
-          ],
-          "United States__35-44": [
-            {
-              key: "Captain America",
-              interactions: 2077200,
-              unique_authors: 1781300
-            },
-            {
-              key: "Captain America: Civil ͏Wa͏r",
-              interactions: 383400,
-              unique_authors: 340100
-            }
-          ]
-        }
-      ];
+    it("merged - custom nested - 2 level", () => {
+      let config =  {
+        freqDist: [
+          {
+            "foo": [
+              {
+                id: "yogi",
+                filter: 'li.content ANY "trump"',
+                target: "li.user.member.country",
+                threshold: 2,
+                then: {
+                  target: "li.all.articles.author.member.gender",
+                  threshold: 2,
+                  then: {
+                    target: "li.user.member.employer_industry_sectors",
+                    threshold: 2
+                  }
+                }
+              },
+              {
+                id: "booboo",
+                target: "li.user.member.country",
+                threshold: 2,
+                then: {
+                  target: "li.all.articles.author.member.gender",
+                  threshold: 2,
+                  then: {
+                    target: "li.user.member.employer_industry_sectors",
+                    threshold: 2
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      };
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,key2,key3,interactions,unique_authors\n" +
-            "India,35-44,Captain America,48200,44800\n" +
-            "India,35-44,Civil War,5400,5100\n" +
-            "India,45-54,Captain America,5200,4900\n" +
-            "India,45-54,India,2600,1400\n" +
-            "India,65+,Captain America,8000,7200\n" +
-            "India,65+,Civil War,400,300\n" +
-            "India,55-64,Captain America,900,900\n" +
-            "India,55-64,Civil war,100,100\n" +
-            "United States,25-34,Captain America,2626700,1970500\n" +
-            "United States,25-34,Captain America: Civil ͏Wa͏r,593400,499800\n" +
-            "United States,35-44,Captain America,2077200,1781300\n" +
-            "United States,35-44,Captain America: Civil ͏Wa͏r,383400,340100\n"
+          'foo'
         );
       });
     });

@@ -575,9 +575,7 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.skip("merged - native nested - 2 level", () => {
-
-      // todo - run this
+    it("merged - native nested - 2 level", () => {
 
       // freqDist: [
       //   {
@@ -613,25 +611,321 @@ describe.only("Format - JSON to CSV", () => {
       //   }
       // ]
 
-      let config = [];
+      let config = [
+          {
+            "yogi": {
+              "interactions": 306800,
+              "unique_authors": 112600,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.country",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "united states",
+                    "interactions": 142900,
+                    "unique_authors": 47600,
+                    "child": {
+                      "analysis_type": "freqDist",
+                      "parameters": {
+                        "target": "li.all.articles.author.member.gender",
+                        "threshold": 2
+                      },
+                      "results": [
+                        {
+                          "key": "male",
+                          "interactions": 4900,
+                          "unique_authors": 3300,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 1700,
+                                "unique_authors": 1400
+                              },
+                              {
+                                "key": "55+",
+                                "interactions": 1400,
+                                "unique_authors": 1000
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        },
+                        {
+                          "key": "female",
+                          "interactions": 1100,
+                          "unique_authors": 900,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 400,
+                                "unique_authors": 300
+                              },
+                              {
+                                "key": "25-34",
+                                "interactions": 200,
+                                "unique_authors": 200
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        }
+                      ],
+                      "redacted": false
+                    }
+                  },
+                  {
+                    "key": "united kingdom",
+                    "interactions": 18300,
+                    "unique_authors": 8600,
+                    "child": {
+                      "analysis_type": "freqDist",
+                      "parameters": {
+                        "target": "li.all.articles.author.member.gender",
+                        "threshold": 2
+                      },
+                      "results": [
+                        {
+                          "key": "male",
+                          "interactions": 600,
+                          "unique_authors": 500,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 300,
+                                "unique_authors": 200
+                              },
+                              {
+                                "key": "55+",
+                                "interactions": 100,
+                                "unique_authors": 100
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        },
+                        {
+                          "key": "female",
+                          "interactions": 100,
+                          "unique_authors": 100,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [],
+                            "redacted": false
+                          }
+                        }
+                      ],
+                      "redacted": false
+                    }
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo": {
+              "interactions": 985526400,
+              "unique_authors": 50740500,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.country",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "united states",
+                    "interactions": 243311000,
+                    "unique_authors": 15517900,
+                    "child": {
+                      "analysis_type": "freqDist",
+                      "parameters": {
+                        "target": "li.all.articles.author.member.gender",
+                        "threshold": 2
+                      },
+                      "results": [
+                        {
+                          "key": "male",
+                          "interactions": 31642600,
+                          "unique_authors": 7159000,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 12671300,
+                                "unique_authors": 4057000
+                              },
+                              {
+                                "key": "unknown",
+                                "interactions": 8406800,
+                                "unique_authors": 3014300
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        },
+                        {
+                          "key": "female",
+                          "interactions": 10751400,
+                          "unique_authors": 3911300,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 3532600,
+                                "unique_authors": 1690100
+                              },
+                              {
+                                "key": "unknown",
+                                "interactions": 2831000,
+                                "unique_authors": 1369100
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        }
+                      ],
+                      "redacted": false
+                    }
+                  },
+                  {
+                    "key": "united kingdom",
+                    "interactions": 101058800,
+                    "unique_authors": 3887200,
+                    "child": {
+                      "analysis_type": "freqDist",
+                      "parameters": {
+                        "target": "li.all.articles.author.member.gender",
+                        "threshold": 2
+                      },
+                      "results": [
+                        {
+                          "key": "male",
+                          "interactions": 8869200,
+                          "unique_authors": 1690400,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 3856700,
+                                "unique_authors": 1043000
+                              },
+                              {
+                                "key": "unknown",
+                                "interactions": 2171800,
+                                "unique_authors": 756800
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        },
+                        {
+                          "key": "female",
+                          "interactions": 3083100,
+                          "unique_authors": 1031900,
+                          "child": {
+                            "analysis_type": "freqDist",
+                            "parameters": {
+                              "target": "li.all.articles.author.member.age",
+                              "threshold": 2
+                            },
+                            "results": [
+                              {
+                                "key": "35-54",
+                                "interactions": 1114100,
+                                "unique_authors": 465300
+                              },
+                              {
+                                "key": "25-34",
+                                "interactions": 702100,
+                                "unique_authors": 322700
+                              }
+                            ],
+                            "redacted": false
+                          }
+                        }
+                      ],
+                      "redacted": false
+                    }
+                  }
+                ],
+                "redacted": false
+              }
+            }
+          }
+        ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.a("string");
         expect(result).to.eql(
-          'todo'
+          'key1,key1_interactions,key1_unique_authors,' +
+          'key2,key2_interactions,key2_unique_authors,' +
+          'key3,key3_interactions,key3_unique_authors,' +
+          'key4,interactions,unique_authors\n' +
+          'yogi,306800,112600,united states,142900,47600,male,4900,3300,35-54,1700,1400\n' +
+          'yogi,306800,112600,united states,142900,47600,male,4900,3300,55+,1400,1000\n' +
+          'yogi,306800,112600,united states,142900,47600,female,1100,900,35-54,400,300\n' +
+          'yogi,306800,112600,united states,142900,47600,female,1100,900,25-34,200,200\n' +
+          'yogi,306800,112600,united kingdom,18300,8600,male,600,500,35-54,300,200\n' +
+          'yogi,306800,112600,united kingdom,18300,8600,male,600,500,55+,100,100\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,male,31642600,7159000,35-54,12671300,4057000\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,male,31642600,7159000,unknown,8406800,3014300\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,female,10751400,3911300,35-54,3532600,1690100\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,female,10751400,3911300,unknown,2831000,1369100\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,male,8869200,1690400,35-54,3856700,1043000\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,male,8869200,1690400,unknown,2171800,756800\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,female,3083100,1031900,35-54,1114100,465300\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,female,3083100,1031900,25-34,702100,322700\n'
         );
       });
     });
 
-    it.skip("merged - native nested - 2 level - empty result sets", () => {
-      // note empty results - "key": "united kingdom",
-      // todo - redo as per above
+    it("merged - native nested - 2 level - empty result sets", () => {
+      // note empty results for booboo, uk, female, age
 
       let config = [
         {
           "yogi": {
-            "interactions": 188800,
-            "unique_authors": 56800,
+            "interactions": 306800,
+            "unique_authors": 112600,
             "analysis": {
               "analysis_type": "freqDist",
               "parameters": {
@@ -641,8 +935,8 @@ describe.only("Format - JSON to CSV", () => {
               "results": [
                 {
                   "key": "united states",
-                  "interactions": 95200,
-                  "unique_authors": 24200,
+                  "interactions": 142900,
+                  "unique_authors": 47600,
                   "child": {
                     "analysis_type": "freqDist",
                     "parameters": {
@@ -652,13 +946,53 @@ describe.only("Format - JSON to CSV", () => {
                     "results": [
                       {
                         "key": "male",
-                        "interactions": 3500,
-                        "unique_authors": 2100
+                        "interactions": 4900,
+                        "unique_authors": 3300,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 1700,
+                              "unique_authors": 1400
+                            },
+                            {
+                              "key": "55+",
+                              "interactions": 1400,
+                              "unique_authors": 1000
+                            }
+                          ],
+                          "redacted": false
+                        }
                       },
                       {
                         "key": "female",
-                        "interactions": 800,
-                        "unique_authors": 600
+                        "interactions": 1100,
+                        "unique_authors": 900,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 400,
+                              "unique_authors": 300
+                            },
+                            {
+                              "key": "25-34",
+                              "interactions": 200,
+                              "unique_authors": 200
+                            }
+                          ],
+                          "redacted": false
+                        }
                       }
                     ],
                     "redacted": false
@@ -666,8 +1000,8 @@ describe.only("Format - JSON to CSV", () => {
                 },
                 {
                   "key": "united kingdom",
-                  "interactions": 8800,
-                  "unique_authors": 3500,
+                  "interactions": 18300,
+                  "unique_authors": 8600,
                   "child": {
                     "analysis_type": "freqDist",
                     "parameters": {
@@ -677,8 +1011,42 @@ describe.only("Format - JSON to CSV", () => {
                     "results": [
                       {
                         "key": "male",
-                        "interactions": 400,
-                        "unique_authors": 300
+                        "interactions": 600,
+                        "unique_authors": 500,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 300,
+                              "unique_authors": 200
+                            },
+                            {
+                              "key": "55+",
+                              "interactions": 100,
+                              "unique_authors": 100
+                            }
+                          ],
+                          "redacted": false
+                        }
+                      },
+                      {
+                        "key": "female",
+                        "interactions": 100,
+                        "unique_authors": 100,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [],
+                          "redacted": false
+                        }
                       }
                     ],
                     "redacted": false
@@ -689,8 +1057,8 @@ describe.only("Format - JSON to CSV", () => {
             }
           },
           "booboo": {
-            "interactions": 1011416400,
-            "unique_authors": 50844500,
+            "interactions": 985526400,
+            "unique_authors": 50740500,
             "analysis": {
               "analysis_type": "freqDist",
               "parameters": {
@@ -700,8 +1068,8 @@ describe.only("Format - JSON to CSV", () => {
               "results": [
                 {
                   "key": "united states",
-                  "interactions": 252975600,
-                  "unique_authors": 16234000,
+                  "interactions": 243311000,
+                  "unique_authors": 15517900,
                   "child": {
                     "analysis_type": "freqDist",
                     "parameters": {
@@ -711,13 +1079,53 @@ describe.only("Format - JSON to CSV", () => {
                     "results": [
                       {
                         "key": "male",
-                        "interactions": 33969000,
-                        "unique_authors": 7468200
+                        "interactions": 31642600,
+                        "unique_authors": 7159000,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 12671300,
+                              "unique_authors": 4057000
+                            },
+                            {
+                              "key": "unknown",
+                              "interactions": 8406800,
+                              "unique_authors": 3014300
+                            }
+                          ],
+                          "redacted": false
+                        }
                       },
                       {
                         "key": "female",
-                        "interactions": 11222500,
-                        "unique_authors": 4009900
+                        "interactions": 10751400,
+                        "unique_authors": 3911300,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 3532600,
+                              "unique_authors": 1690100
+                            },
+                            {
+                              "key": "unknown",
+                              "interactions": 2831000,
+                              "unique_authors": 1369100
+                            }
+                          ],
+                          "redacted": false
+                        }
                       }
                     ],
                     "redacted": false
@@ -725,15 +1133,55 @@ describe.only("Format - JSON to CSV", () => {
                 },
                 {
                   "key": "united kingdom",
-                  "interactions": 105211400,
-                  "unique_authors": 3980000,
+                  "interactions": 101058800,
+                  "unique_authors": 3887200,
                   "child": {
                     "analysis_type": "freqDist",
                     "parameters": {
                       "target": "li.all.articles.author.member.gender",
                       "threshold": 2
                     },
-                    "results": [],
+                    "results": [
+                      {
+                        "key": "male",
+                        "interactions": 8869200,
+                        "unique_authors": 1690400,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [
+                            {
+                              "key": "35-54",
+                              "interactions": 3856700,
+                              "unique_authors": 1043000
+                            },
+                            {
+                              "key": "unknown",
+                              "interactions": 2171800,
+                              "unique_authors": 756800
+                            }
+                          ],
+                          "redacted": false
+                        }
+                      },
+                      {
+                        "key": "female",
+                        "interactions": 3083100,
+                        "unique_authors": 1031900,
+                        "child": {
+                          "analysis_type": "freqDist",
+                          "parameters": {
+                            "target": "li.all.articles.author.member.age",
+                            "threshold": 2
+                          },
+                          "results": [],
+                          "redacted": false
+                        }
+                      }
+                    ],
                     "redacted": false
                   }
                 }
@@ -747,12 +1195,22 @@ describe.only("Format - JSON to CSV", () => {
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          'key1,key1_interactions,key1_unique_authors,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,188800,56800,united states,95200,24200,male,3500,2100\n' +
-          'yogi,188800,56800,united states,95200,24200,female,800,600\n' +
-          'yogi,188800,56800,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,1011416400,50844500,united states,252975600,16234000,male,33969000,7468200\n' +
-          'booboo,1011416400,50844500,united states,252975600,16234000,female,11222500,4009900\n'
+          'key1,key1_interactions,key1_unique_authors,' +
+          'key2,key2_interactions,key2_unique_authors,' +
+          'key3,key3_interactions,key3_unique_authors,' +
+          'key4,interactions,unique_authors\n' +
+          'yogi,306800,112600,united states,142900,47600,male,4900,3300,35-54,1700,1400\n' +
+          'yogi,306800,112600,united states,142900,47600,male,4900,3300,55+,1400,1000\n' +
+          'yogi,306800,112600,united states,142900,47600,female,1100,900,35-54,400,300\n' +
+          'yogi,306800,112600,united states,142900,47600,female,1100,900,25-34,200,200\n' +
+          'yogi,306800,112600,united kingdom,18300,8600,male,600,500,35-54,300,200\n' +
+          'yogi,306800,112600,united kingdom,18300,8600,male,600,500,55+,100,100\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,male,31642600,7159000,35-54,12671300,4057000\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,male,31642600,7159000,unknown,8406800,3014300\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,female,10751400,3911300,35-54,3532600,1690100\n' +
+          'booboo,985526400,50740500,united states,243311000,15517900,female,10751400,3911300,unknown,2831000,1369100\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,male,8869200,1690400,35-54,3856700,1043000\n' +
+          'booboo,985526400,50740500,united kingdom,101058800,3887200,male,8869200,1690400,unknown,2171800,756800\n'
         );
       });
     });
@@ -884,7 +1342,9 @@ describe.only("Format - JSON to CSV", () => {
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          'key1,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
+          'key1,' +
+          'key2,key2_interactions,key2_unique_authors,' +
+          'key3,interactions,unique_authors\n' +
           'yogi,united states,94700,24100,male,3400,2100\n' +
           'yogi,united states,94700,24100,female,800,600\n' +
           'yogi,united kingdom,8700,3500,male,400,300\n' +
@@ -896,7 +1356,7 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.skip("merged - custom nested - 2 level", () => {
+    it("merged - custom nested - 2 level", () => {
 
       // freqDist: [
       //   {
@@ -932,14 +1392,188 @@ describe.only("Format - JSON to CSV", () => {
       //   }
       // ]
 
-      let config =  {
-        //todo
-      };
+      let config =  [
+          {
+            "yogi__united states__male": {
+              "interactions": 3200,
+              "unique_authors": 1900,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 300,
+                    "unique_authors": 200
+                  },
+                  {
+                    "key": "finance",
+                    "interactions": 200,
+                    "unique_authors": 100
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "yogi__united states__female": {
+              "interactions": 800,
+              "unique_authors": 600,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [],
+                "redacted": false
+              }
+            },
+            "yogi__united kingdom__male": {
+              "interactions": 300,
+              "unique_authors": 200,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [],
+                "redacted": false
+              }
+            },
+            "yogi__united kingdom__female": {
+              "interactions": 100,
+              "unique_authors": 100,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [],
+                "redacted": false
+              }
+            },
+            "booboo__united states__male": {
+              "interactions": 31645000,
+              "unique_authors": 7159000,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 6069300,
+                    "unique_authors": 1157200
+                  },
+                  {
+                    "key": "finance",
+                    "interactions": 4093700,
+                    "unique_authors": 861000
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo__united states__female": {
+              "interactions": 10752000,
+              "unique_authors": 3911300,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 1967500,
+                    "unique_authors": 639200
+                  },
+                  {
+                    "key": "finance",
+                    "interactions": 1354700,
+                    "unique_authors": 495200
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo__united kingdom__male": {
+              "interactions": 8869800,
+              "unique_authors": 1690400,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 1411400,
+                    "unique_authors": 227600
+                  },
+                  {
+                    "key": "corporate",
+                    "interactions": 1322400,
+                    "unique_authors": 206200
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "booboo__united kingdom__female": {
+              "interactions": 3083300,
+              "unique_authors": 1031900,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "corporate",
+                    "interactions": 489400,
+                    "unique_authors": 132300
+                  },
+                  {
+                    "key": "high-tech",
+                    "interactions": 423300,
+                    "unique_authors": 123100
+                  }
+                ],
+                "redacted": false
+              }
+            }
+          }
+        ]
+      ;
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          'foo'
+          'key1,' +
+          'key2,key2_interactions,key2_unique_authors,' +
+          'key3,interactions,unique_authors\n' +
+
+          'yogi,united states,male,3200,1900,high-tech,300,200\n' +
+          'yogi,united states,male,3200,1900,finance,200,100\n' +
+          'booboo,united states,male,31645000,7159000,high-tech,6069300,1157200\n' +
+          'booboo,united states,male,31645000,7159000,finance,4093700,861000\n' +
+          'booboo,united states,female,10752000,3911300,high-tech,1967500,639200\n' +
+          'booboo,united states,female,10752000,3911300,finance,1354700,495200\n' +
+          'booboo,united kingdom,male,8869800,1690400,high-tech,1411400,227600\n' +
+          'booboo,united kingdom,male,8869800,1690400,corporate,1322400,206200\n' +
+          'booboo,united kingdom,female,3083300,1031900,corporate,489400,132300\n' +
+          'booboo,united kingdom,female,3083300,1031900,high-tech,423300,123100\n'
         );
       });
     });

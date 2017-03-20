@@ -12,6 +12,7 @@ const format = require("../../lib/format");
 
 describe.only("Format - JSON to CSV", () => {
   describe("freqDist", () => {
+
     it("Single Task", () => {
       // freqDist: [
       //   {
@@ -574,24 +575,24 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it("merged - native nested - 2 level", () => {
+    it.skip("merged - native nested - 2 level", () => {
+
+      // todo - run this
 
       // freqDist: [
       //   {
       //     "foo": [
       //       {
       //         id: "yogi",
-      //         filter: 'li.content ANY "trump"',
+      //         filter: "li.content ANY \"trump, amazon, aws, tesla\"",
       //         target: "li.user.member.country",
       //         threshold: 2,
       //         child: {
       //           target: "li.all.articles.author.member.gender",
       //           threshold: 2,
-      //           then: {
-      //             child: {
-      //               target: "li.all.articles.author.member.age",
-      //               threshold: 2,
-      //             }
+      //           child: {
+      //             target: "li.all.articles.author.member.age",
+      //             threshold: 2
       //           }
       //         }
       //       },
@@ -602,11 +603,9 @@ describe.only("Format - JSON to CSV", () => {
       //         child: {
       //           target: "li.all.articles.author.member.gender",
       //           threshold: 2,
-      //           then: {
-      //             child: {
-      //               target: "li.all.articles.author.member.age",
-      //               threshold: 2,
-      //             }
+      //           child: {
+      //             target: "li.all.articles.author.member.age",
+      //             threshold: 2
       //           }
       //         }
       //       }
@@ -614,151 +613,20 @@ describe.only("Format - JSON to CSV", () => {
       //   }
       // ]
 
-      let config = [
-          {
-            "yogi": {
-              "interactions": 188800,
-              "unique_authors": 56800,
-              "analysis": {
-                "analysis_type": "freqDist",
-                "parameters": {
-                  "target": "li.user.member.country",
-                  "threshold": 2
-                },
-                "results": [
-                  {
-                    "key": "united states",
-                    "interactions": 95200,
-                    "unique_authors": 24200,
-                    "child": {
-                      "analysis_type": "freqDist",
-                      "parameters": {
-                        "target": "li.all.articles.author.member.gender",
-                        "threshold": 2
-                      },
-                      "results": [
-                        {
-                          "key": "male",
-                          "interactions": 3500,
-                          "unique_authors": 2100
-                        },
-                        {
-                          "key": "female",
-                          "interactions": 800,
-                          "unique_authors": 600
-                        }
-                      ],
-                      "redacted": false
-                    }
-                  },
-                  {
-                    "key": "united kingdom",
-                    "interactions": 8800,
-                    "unique_authors": 3500,
-                    "child": {
-                      "analysis_type": "freqDist",
-                      "parameters": {
-                        "target": "li.all.articles.author.member.gender",
-                        "threshold": 2
-                      },
-                      "results": [
-                        {
-                          "key": "male",
-                          "interactions": 400,
-                          "unique_authors": 300
-                        }
-                      ],
-                      "redacted": false
-                    }
-                  }
-                ],
-                "redacted": false
-              }
-            },
-            "booboo": {
-              "interactions": 1011416400,
-              "unique_authors": 50844500,
-              "analysis": {
-                "analysis_type": "freqDist",
-                "parameters": {
-                  "target": "li.user.member.country",
-                  "threshold": 2
-                },
-                "results": [
-                  {
-                    "key": "united states",
-                    "interactions": 252975600,
-                    "unique_authors": 16234000,
-                    "child": {
-                      "analysis_type": "freqDist",
-                      "parameters": {
-                        "target": "li.all.articles.author.member.gender",
-                        "threshold": 2
-                      },
-                      "results": [
-                        {
-                          "key": "male",
-                          "interactions": 33969000,
-                          "unique_authors": 7468200
-                        },
-                        {
-                          "key": "female",
-                          "interactions": 11222500,
-                          "unique_authors": 4009900
-                        }
-                      ],
-                      "redacted": false
-                    }
-                  },
-                  {
-                    "key": "united kingdom",
-                    "interactions": 105211400,
-                    "unique_authors": 3980000,
-                    "child": {
-                      "analysis_type": "freqDist",
-                      "parameters": {
-                        "target": "li.all.articles.author.member.gender",
-                        "threshold": 2
-                      },
-                      "results": [
-                        {
-                          "key": "male",
-                          "interactions": 9472500,
-                          "unique_authors": 1801300
-                        },
-                        {
-                          "key": "female",
-                          "interactions": 3214500,
-                          "unique_authors": 1046400
-                        }
-                      ],
-                      "redacted": false
-                    }
-                  }
-                ],
-                "redacted": false
-              }
-            }
-          }
-        ];
+      let config = [];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.a("string");
         expect(result).to.eql(
-          'key1,key1_interactions,key1_unique_authors,key2,key2_interactions,key2_unique_authors,key3,interactions,unique_authors\n' +
-          'yogi,188800,56800,united states,95200,24200,male,3500,2100\n' +
-          'yogi,188800,56800,united states,95200,24200,female,800,600\n' +
-          'yogi,188800,56800,united kingdom,8800,3500,male,400,300\n' +
-          'booboo,1011416400,50844500,united states,252975600,16234000,male,33969000,7468200\n' +
-          'booboo,1011416400,50844500,united states,252975600,16234000,female,11222500,4009900\n' +
-          'booboo,1011416400,50844500,united kingdom,105211400,3980000,male,9472500,1801300\n' +
-          'booboo,1011416400,50844500,united kingdom,105211400,3980000,female,3214500,1046400\n'
+          'todo'
         );
       });
     });
 
-    it("merged - native nested - 2 level - empty result sets", () => {
+    it.skip("merged - native nested - 2 level - empty result sets", () => {
       // note empty results - "key": "united kingdom",
+      // todo - redo as per above
+
       let config = [
         {
           "yogi": {
@@ -889,9 +757,7 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.only("merged - custom nested - 1 level", () => {
-
-      // todo - yogi should have int and authors.
+    it("merged - custom nested - 1 level", () => {
 
       // freqDist: [
       //   {
@@ -1030,41 +896,44 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it("merged - custom nested - 2 level", () => {
+    it.skip("merged - custom nested - 2 level", () => {
+
+      // freqDist: [
+      //   {
+      //     "foo": [
+      //       {
+      //         id: "yogi",
+      //         filter: 'li.content ANY "trump"',
+      //         target: "li.user.member.country",
+      //         threshold: 2,
+      //         then: {
+      //           target: "li.all.articles.author.member.gender",
+      //           threshold: 2,
+      //           then: {
+      //             target: "li.user.member.employer_industry_sectors",
+      //             threshold: 2
+      //           }
+      //         }
+      //       },
+      //       {
+      //         id: "booboo",
+      //         target: "li.user.member.country",
+      //         threshold: 2,
+      //         then: {
+      //           target: "li.all.articles.author.member.gender",
+      //           threshold: 2,
+      //           then: {
+      //             target: "li.user.member.employer_industry_sectors",
+      //             threshold: 2
+      //           }
+      //         }
+      //       }
+      //     ]
+      //   }
+      // ]
+
       let config =  {
-        freqDist: [
-          {
-            "foo": [
-              {
-                id: "yogi",
-                filter: 'li.content ANY "trump"',
-                target: "li.user.member.country",
-                threshold: 2,
-                then: {
-                  target: "li.all.articles.author.member.gender",
-                  threshold: 2,
-                  then: {
-                    target: "li.user.member.employer_industry_sectors",
-                    threshold: 2
-                  }
-                }
-              },
-              {
-                id: "booboo",
-                target: "li.user.member.country",
-                threshold: 2,
-                then: {
-                  target: "li.all.articles.author.member.gender",
-                  threshold: 2,
-                  then: {
-                    target: "li.user.member.employer_industry_sectors",
-                    threshold: 2
-                  }
-                }
-              }
-            ]
-          }
-        ]
+        //todo
       };
 
       return format.jsonToCsv(config).then(function(result) {
@@ -1076,6 +945,8 @@ describe.only("Format - JSON to CSV", () => {
     });
 
     it.skip("custom nested - 2 level", () => {
+
+      // todo - renew with LI data
       let config = [
         {
           "Media/News/Publishing": [

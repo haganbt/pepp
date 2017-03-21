@@ -1578,336 +1578,424 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.skip("custom nested - 2 level", () => {
+    it("custom nested - 2 level", () => {
 
-      // todo - renew with LI data
+      // freqDist: [
+      //   {
+      //     target: "li.user.member.country",
+      //     threshold: 2,
+      //     then: {
+      //       target: "li.all.articles.author.member.gender",
+      //       threshold: 2
+      //     }
+      //   }
+      // ]
+
       let config = [
         {
-          "Media/News/Publishing": [
-            {
-              key: "http://bit.ly/1rFFkPW",
-              interactions: 17800,
-              unique_authors: 17400
-            },
-            {
-              key: "http://bit.ly/1olFbiq",
-              interactions: 16700,
-              unique_authors: 13100
+          "united states": {
+            "interactions": 242486400,
+            "unique_authors": 15723000,
+            "analysis": {
+              "analysis_type": "freqDist",
+              "parameters": {
+                "target": "li.all.articles.author.member.gender",
+                "threshold": 2
+              },
+              "results": [
+                {
+                  "key": "male",
+                  "interactions": 31195800,
+                  "unique_authors": 6980000
+                },
+                {
+                  "key": "female",
+                  "interactions": 10721100,
+                  "unique_authors": 3911300
+                }
+              ],
+              "redacted": false
             }
-          ],
-          "News/Media": [
-            {
-              key: "https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/",
-              interactions: 10800,
-              unique_authors: 10400
-            },
-            {
-              key: "https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/",
-              interactions: 6200,
-              unique_authors: 6000
+          },
+          "united kingdom": {
+            "interactions": 100800500,
+            "unique_authors": 3883500,
+            "analysis": {
+              "analysis_type": "freqDist",
+              "parameters": {
+                "target": "li.all.articles.author.member.gender",
+                "threshold": 2
+              },
+              "results": [
+                {
+                  "key": "male",
+                  "interactions": 8780400,
+                  "unique_authors": 1695600
+                },
+                {
+                  "key": "female",
+                  "interactions": 3084500,
+                  "unique_authors": 1018600
+                }
+              ],
+              "redacted": false
             }
-          ]
+          }
         }
       ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,key2,interactions,unique_authors\n" +
-            "Media/News/Publishing,http://bit.ly/1rFFkPW,17800,17400\n" +
-            "Media/News/Publishing,http://bit.ly/1olFbiq,16700,13100\n" +
-            "News/Media,https://www.yaklai.com/entertainment/kellytanapat-ninechanuchtra/,10800,10400\n" +
-            "News/Media,https://www.yaklai.com/lifestyle/special-article/lose-life-forest-fire-in-thailand/,6200,6000\n"
+          'key1,key1_interactions,key1_unique_authors,' +
+          'key2,interactions,unique_authors\n' +
+          'united states,242486400,15723000,male,31195800,6980000\n' +
+          'united states,242486400,15723000,female,10721100,3911300\n' +
+          'united kingdom,100800500,3883500,male,8780400,1695600\n' +
+          'united kingdom,100800500,3883500,female,3084500,1018600\n'
         );
       });
     });
 
-    it.skip("custom nested - 2 level - empty result set", () => {
+    it("custom nested - 2 level - emptry result set", () => {
+
+      // freqDist: [
+      //   {
+      //     target: "li.user.member.country",
+      //     threshold: 2,
+      //     then: {
+      //       target: "li.all.articles.author.member.gender",
+      //       threshold: 2
+      //     }
+      //   }
+      // ]
+
       let config = [
         {
-          "United States__25-34": [
-            { key: "BMW", interactions: 55300, unique_authors: 51400 },
-            {
-              key: "Honda Civic",
-              interactions: 23900,
-              unique_authors: 20600
+          "united states": {
+            "interactions": 242486400,
+            "unique_authors": 15723000,
+            "analysis": {
+              "analysis_type": "freqDist",
+              "parameters": {
+                "target": "li.all.articles.author.member.gender",
+                "threshold": 2
+              },
+              "results": [
+                {
+                  "key": "male",
+                  "interactions": 31195800,
+                  "unique_authors": 6980000
+                },
+                {
+                  "key": "female",
+                  "interactions": 10721100,
+                  "unique_authors": 3911300
+                }
+              ],
+              "redacted": false
             }
-          ],
-          "United States__35-44": [
-            { key: "BMW", interactions: 34300, unique_authors: 29000 },
-            { key: "Cars", interactions: 14500, unique_authors: 12600 }
-          ],
-          "United States__18-24": [
-            { key: "BMW", interactions: 33400, unique_authors: 29000 },
-            {
-              key: "Honda Civic",
-              interactions: 18100,
-              unique_authors: 16400
+          },
+          "united kingdom": {
+            "interactions": 100800500,
+            "unique_authors": 3883500,
+            "analysis": {
+              "analysis_type": "freqDist",
+              "parameters": {
+                "target": "li.all.articles.author.member.gender",
+                "threshold": 2
+              },
+              "results": [],
+              "redacted": false
             }
-          ],
-          "United States__45-54": [
-            { key: "BMW", interactions: 21000, unique_authors: 19000 },
-            { key: "Cars", interactions: 9200, unique_authors: 8600 }
-          ],
-          "United States__55-64": [
-            { key: "BMW", interactions: 9400, unique_authors: 8300 },
-            { key: "Cars", interactions: 4800, unique_authors: 4400 }
-          ],
-          "United States__65+": [
-            { key: "BMW", interactions: 4500, unique_authors: 3900 },
-            { key: "Cars", interactions: 2500, unique_authors: 2100 }
-          ],
-          "Turkey__25-34": [
-            { key: "BMW", interactions: 26700, unique_authors: 23700 },
-            {
-              key: "Honda Civic",
-              interactions: 3800,
-              unique_authors: 3600
-            }
-          ],
-          "Turkey__18-24": [
-            { key: "BMW", interactions: 24700, unique_authors: 22900 },
-            { key: "Honda", interactions: 3600, unique_authors: 3500 }
-          ],
-          "Turkey__35-44": [
-            { key: "BMW", interactions: 7800, unique_authors: 6700 },
-            {
-              key: "Honda Civic",
-              interactions: 1100,
-              unique_authors: 1000
-            }
-          ],
-          "Turkey__45-54": [
-            { key: "BMW", interactions: 2200, unique_authors: 2000 },
-            { key: "Audi USA", interactions: 200, unique_authors: 200 }
-          ],
-          "Turkey__65+": [],
-          "Turkey__55-64": []
+          }
         }
       ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,key2,key3,interactions,unique_authors\n" +
-            "United States,25-34,BMW,55300,51400\n" +
-            "United States,25-34,Honda Civic,23900,20600\n" +
-            "United States,35-44,BMW,34300,29000\n" +
-            "United States,35-44,Cars,14500,12600\n" +
-            "United States,18-24,BMW,33400,29000\n" +
-            "United States,18-24,Honda Civic,18100,16400\n" +
-            "United States,45-54,BMW,21000,19000\n" +
-            "United States,45-54,Cars,9200,8600\n" +
-            "United States,55-64,BMW,9400,8300\n" +
-            "United States,55-64,Cars,4800,4400\n" +
-            "United States,65+,BMW,4500,3900\n" +
-            "United States,65+,Cars,2500,2100\n" +
-            "Turkey,25-34,BMW,26700,23700\n" +
-            "Turkey,25-34,Honda Civic,3800,3600\n" +
-            "Turkey,18-24,BMW,24700,22900\n" +
-            "Turkey,18-24,Honda,3600,3500\n" +
-            "Turkey,35-44,BMW,7800,6700\n" +
-            "Turkey,35-44,Honda Civic,1100,1000\n" +
-            "Turkey,45-54,BMW,2200,2000\n" +
-            "Turkey,45-54,Audi USA,200,200\n"
+          'key1,key1_interactions,key1_unique_authors,' +
+          'key2,interactions,unique_authors\n' +
+
+          'united states,242486400,15723000,male,31195800,6980000\n' +
+          'united states,242486400,15723000,female,10721100,3911300\n'
         );
       });
     });
 
-    it.skip("custom nested - 3 level", () => {
+    it("custom nested - 3 level", () => {
+
+      // freqDist: [
+      //   {
+      //     target: "li.user.member.country",
+      //     threshold: 2,
+      //     then: {
+      //       target: "li.all.articles.author.member.gender",
+      //       threshold: 2 ,
+      //       then: {
+      //         target: "li.user.member.employer_industry_sectors",
+      //         threshold: 2
+      //       }
+      //     }
+      //   }
+      // ]
+
       let config = [
-        {
-          "Turkey__sahibinden.com__Cars": [
-            { key: "like", interactions: 1500, unique_authors: 1500 },
-            { key: "comment", interactions: 100, unique_authors: 100 }
-          ],
-          "United States__youtu.be__Cars": [
-            { key: "like", interactions: 1100, unique_authors: 1100 },
-            { key: "comment", interactions: 600, unique_authors: 400 }
-          ],
-          "United States__youtube.com__Cars": [
-            { key: "like", interactions: 1200, unique_authors: 1200 },
-            { key: "comment", interactions: 500, unique_authors: 400 }
-          ]
-        }
-      ];
+          {
+            "united states__male": {
+              "interactions": 31179000,
+              "unique_authors": 6966200,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 5973800,
+                    "unique_authors": 1123700
+                  },
+                  {
+                    "key": "finance",
+                    "interactions": 4033700,
+                    "unique_authors": 858000
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "united states__female": {
+              "interactions": 10719000,
+              "unique_authors": 3903900,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 1958600,
+                    "unique_authors": 632700
+                  },
+                  {
+                    "key": "finance",
+                    "interactions": 1350100,
+                    "unique_authors": 488100
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "united kingdom__male": {
+              "interactions": 8779800,
+              "unique_authors": 1695600,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "high-tech",
+                    "interactions": 1394400,
+                    "unique_authors": 224600
+                  },
+                  {
+                    "key": "corporate",
+                    "interactions": 1307100,
+                    "unique_authors": 208600
+                  }
+                ],
+                "redacted": false
+              }
+            },
+            "united kingdom__female": {
+              "interactions": 3085400,
+              "unique_authors": 1015900,
+              "analysis": {
+                "analysis_type": "freqDist",
+                "parameters": {
+                  "target": "li.user.member.employer_industry_sectors",
+                  "threshold": 2
+                },
+                "results": [
+                  {
+                    "key": "corporate",
+                    "interactions": 489800,
+                    "unique_authors": 130100
+                  },
+                  {
+                    "key": "high-tech",
+                    "interactions": 423500,
+                    "unique_authors": 123400
+                  }
+                ],
+                "redacted": false
+              }
+            }
+          }
+        ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,key2,key3,key4,interactions,unique_authors\n" +
-            "Turkey,sahibinden.com,Cars,like,1500,1500\n" +
-            "Turkey,sahibinden.com,Cars,comment,100,100\n" +
-            "United States,youtu.be,Cars,like,1100,1100\n" +
-            "United States,youtu.be,Cars,comment,600,400\n" +
-            "United States,youtube.com,Cars,like,1200,1200\n" +
-            "United States,youtube.com,Cars,comment,500,400\n"
+          'key1,' +
+          'key2,key2_interactions,key2_unique_authors,' +
+          'key3,interactions,unique_authors\n' +
+          'united states,male,31179000,6966200,high-tech,5973800,1123700\n' +
+          'united states,male,31179000,6966200,finance,4033700,858000\n' +
+          'united states,female,10719000,3903900,high-tech,1958600,632700\n' +
+          'united states,female,10719000,3903900,finance,1350100,488100\n' +
+          'united kingdom,male,8779800,1695600,high-tech,1394400,224600\n' +
+          'united kingdom,male,8779800,1695600,corporate,1307100,208600\n' +
+          'united kingdom,female,3085400,1015900,corporate,489800,130100\n' +
+          'united kingdom,female,3085400,1015900,high-tech,423500,123400\n'
         );
       });
     });
   });
 
   describe("timeSeries", () => {
-    it.skip("Single Task", () => {
+
+    it("Single Task", () => {
+
+      // timeSeries: [
+      //   {
+      //     interval: "week",
+      //   }
+      // ]
+
       let config = [
         {
-          key: "2016-03-07 00:00:00",
-          interactions: 490600,
-          unique_authors: 432800
+          "key": "2017-02-20 00:00:00",
+          "interactions": 47391000,
+          "unique_authors": 9549800
         },
         {
-          key: "2016-03-08 00:00:00",
-          interactions: 526300,
-          unique_authors: 447700
+          "key": "2017-02-27 00:00:00",
+          "interactions": 230262800,
+          "unique_authors": 27996500
         },
         {
-          key: "2016-03-09 00:00:00",
-          interactions: 666400,
-          unique_authors: 596000
+          "key": "2017-03-06 00:00:00",
+          "interactions": 215802100,
+          "unique_authors": 26785700
         },
         {
-          key: "2016-03-10 00:00:00",
-          interactions: 724600,
-          unique_authors: 599100
+          "key": "2017-03-13 00:00:00",
+          "interactions": 207415800,
+          "unique_authors": 27124200
         },
         {
-          key: "2016-03-11 00:00:00",
-          interactions: 683900,
-          unique_authors: 599100
-        },
-        {
-          key: "2016-03-12 00:00:00",
-          interactions: 515200,
-          unique_authors: 438500
-        },
-        {
-          key: "2016-03-13 00:00:00",
-          interactions: 690700,
-          unique_authors: 608900
-        },
-        {
-          key: "2016-03-14 00:00:00",
-          interactions: 611200,
-          unique_authors: 505000
-        },
-        {
-          key: "2016-03-15 00:00:00",
-          interactions: 410900,
-          unique_authors: 355200
-        },
-        {
-          key: "2016-03-16 00:00:00",
-          interactions: 457700,
-          unique_authors: 383200
-        },
-        {
-          key: "2016-03-17 00:00:00",
-          interactions: 414500,
-          unique_authors: 367900
-        },
-        {
-          key: "2016-03-18 00:00:00",
-          interactions: 398700,
-          unique_authors: 352800
+          "key": "2017-03-20 00:00:00",
+          "interactions": 60101000,
+          "unique_authors": 13799800
         }
       ];
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,interactions,unique_authors\n" +
-            "2016-03-07 00:00:00,490600,432800\n" +
-            "2016-03-08 00:00:00,526300,447700\n" +
-            "2016-03-09 00:00:00,666400,596000\n" +
-            "2016-03-10 00:00:00,724600,599100\n" +
-            "2016-03-11 00:00:00,683900,599100\n" +
-            "2016-03-12 00:00:00,515200,438500\n" +
-            "2016-03-13 00:00:00,690700,608900\n" +
-            "2016-03-14 00:00:00,611200,505000\n" +
-            "2016-03-15 00:00:00,410900,355200\n" +
-            "2016-03-16 00:00:00,457700,383200\n" +
-            "2016-03-17 00:00:00,414500,367900\n" +
-            "2016-03-18 00:00:00,398700,352800\n"
+          'key1,interactions,unique_authors\n' +
+          '2017-02-20 00:00:00,47391000,9549800\n' +
+          '2017-02-27 00:00:00,230262800,27996500\n' +
+          '2017-03-06 00:00:00,215802100,26785700\n' +
+          '2017-03-13 00:00:00,207415800,27124200\n' +
+          '2017-03-20 00:00:00,60101000,13799800\n'
         );
       });
     });
   });
 
   describe("Hybrid", () => {
-    it.skip("TimeSeries - nested custom freqDist - 2 levels", () => {
-      /*"timeSeries": [
-        {
-          "interval": "month",
-          "then": {
-            "type": "freqDist",
-            "target": "fb.type",
-            "threshold": 2,
-            "then": {
-              "target": "fb.parent.topics.name",
-              "threshold": 2
-            }
-          }
-        }
-       ]
-       */
 
-      let config = [
+    it("TimeSeries - nested custom freqDist - 1 level", () => {
+
+      // timeSeries: [
+      //   {
+      //     interval: "week",
+      //     then: {
+      //       analysis_type: "freqDist",
+      //       target: "li.user.member.employer_industry_sectors",
+      //       threshold: 2
+      //     }
+      //   }
+      // ]
+
+      let config =
         {
-          "2016-04-01 00:00:00__like": [
+          "2017-02-20 00:00:00": [
             {
-              key: "BMW",
-              interactions: 4518700,
-              unique_authors: 3410200
+              "key": "high-tech",
+              "interactions": 35496100,
+              "unique_authors": 3839600
             },
             {
-              key: "Ford Mustang",
-              interactions: 803100,
-              unique_authors: 571800
+              "key": "finance",
+              "interactions": 24214900,
+              "unique_authors": 2952700
             }
           ],
-          "2016-04-01 00:00:00__reshare": [
+          "2017-02-27 00:00:00": [
             {
-              key: "BMW",
-              interactions: 1327300,
-              unique_authors: 1230900
-            },
-            { key: "Pará", interactions: 272100, unique_authors: 258100 }
-          ],
-          "2016-03-01 00:00:00__like": [
-            {
-              key: "BMW",
-              interactions: 4518700,
-              unique_authors: 3410200
+              "key": "high-tech",
+              "interactions": 36694400,
+              "unique_authors": 3800700
             },
             {
-              key: "Ford Mustang",
-              interactions: 803100,
-              unique_authors: 571800
+              "key": "finance",
+              "interactions": 24959200,
+              "unique_authors": 2915500
             }
           ],
-          "2016-03-01 00:00:00__reshare": [
+          "2017-03-06 00:00:00": [
             {
-              key: "BMW",
-              interactions: 1327300,
-              unique_authors: 1230900
+              "key": "high-tech",
+              "interactions": 33707300,
+              "unique_authors": 3840500
             },
-            { key: "Pará", interactions: 272100, unique_authors: 258100 }
+            {
+              "key": "finance",
+              "interactions": 23423200,
+              "unique_authors": 2852000
+            }
+          ],
+          "2017-03-13 00:00:00": [
+            {
+              "key": "high-tech",
+              "interactions": 32181600,
+              "unique_authors": 3723200
+            },
+            {
+              "key": "finance",
+              "interactions": 22173500,
+              "unique_authors": 2845300
+            }
+          ],
+          "2017-03-20 00:00:00": [
+            {
+              "key": "high-tech",
+              "interactions": 9662600,
+              "unique_authors": 2055500
+            },
+            {
+              "key": "finance",
+              "interactions": 6339800,
+              "unique_authors": 1531100
+            }
           ]
-        }
-      ];
+        };
 
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
-          "key1,key2,key3,interactions,unique_authors\n" +
-            "2016-04-01 00:00:00,like,BMW,4518700,3410200\n" +
-            "2016-04-01 00:00:00,like,Ford Mustang,803100,571800\n" +
-            "2016-04-01 00:00:00,reshare,BMW,1327300,1230900\n" +
-            "2016-04-01 00:00:00,reshare,Pará,272100,258100\n" +
-            "2016-03-01 00:00:00,like,BMW,4518700,3410200\n" +
-            "2016-03-01 00:00:00,like,Ford Mustang,803100,571800\n" +
-            "2016-03-01 00:00:00,reshare,BMW,1327300,1230900\n" +
-            "2016-03-01 00:00:00,reshare,Pará,272100,258100\n"
+          'foo'
         );
       });
     });

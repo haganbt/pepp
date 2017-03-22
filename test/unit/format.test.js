@@ -1557,6 +1557,8 @@ describe.only("Format - JSON to CSV", () => {
         ]
       ;
 
+      //todo - this result set is wrong - missing results for country
+
       return format.jsonToCsv(config).then(function(result) {
         expect(result).to.be.an("string");
         expect(result).to.eql(
@@ -1574,6 +1576,56 @@ describe.only("Format - JSON to CSV", () => {
           'booboo,united kingdom,male,8869800,1690400,corporate,1322400,206200\n' +
           'booboo,united kingdom,female,3083300,1031900,corporate,489400,132300\n' +
           'booboo,united kingdom,female,3083300,1031900,high-tech,423300,123100\n'
+        );
+      });
+    });
+
+    it.only("custom nested - 1 level", () => {
+
+      // freqDist: [
+      //   {
+      //     target: "li.user.member.country",
+      //     threshold: 2,
+      //     then: {
+      //       target: "li.all.articles.author.member.gender",
+      //       threshold: 2
+      //     }
+      //   }
+      // ]
+
+      let config = [
+        {
+          "united states": [
+            {
+              "key": "male",
+              "interactions": 23194700,
+              "unique_authors": 5923900
+            },
+            {
+              "key": "female",
+              "interactions": 8228300,
+              "unique_authors": 3191400
+            }
+          ],
+          "united kingdom": [
+            {
+              "key": "male",
+              "interactions": 6562200,
+              "unique_authors": 1451700
+            },
+            {
+              "key": "female",
+              "interactions": 2448100,
+              "unique_authors": 874100
+            }
+          ]
+        }
+      ];
+
+      return format.jsonToCsv(config).then(function(result) {
+        expect(result).to.be.an("string");
+        expect(result).to.eql(
+          'foo'
         );
       });
     });
@@ -1915,7 +1967,7 @@ describe.only("Format - JSON to CSV", () => {
 
   describe("Hybrid", () => {
 
-    it("TimeSeries - nested custom freqDist - 1 level", () => {
+    it.skip("TimeSeries - nested custom freqDist - 1 level", () => {
 
       // timeSeries: [
       //   {

@@ -1580,7 +1580,7 @@ describe.only("Format - JSON to CSV", () => {
       });
     });
 
-    it.only("custom nested - 1 level", () => {
+    it.skip("custom nested - 1 level", () => {
 
       // freqDist: [
       //   {
@@ -1967,7 +1967,7 @@ describe.only("Format - JSON to CSV", () => {
 
   describe("Hybrid", () => {
 
-    it.skip("TimeSeries - nested custom freqDist - 1 level", () => {
+    it.only("TimeSeries - nested custom freqDist - 1 level", () => {
 
       // timeSeries: [
       //   {
@@ -1975,80 +1975,256 @@ describe.only("Format - JSON to CSV", () => {
       //     then: {
       //       analysis_type: "freqDist",
       //       target: "li.user.member.employer_industry_sectors",
-      //       threshold: 2
+      //       threshold: 2,
+      //       then: {
+      //         target: "li.user.member.country",
+      //         threshold: 2
+      //       }
       //     }
       //   }
       // ]
 
-      let config =
+      let config = [
         {
-          "2017-02-20 00:00:00": [
-            {
-              "key": "high-tech",
-              "interactions": 35496100,
-              "unique_authors": 3839600
+          "2017-02-01 00:00:00": {
+            "interactions": 49165300,
+            "unique_authors": 12838200
+          },
+          "2017-03-01 00:00:00": {
+            "interactions": 737848400,
+            "unique_authors": 46893200
+          },
+          "2017-02-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547500,
+              "unique_authors": 1850800
             },
-            {
-              "key": "finance",
-              "interactions": 24214900,
-              "unique_authors": 2952700
+            "1": {
+              "key": "india",
+              "interactions": 16937300,
+              "unique_authors": 729200
             }
-          ],
-          "2017-02-27 00:00:00": [
-            {
-              "key": "high-tech",
-              "interactions": 36694400,
-              "unique_authors": 3800700
+          },
+          "2017-02-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409400,
+              "unique_authors": 1778400
             },
-            {
-              "key": "finance",
-              "interactions": 24959200,
-              "unique_authors": 2915500
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097800,
+              "unique_authors": 439500
             }
-          ],
-          "2017-03-06 00:00:00": [
-            {
-              "key": "high-tech",
-              "interactions": 33707300,
-              "unique_authors": 3840500
+          },
+          "2017-03-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547400,
+              "unique_authors": 1850800
             },
-            {
-              "key": "finance",
-              "interactions": 23423200,
-              "unique_authors": 2852000
+            "1": {
+              "key": "india",
+              "interactions": 16937200,
+              "unique_authors": 729200
             }
-          ],
-          "2017-03-13 00:00:00": [
-            {
-              "key": "high-tech",
-              "interactions": 32181600,
-              "unique_authors": 3723200
+          },
+          "2017-03-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409600,
+              "unique_authors": 1778400
             },
-            {
-              "key": "finance",
-              "interactions": 22173500,
-              "unique_authors": 2845300
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097900,
+              "unique_authors": 439500
             }
-          ],
-          "2017-03-20 00:00:00": [
-            {
-              "key": "high-tech",
-              "interactions": 9662600,
-              "unique_authors": 2055500
+          }
+        },
+        {
+          "2017-02-01 00:00:00": {
+            "interactions": 49165300,
+            "unique_authors": 12838200
+          },
+          "2017-03-01 00:00:00": {
+            "interactions": 737848400,
+            "unique_authors": 46893200
+          },
+          "2017-02-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547500,
+              "unique_authors": 1850800
             },
-            {
-              "key": "finance",
-              "interactions": 6339800,
-              "unique_authors": 1531100
+            "1": {
+              "key": "india",
+              "interactions": 16937300,
+              "unique_authors": 729200
             }
-          ]
-        };
+          },
+          "2017-02-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409400,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097800,
+              "unique_authors": 439500
+            }
+          },
+          "2017-03-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547400,
+              "unique_authors": 1850800
+            },
+            "1": {
+              "key": "india",
+              "interactions": 16937200,
+              "unique_authors": 729200
+            }
+          },
+          "2017-03-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409600,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097900,
+              "unique_authors": 439500
+            }
+          }
+        },
+        {
+          "2017-02-01 00:00:00": {
+            "interactions": 49165300,
+            "unique_authors": 12838200
+          },
+          "2017-03-01 00:00:00": {
+            "interactions": 737848400,
+            "unique_authors": 46893200
+          },
+          "2017-02-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547500,
+              "unique_authors": 1850800
+            },
+            "1": {
+              "key": "india",
+              "interactions": 16937300,
+              "unique_authors": 729200
+            }
+          },
+          "2017-02-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409400,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097800,
+              "unique_authors": 439500
+            }
+          },
+          "2017-03-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547400,
+              "unique_authors": 1850800
+            },
+            "1": {
+              "key": "india",
+              "interactions": 16937200,
+              "unique_authors": 729200
+            }
+          },
+          "2017-03-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409600,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097900,
+              "unique_authors": 439500
+            }
+          }
+        },
+        {
+          "2017-02-01 00:00:00": {
+            "interactions": 49165300,
+            "unique_authors": 12838200
+          },
+          "2017-03-01 00:00:00": {
+            "interactions": 737848400,
+            "unique_authors": 46893200
+          },
+          "2017-02-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547500,
+              "unique_authors": 1850800
+            },
+            "1": {
+              "key": "india",
+              "interactions": 16937300,
+              "unique_authors": 729200
+            }
+          },
+          "2017-02-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409400,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097800,
+              "unique_authors": 439500
+            }
+          },
+          "2017-03-01 00:00:00__high-tech": {
+            "0": {
+              "key": "united states",
+              "interactions": 34547400,
+              "unique_authors": 1850800
+            },
+            "1": {
+              "key": "india",
+              "interactions": 16937200,
+              "unique_authors": 729200
+            }
+          },
+          "2017-03-01 00:00:00__finance": {
+            "0": {
+              "key": "united states",
+              "interactions": 25409600,
+              "unique_authors": 1778400
+            },
+            "1": {
+              "key": "united kingdom",
+              "interactions": 10097900,
+              "unique_authors": 439500
+            }
+          }
+        }
+      ];
 
       return format.jsonToCsv(config).then(function(result) {
-        expect(result).to.be.an("string");
+        //expect(result).to.be.an("string");
+        /*
         expect(result).to.eql(
           'foo'
-        );
+        );*/
       });
     });
   });

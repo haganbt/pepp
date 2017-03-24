@@ -1,10 +1,9 @@
 # Ignore everything
 
+dev.sh
+
 # But not these files...
 !.gitignore
-!basic.js
-!all.js
-!production.js
 !BA_brand_reputation_management.js
 !CMA_content_discovery.js
 !CMA_topic_analysis.js

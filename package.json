@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "source ./config/developer.sh && export NODE_ENV=test && mocha --timeout 20000",
-    "test:watch": "export NODE_ENV=test && mocha -w --timeout 20000",
+    "test": "source ./config/dev.sh && export NODE_ENV=test && mocha --timeout 20000",
+    "test:watch": "source ./config/dev.sh && export NODE_ENV=test && mocha -w --timeout 20000",
     "lint": "eslint --fix lib plugins"
   },
   "repository": {

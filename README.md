@@ -671,7 +671,7 @@ npm run lint
 **Dev ENV Config**
 
 ```
-source config/developer.sh
+source config/dev.sh
 ```
 
 **Contributing**

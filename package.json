@@ -4,12 +4,12 @@
   "description": "PYLON Exporter ++",
   "main": "app.js",
   "engines": {
-    "node": ">= 4.2.2"
+    "node": ">= 7.7.4"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "source ./config/dev.sh && export NODE_ENV=test && mocha --timeout 20000",
-    "test:watch": "source ./config/dev.sh && export NODE_ENV=test && mocha -w --timeout 20000",
+    "test": "source ./config/dev.sh && export LOG_LEVEL=info && export NODE_ENV=test && mocha --timeout 60000",
+    "test:watch": "source ./config/dev.sh && export NODE_ENV=test && mocha -w --timeout 60000",
     "lint": "eslint --fix lib plugins"
   },
   "repository": {

@@ -28,6 +28,7 @@ describe("Custom Nested", function() {
     };
 
     const normalizedTasks = taskManager.loadConfigTasks(config);
+
     normalizedTasks.forEach(task => {
 
       const reqObj = requestFactory(task);
@@ -35,15 +36,13 @@ describe("Custom Nested", function() {
       queue
         .queueRequest(reqObj, task)
         .then(response => {
-          if (response === undefined || _.isEmpty(response)) {
-            return;
-          }
-          return response;
-        })
-        .then(response => {
+
           console.log(JSON.stringify(response, undefined, 4));
+
+
         });
     });
+
   });
 });
 

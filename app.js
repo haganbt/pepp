@@ -31,6 +31,15 @@ normalizedTasks.forEach(task => {
     .then(response => {
       spinner.stop();
 
+
+      console.log("===================================");
+
+      console.log(response);
+
+      console.log("===================================");
+
+
+
       //handle expected unresolved promises caused by recursion
       if (response === undefined || _.isEmpty(response)) {
         return;

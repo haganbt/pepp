@@ -10,7 +10,7 @@ const requestFactory = require("../../lib/requestFactory").requestFactory;
 const queue = require("../../lib/queue");
 
 describe("CUSTOM NESTED", function() {
-  it.skip("1 level", async () => {
+  it("1 level", async () => {
     const config = {
       freqDist: [
         {
@@ -53,7 +53,7 @@ describe("CUSTOM NESTED", function() {
 
   });
 
-  it("2 level", async () => {
+  it.skip("2 level", async () => {
     const config = {
       freqDist: [
         {

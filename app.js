@@ -32,11 +32,15 @@ normalizedTasks.forEach(task => {
       spinner.stop();
 
       //handle expected unresolved promises caused by recursion
+      /*
       if (response === undefined || _.isEmpty(response)) {
         return;
       }
-
+*/
       cacheHelper.debugAll();
+
+      console.log("debug 1");
+      console.log(response);
 
       return response;
     })

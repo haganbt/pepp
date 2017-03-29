@@ -28,28 +28,57 @@ describe("CUSTOM NESTED", function() {
     const reqObj = requestFactory(task[0]);
     const result = await queue.queueRequest(reqObj, task[0]);
 
-    expect(result).to.be.an("array");
-    expect(result[0]).to.be.an("object");
+    // {
+    //   "united states": {
+    //     "interactions": 229778200,
+    //     "unique_authors": 15044700,
+    //     "male": {
+    //       "interactions": 27226900,
+    //       "unique_authors": 6740200
+    //     },
+    //     "female": {
+    //       "interactions": 9181500,
+    //       "unique_authors": 3422700
+    //     }
+    //   },
+    //   "united kingdom": {
+    //     "interactions": 94953100,
+    //     "unique_authors": 3790000,
+    //     "male": {
+    //       "interactions": 7755300,
+    //       "unique_authors": 1615200
+    //     },
+    //     "female": {
+    //       "interactions": 2803000,
+    //       "unique_authors": 909100
+    //     }
+    //   }
+    // }
 
+    console.log("====");
     console.log(JSON.stringify(result, undefined, 4));
 
-    for (let [key, value] of Object.entries(result[0])) {
+    expect(result).to.be.an("object");
 
-      expect(result[0][key]).to.have.all.keys([
+
+    for (let [key, value] of Object.entries(result)) {
+
+      expect(result[key]).to.have.all.keys([
         "interactions",
         "unique_authors",
         "male",
         "female"
       ]);
-      expect(result[0][key]["male"]).to.have.all.keys([
+      expect(result[key]["male"]).to.have.all.keys([
         "interactions",
         "unique_authors"
       ]);
-      expect(result[0][key]["female"]).to.have.all.keys([
+      expect(result[key]["female"]).to.have.all.keys([
         "interactions",
         "unique_authors"
       ]);
     }
+
 
   });
 

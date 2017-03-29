@@ -25,17 +25,17 @@ describe("SINGLE TASK", function() {
     const reqObj = requestFactory(task[0]);
     const result = await queue.queueRequest(reqObj, task[0]);
 
-    console.log(JSON.stringify(result, undefined, 4));
+    //console.log(JSON.stringify(result, undefined, 4));
 
     // {
     //   "male": {
-    //   "interactions": 84050200,
+    //     "interactions": 84050200,
     //     "unique_authors": 20751600
-    // },
+    //     },
     //   "female": {
-    //   "interactions": 28473100,
-    //     "unique_authors": 10194700
-    // }
+    //       "interactions": 28473100,
+    //       "unique_authors": 10194700
+    //   }
     // }
 
     expect(result).to.be.an("object");

@@ -652,11 +652,13 @@ With this in mind, it then becomes easy to create new custom Tableau workbooks s
 
 **Tests**
 
+Run tests:
+
 ```
 npm test
 ```
 
-or
+Run tests with automatic restarts and LOG_LEVEL=trace:
 
 ```
 npm run test:watch

@@ -29,38 +29,8 @@ describe("CUSTOM NESTED", function() {
     const reqObj = requestFactory(task[0]);
     const result = await request.make(reqObj, task[0]);
 
-
-    //const result = await queue.queueRequest();
-
-    // {
-    //   "united states": {
-    //     "interactions": 229778200,
-    //     "unique_authors": 15044700,
-    //     "male": {
-    //       "interactions": 27226900,
-    //       "unique_authors": 6740200
-    //     },
-    //     "female": {
-    //       "interactions": 9181500,
-    //       "unique_authors": 3422700
-    //     }
-    //   },
-    //   "united kingdom": {
-    //     "interactions": 94953100,
-    //     "unique_authors": 3790000,
-    //     "male": {
-    //       "interactions": 7755300,
-    //       "unique_authors": 1615200
-    //     },
-    //     "female": {
-    //       "interactions": 2803000,
-    //       "unique_authors": 909100
-    //     }
-    //   }
-    // }
-
     console.log("====");
-    console.log(JSON.stringify(result, undefined, 4));
+    console.log(result);
 
     expect(result).to.be.an("object");
 

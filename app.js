@@ -7,7 +7,7 @@ const bytes = require("bytes");
 const plugins = require("require-all")(__dirname + "/plugins");
 
 const taskManager = require("./lib/taskManager");
-const queue = require("./lib/queue");
+const queue = require("./lib/response");
 const log = require("./lib/helpers/logger");
 const requestStats = require("./lib/helpers/requestStats");
 const cacheHelper = require("./lib/helpers/cache");

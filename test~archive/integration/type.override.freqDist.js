@@ -7,7 +7,7 @@ const expect = chai.expect;
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
-const queue = require('../../lib/queue');
+const queue = require('../../lib/response');
 const taskProcessor = require('../../lib/taskManager');
 
 describe.skip("Type Override - freqDist to timeSeries", function(){

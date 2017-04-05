@@ -7,7 +7,7 @@ chai.use(chaiAsPromised);
 
 const taskManager = require("../../lib/taskManager");
 const requestFactory = require("../../lib/requestFactory").requestFactory;
-const queue = require("../../lib/queue");
+const queue = require("../../lib/response");
 
 describe("SINGLE TASK", function() {
   it.skip("0 level", async () => {

@@ -6,11 +6,11 @@ const chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 
 const taskManager = require("../../lib/taskManager");
+const request = require("../../lib/request");
 const requestFactory = require("../../lib/requestFactory").requestFactory;
-const queue = require("../../lib/response");
 
 describe("SINGLE TASK", function() {
-  it.skip("0 level", async () => {
+  it("0 level", async () => {
     const config = {
       freqDist: [
         {
@@ -20,12 +20,9 @@ describe("SINGLE TASK", function() {
       ]
     };
 
-
-    const task = taskManager.loadConfigTasks(config);
-    const reqObj = requestFactory(task[0]);
-    const result = await queue.queueRequest(reqObj, task[0]);
-
-    //console.log(JSON.stringify(result, undefined, 4));
+    const task = taskManager.loadConfigTasks(config)[0];
+    const reqObj = requestFactory(task);
+    const result = await request.make(reqObj, task);
 
     // {
     //   "male": {
@@ -40,6 +37,8 @@ describe("SINGLE TASK", function() {
 
     expect(result).to.be.an("object");
     expect(result).to.have.all.keys(["male", "female"]);
+    expect(result["male"]).to.have.all.keys(["interactions", "unique_authors"]);
+    expect(result["female"]).to.have.all.keys(["interactions", "unique_authors"]);
 
   });
 });

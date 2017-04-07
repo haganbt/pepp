@@ -10,7 +10,7 @@ const request = require("../../lib/request");
 const requestFactory = require("../../lib/requestFactory").requestFactory;
 
 describe("SINGLE TASK", function() {
-  it("0 level", async () => {
+  it("Frequency Distribution", async () => {
     const config = {
       freqDist: [
         {
@@ -41,4 +41,10 @@ describe("SINGLE TASK", function() {
     expect(result["female"]).to.have.all.keys(["interactions", "unique_authors"]);
 
   });
+
+
+  it.skip("Time Series TODO", async () => {
+    // todo
+  });
+
 });

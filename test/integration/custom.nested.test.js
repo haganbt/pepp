@@ -10,6 +10,7 @@ const requestFactory = require("../../lib/requestFactory").requestFactory;
 
 describe("CUSTOM NESTED", function() {
   it("1 level", async () => {
+
     const config = {
       freqDist: [
         {
@@ -93,10 +94,10 @@ describe("CUSTOM NESTED", function() {
 
     // {
     //   "male": {
-    //   "interactions": 76676300,
-    //     "unique_authors": 18876400,
-    //     "united states": {
-    //     "35-54": {
+    //      "interactions": 76676300,
+    //      "unique_authors": 18876400,
+    //        "united states": {
+    //            "35-54": {
     //       "interactions": 9497400,
     //         "unique_authors": 3290000
     //     },

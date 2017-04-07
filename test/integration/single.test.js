@@ -77,7 +77,6 @@ describe("SINGLE TASK", function() {
       expect(result[key]).to.have.all.keys(["interactions", "unique_authors"])
     }
 
-    console.log(JSON.stringify(result, undefined, 4));
   });
 
 });
